@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/language-exchange/entry.schema.json",
+  "title": "Language Exchange Entry",
+  "description": "One curated entry. Audio is optional; only licensed and verified human audio may be attached.",
+  "type": "object",
+  "required": [
+    "id",
+    "language",
+    "kind",
+    "text",
+    "meaning_zh",
+    "reading",
+    "romaji",
+    "personal_mnemonic",
+    "examples",
+    "notes",
+    "review_status",
+    "audio"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(ko|ja)-[a-z0-9-]+$"
+    },
+    "language": {
+      "enum": [
+        "ko",
+        "ja"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "word",
+        "phrase",
+        "grammar"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "meaning_zh": {
+      "type": "string"
+    },
+    "reading": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "romaji": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "personal_mnemonic": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "text",
+          "meaning_zh"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "meaning_zh": {
+            "type": "string"
+          },
+          "reading": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "review_status": {
+      "enum": [
+        "needs_review",
+        "verified"
+      ]
+    },
+    "audio": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "src",
+            "source_page",
+            "creator",
+            "license",
+            "attribution",
+            "verified_by",
+            "checked_on"
+          ],
+          "properties": {
+            "kind": {
+              "const": "human_recording"
+            },
+            "src": {
+              "type": "string",
+              "pattern": "^/audio/.+\\.(mp3|ogg|wav|webm)$"
+            },
+            "source_page": {
+              "type": "string",
+              "format": "uri"
+            },
+            "creator": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "attribution": {
+              "type": "string",
+              "minLength": 1
+            },
+            "verified_by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "checked_on": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

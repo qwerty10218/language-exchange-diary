@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "global": {
+    "startRadius": 0.15,
+    "snapRadius": 0.13,
+    "maxDeviation": 0.2,
+    "completion": 0.75,
+    "closeRatio": 0.6,
+    "autoTriggerDistance": 0.04,
+    "animationMs": 1500,
+    "acceptanceMs": 450,
+    "showGuides": true,
+    "strictOrder": true,
+    "rejectBackwards": true
+  },
+  "types": {
+    "straight": {},
+    "curve": {},
+    "short": { "maxSearchFraction": 0.18 },
+    "crossing": { "maxSearchFraction": 0.14 }
+  },
+  "overrides": {},
+  "note": "強度以 snapRadius 控制吸附距離，顯示始終使用標準中心線。短筆與交叉筆只縮小搜尋範圍；不放寬筆順或方向。單字元覆寫須含 reason 與 strokes。"
+}

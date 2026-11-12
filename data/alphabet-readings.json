@@ -1,0 +1,834 @@
+{
+  "あ": {
+    "reading": "あ",
+    "romanization": "a",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "い": {
+    "reading": "い",
+    "romanization": "i",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "う": {
+    "reading": "う",
+    "romanization": "u",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "え": {
+    "reading": "え",
+    "romanization": "e",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "お": {
+    "reading": "お",
+    "romanization": "o",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "か": {
+    "reading": "か",
+    "romanization": "ka",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "き": {
+    "reading": "き",
+    "romanization": "ki",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "く": {
+    "reading": "く",
+    "romanization": "ku",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "け": {
+    "reading": "け",
+    "romanization": "ke",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "こ": {
+    "reading": "こ",
+    "romanization": "ko",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "さ": {
+    "reading": "さ",
+    "romanization": "sa",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "し": {
+    "reading": "し",
+    "romanization": "shi",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "す": {
+    "reading": "す",
+    "romanization": "su",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "せ": {
+    "reading": "せ",
+    "romanization": "se",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "そ": {
+    "reading": "そ",
+    "romanization": "so",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "た": {
+    "reading": "た",
+    "romanization": "ta",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ち": {
+    "reading": "ち",
+    "romanization": "chi",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "つ": {
+    "reading": "つ",
+    "romanization": "tsu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "て": {
+    "reading": "て",
+    "romanization": "te",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "と": {
+    "reading": "と",
+    "romanization": "to",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "な": {
+    "reading": "な",
+    "romanization": "na",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "に": {
+    "reading": "に",
+    "romanization": "ni",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ぬ": {
+    "reading": "ぬ",
+    "romanization": "nu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ね": {
+    "reading": "ね",
+    "romanization": "ne",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "の": {
+    "reading": "の",
+    "romanization": "no",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "は": {
+    "reading": "は",
+    "romanization": "ha",
+    "pronunciationNote": "は／ハ：字母讀 ha；助詞 は 讀 wa。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ひ": {
+    "reading": "ひ",
+    "romanization": "hi",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ふ": {
+    "reading": "ふ",
+    "romanization": "fu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "へ": {
+    "reading": "へ",
+    "romanization": "he",
+    "pronunciationNote": "へ／ヘ：字母讀 he；助詞 へ 讀 e。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ほ": {
+    "reading": "ほ",
+    "romanization": "ho",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ま": {
+    "reading": "ま",
+    "romanization": "ma",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "み": {
+    "reading": "み",
+    "romanization": "mi",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "む": {
+    "reading": "む",
+    "romanization": "mu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "め": {
+    "reading": "め",
+    "romanization": "me",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "も": {
+    "reading": "も",
+    "romanization": "mo",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "や": {
+    "reading": "や",
+    "romanization": "ya",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ゆ": {
+    "reading": "ゆ",
+    "romanization": "yu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "よ": {
+    "reading": "よ",
+    "romanization": "yo",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ら": {
+    "reading": "ら",
+    "romanization": "ra",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "り": {
+    "reading": "り",
+    "romanization": "ri",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "る": {
+    "reading": "る",
+    "romanization": "ru",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "れ": {
+    "reading": "れ",
+    "romanization": "re",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ろ": {
+    "reading": "ろ",
+    "romanization": "ro",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "わ": {
+    "reading": "わ",
+    "romanization": "wa",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "を": {
+    "reading": "を",
+    "romanization": "wo",
+    "pronunciationNote": "を／ヲ：現代一般讀音 o；字母對照寫 wo。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ん": {
+    "reading": "ん",
+    "romanization": "n",
+    "pronunciationNote": "撥音，實際音值依後接音而變。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ア": {
+    "reading": "あ",
+    "romanization": "a",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "イ": {
+    "reading": "い",
+    "romanization": "i",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ウ": {
+    "reading": "う",
+    "romanization": "u",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "エ": {
+    "reading": "え",
+    "romanization": "e",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "オ": {
+    "reading": "お",
+    "romanization": "o",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "カ": {
+    "reading": "か",
+    "romanization": "ka",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "キ": {
+    "reading": "き",
+    "romanization": "ki",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ク": {
+    "reading": "く",
+    "romanization": "ku",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ケ": {
+    "reading": "け",
+    "romanization": "ke",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "コ": {
+    "reading": "こ",
+    "romanization": "ko",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "サ": {
+    "reading": "さ",
+    "romanization": "sa",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "シ": {
+    "reading": "し",
+    "romanization": "shi",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ス": {
+    "reading": "す",
+    "romanization": "su",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "セ": {
+    "reading": "せ",
+    "romanization": "se",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ソ": {
+    "reading": "そ",
+    "romanization": "so",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "タ": {
+    "reading": "た",
+    "romanization": "ta",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "チ": {
+    "reading": "ち",
+    "romanization": "chi",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ツ": {
+    "reading": "つ",
+    "romanization": "tsu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "テ": {
+    "reading": "て",
+    "romanization": "te",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ト": {
+    "reading": "と",
+    "romanization": "to",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ナ": {
+    "reading": "な",
+    "romanization": "na",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ニ": {
+    "reading": "に",
+    "romanization": "ni",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ヌ": {
+    "reading": "ぬ",
+    "romanization": "nu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ネ": {
+    "reading": "ね",
+    "romanization": "ne",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ノ": {
+    "reading": "の",
+    "romanization": "no",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ハ": {
+    "reading": "は",
+    "romanization": "ha",
+    "pronunciationNote": "は／ハ：字母讀 ha；助詞 は 讀 wa。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ヒ": {
+    "reading": "ひ",
+    "romanization": "hi",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "フ": {
+    "reading": "ふ",
+    "romanization": "fu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ヘ": {
+    "reading": "へ",
+    "romanization": "he",
+    "pronunciationNote": "へ／ヘ：字母讀 he；助詞 へ 讀 e。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ホ": {
+    "reading": "ほ",
+    "romanization": "ho",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "マ": {
+    "reading": "ま",
+    "romanization": "ma",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ミ": {
+    "reading": "み",
+    "romanization": "mi",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ム": {
+    "reading": "む",
+    "romanization": "mu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "メ": {
+    "reading": "め",
+    "romanization": "me",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "モ": {
+    "reading": "も",
+    "romanization": "mo",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ヤ": {
+    "reading": "や",
+    "romanization": "ya",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ユ": {
+    "reading": "ゆ",
+    "romanization": "yu",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ヨ": {
+    "reading": "よ",
+    "romanization": "yo",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ラ": {
+    "reading": "ら",
+    "romanization": "ra",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "リ": {
+    "reading": "り",
+    "romanization": "ri",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ル": {
+    "reading": "る",
+    "romanization": "ru",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "レ": {
+    "reading": "れ",
+    "romanization": "re",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ロ": {
+    "reading": "ろ",
+    "romanization": "ro",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ワ": {
+    "reading": "わ",
+    "romanization": "wa",
+    "pronunciationNote": "假名與羅馬字為讀音對照；不是真人音檔。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ヲ": {
+    "reading": "を",
+    "romanization": "wo",
+    "pronunciationNote": "を／ヲ：現代一般讀音 o；字母對照寫 wo。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ン": {
+    "reading": "ん",
+    "romanization": "n",
+    "pronunciationNote": "撥音，實際音值依後接音而變。",
+    "readingSource": "https://www.irodori.jpf.go.jp/en/resources.html"
+  },
+  "ㄱ": {
+    "reading": "기역",
+    "romanization": "g / k",
+    "soundExample": "가",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㄲ": {
+    "reading": "쌍기역",
+    "romanization": "kk",
+    "soundExample": "까",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㄴ": {
+    "reading": "니은",
+    "romanization": "n",
+    "soundExample": "나",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㄷ": {
+    "reading": "디귿",
+    "romanization": "d / t",
+    "soundExample": "다",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㄸ": {
+    "reading": "쌍디귿",
+    "romanization": "tt",
+    "soundExample": "따",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㄹ": {
+    "reading": "리을",
+    "romanization": "r / l",
+    "soundExample": "라",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅁ": {
+    "reading": "미음",
+    "romanization": "m",
+    "soundExample": "마",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅂ": {
+    "reading": "비읍",
+    "romanization": "b / p",
+    "soundExample": "바",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅃ": {
+    "reading": "쌍비읍",
+    "romanization": "pp",
+    "soundExample": "빠",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅅ": {
+    "reading": "시옷",
+    "romanization": "s",
+    "soundExample": "사",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅆ": {
+    "reading": "쌍시옷",
+    "romanization": "ss",
+    "soundExample": "싸",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅇ": {
+    "reading": "이응",
+    "romanization": "∅ / ng",
+    "soundExample": "아",
+    "pronunciationNote": "字母名稱 이응；音節開頭不發音，收音為 ng。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅈ": {
+    "reading": "지읒",
+    "romanization": "j",
+    "soundExample": "자",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅉ": {
+    "reading": "쌍지읒",
+    "romanization": "jj",
+    "soundExample": "짜",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅊ": {
+    "reading": "치읓",
+    "romanization": "ch",
+    "soundExample": "차",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅋ": {
+    "reading": "키읔",
+    "romanization": "k",
+    "soundExample": "카",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅌ": {
+    "reading": "티읕",
+    "romanization": "t",
+    "soundExample": "타",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅍ": {
+    "reading": "피읖",
+    "romanization": "p",
+    "soundExample": "파",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅎ": {
+    "reading": "히읗",
+    "romanization": "h",
+    "soundExample": "하",
+    "pronunciationNote": "「讀音」為字母名稱；音節例字另列。子音實際發音及羅馬字依初聲、收音與音變而異。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅏ": {
+    "reading": "아",
+    "romanization": "a",
+    "soundExample": "아",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅑ": {
+    "reading": "야",
+    "romanization": "ya",
+    "soundExample": "야",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅓ": {
+    "reading": "어",
+    "romanization": "eo",
+    "soundExample": "어",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅕ": {
+    "reading": "여",
+    "romanization": "yeo",
+    "soundExample": "여",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅗ": {
+    "reading": "오",
+    "romanization": "o",
+    "soundExample": "오",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅛ": {
+    "reading": "요",
+    "romanization": "yo",
+    "soundExample": "요",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅜ": {
+    "reading": "우",
+    "romanization": "u",
+    "soundExample": "우",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅠ": {
+    "reading": "유",
+    "romanization": "yu",
+    "soundExample": "유",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅡ": {
+    "reading": "으",
+    "romanization": "eu",
+    "soundExample": "으",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅣ": {
+    "reading": "이",
+    "romanization": "i",
+    "soundExample": "이",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅐ": {
+    "reading": "애",
+    "romanization": "ae",
+    "soundExample": "애",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅒ": {
+    "reading": "얘",
+    "romanization": "yae",
+    "soundExample": "얘",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅔ": {
+    "reading": "에",
+    "romanization": "e",
+    "soundExample": "에",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅖ": {
+    "reading": "예",
+    "romanization": "ye",
+    "soundExample": "예",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅘ": {
+    "reading": "와",
+    "romanization": "wa",
+    "soundExample": "와",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅙ": {
+    "reading": "왜",
+    "romanization": "wae",
+    "soundExample": "왜",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅚ": {
+    "reading": "외",
+    "romanization": "oe",
+    "soundExample": "외",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅝ": {
+    "reading": "워",
+    "romanization": "wo",
+    "soundExample": "워",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅞ": {
+    "reading": "웨",
+    "romanization": "we",
+    "soundExample": "웨",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅟ": {
+    "reading": "위",
+    "romanization": "wi",
+    "soundExample": "위",
+    "pronunciationNote": "母音以無聲初聲 ㅇ 組成音節示範；羅馬字不是中文近似音。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  },
+  "ㅢ": {
+    "reading": "의",
+    "romanization": "ui",
+    "soundExample": "의",
+    "pronunciationNote": "字母讀音 ui；置於詞中可能隨位置有不同讀法。",
+    "readingSource": "https://www.korean.go.kr/front_eng/roman/roman_01.do"
+  }
+}

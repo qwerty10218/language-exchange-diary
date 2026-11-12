@@ -1,0 +1,158 @@
+/* Canonical Light / Dark palettes. Color literals live only in this file. */
+:root {
+  --light-page: #f4ece0;
+  --light-paper: #fffbf5;
+  --light-soft: #eee2d3;
+  --light-selected: #eaddcc;
+  --light-ink: #43352f;
+  --light-muted: #66564b;
+  --light-line: #d8c8b6;
+  --light-control-border: #8f7865;
+  --light-accent: #79543e;
+  --light-on-accent: #fff5e8;
+  --light-accent-hover: #61432f;
+  --light-link: #725039;
+  --light-focus: #576f58;
+  --light-rose: #85584f;
+  --light-rose-bg: #f4e3de;
+  --light-rose-border: #9b6b60;
+  --light-error: #71531c;
+  --light-error-bg: #f1e5cb;
+  --light-error-border: #99732e;
+  --light-success: #415d3c;
+  --light-success-bg: #e9f0e4;
+  --light-success-border: #6e8565;
+  --light-canvas: #fff9ef;
+  --light-guide: #9b8e80;
+  --dark-page: #25211e;
+  --dark-paper: #302924;
+  --dark-soft: #39312b;
+  --dark-selected: #44392f;
+  --dark-ink: #d3c6b9;
+  --dark-muted: #b5a595;
+  --dark-line: #645447;
+  --dark-control-border: #9b8775;
+  --dark-accent: #b99a7d;
+  --dark-on-accent: #251f1a;
+  --dark-accent-hover: #c6aa8c;
+  --dark-link: #ceb092;
+  --dark-focus: #b5b998;
+  --dark-rose: #d4aaa1;
+  --dark-rose-bg: #46332f;
+  --dark-rose-border: #b58a7d;
+  --dark-error: #dbc18b;
+  --dark-error-bg: #433a27;
+  --dark-error-border: #b59a63;
+  --dark-success: #b3c9a9;
+  --dark-success-bg: #2f3c2e;
+  --dark-success-border: #8ca283;
+  --dark-canvas: #2b2622;
+  --dark-guide: #9d8c7d;
+  --page: var(--light-page);
+  --paper: var(--light-paper);
+  --soft: var(--light-soft);
+  --selected: var(--light-selected);
+  --ink: var(--light-ink);
+  --muted: var(--light-muted);
+  --line: var(--light-line);
+  --control-border: var(--light-control-border);
+  --accent: var(--light-accent);
+  --on-accent: var(--light-on-accent);
+  --accent-hover: var(--light-accent-hover);
+  --link: var(--light-link);
+  --focus: var(--light-focus);
+  --rose: var(--light-rose);
+  --rose-bg: var(--light-rose-bg);
+  --rose-border: var(--light-rose-border);
+  --error: var(--light-error);
+  --error-bg: var(--light-error-bg);
+  --error-border: var(--light-error-border);
+  --success: var(--light-success);
+  --success-bg: var(--light-success-bg);
+  --success-border: var(--light-success-border);
+  --canvas: var(--light-canvas);
+  --guide: var(--light-guide);
+  --milk: var(--page);
+  --caramel: var(--accent);
+  --sage: var(--success);
+  color-scheme: light;
+  color: var(--ink);
+  background: var(--page);
+}
+:root[data-theme="dark"] {
+  --page: var(--dark-page);
+  --paper: var(--dark-paper);
+  --soft: var(--dark-soft);
+  --selected: var(--dark-selected);
+  --ink: var(--dark-ink);
+  --muted: var(--dark-muted);
+  --line: var(--dark-line);
+  --control-border: var(--dark-control-border);
+  --accent: var(--dark-accent);
+  --on-accent: var(--dark-on-accent);
+  --accent-hover: var(--dark-accent-hover);
+  --link: var(--dark-link);
+  --focus: var(--dark-focus);
+  --rose: var(--dark-rose);
+  --rose-bg: var(--dark-rose-bg);
+  --rose-border: var(--dark-rose-border);
+  --error: var(--dark-error);
+  --error-bg: var(--dark-error-bg);
+  --error-border: var(--dark-error-border);
+  --success: var(--dark-success);
+  --success-bg: var(--dark-success-bg);
+  --success-border: var(--dark-success-border);
+  --canvas: var(--dark-canvas);
+  --guide: var(--dark-guide);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --page: var(--dark-page);
+  --paper: var(--dark-paper);
+  --soft: var(--dark-soft);
+  --selected: var(--dark-selected);
+  --ink: var(--dark-ink);
+  --muted: var(--dark-muted);
+  --line: var(--dark-line);
+  --control-border: var(--dark-control-border);
+  --accent: var(--dark-accent);
+  --on-accent: var(--dark-on-accent);
+  --accent-hover: var(--dark-accent-hover);
+  --link: var(--dark-link);
+  --focus: var(--dark-focus);
+  --rose: var(--dark-rose);
+  --rose-bg: var(--dark-rose-bg);
+  --rose-border: var(--dark-rose-border);
+  --error: var(--dark-error);
+  --error-bg: var(--dark-error-bg);
+  --error-border: var(--dark-error-border);
+  --success: var(--dark-success);
+  --success-bg: var(--dark-success-bg);
+  --success-border: var(--dark-success-border);
+  --canvas: var(--dark-canvas);
+  --guide: var(--dark-guide);
+  color-scheme: dark;
+  }
+}
+
+.mvp-shell { color:var(--ink); background:var(--page); }
+.theme-toolbar { max-width:1200px; margin:0 auto; padding:12px 36px 0; }
+.theme-control { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:10px; margin:0; padding:0; border:0; }
+.theme-control legend { float:left; font-size:.78rem; color:var(--muted); padding:0; }
+.theme-control [role=group] { display:flex; gap:5px; }
+.theme-control button { font-size:.8rem; min-height:44px; min-width:60px; padding:8px 10px; }
+.theme-control button[aria-pressed=true] { background:var(--selected); color:var(--ink); border:2px solid var(--control-border); font-weight:650; }
+.theme-status,.theme-error { color:var(--muted); font-size:.72rem; }
+.theme-error { text-align:right; }
+input,select,textarea { color:var(--ink); background:var(--paper); accent-color:var(--accent); }
+select:focus-visible,input:focus-visible,textarea:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+button[aria-pressed=true] { background:var(--selected); color:var(--ink); border-color:var(--control-border); }
+.mvp-shell button:disabled { opacity:1; color:var(--muted); background:var(--soft); border:1px dashed var(--control-border); cursor:default; }
+.mvp-shell input:disabled { opacity:1; color:var(--muted); -webkit-text-fill-color:var(--muted); }
+.alphabet-state { opacity:1; }
+.mvp-shell .language-tabs button { border-color:var(--control-border); }
+.mvp-shell .language-tabs button[aria-pressed=true], .mvp-shell .learning-tabs button[aria-pressed=true], .mvp-shell .choice-row button[aria-pressed=true] { outline:2px solid var(--control-border); outline-offset:-4px; font-weight:650; }
+.mvp-body .alphabet-grid .word-letter-highlight .alphabet-state { color:inherit; }
+@media(max-width:700px) { .theme-toolbar { padding:10px 20px 0; } .theme-control { justify-content:flex-start; gap:7px; } .theme-status { flex-basis:100%; text-align:right; margin-top:-3px; } }
+@media(prefers-reduced-motion:reduce) { .mvp-shell *, .mvp-shell *::before, .mvp-shell *::after { scroll-behavior:auto!important; transition:none!important; } }

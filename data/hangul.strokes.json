@@ -1,0 +1,3051 @@
+{
+  "version": 1,
+  "sourceVersion": "2026-11-04 by StrokeFox",
+  "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+  "characters": [
+    {
+      "display": "ㄱ",
+      "paths": [
+        "M225.46789,263.045872 H732.770642 C732.770642,507.302752 657.614679,695.192661 469.724771,845.504587"
+      ],
+      "starts": [
+        [
+          225.46789,
+          263.045872,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 1,
+      "order": [
+        1
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            225.46789,
+            263.045872
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㄲ",
+      "paths": [
+        "M112.733945,263.045872 H432.146789 C432.146789,507.302752 375.779817,695.192661 244.256881,845.504587",
+        "M544.880734,263.045872 H883.082569 C883.082569,507.302752 826.715596,695.192661 695.192661,845.504587"
+      ],
+      "starts": [
+        [
+          112.733945,
+          263.045872,
+          60,
+          0
+        ],
+        [
+          544.880734,
+          263.045872,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            112.733945,
+            263.045872
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            544.880734,
+            263.045872
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㄴ",
+      "paths": [
+        "M281.834862,187.889908 V751.559633 C281.834862,779.743119 291.229358,789.137615 319.412844,789.137615 H807.926606"
+      ],
+      "starts": [
+        [
+          281.834862,
+          187.889908,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 1,
+      "order": [
+        1
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            281.834862,
+            187.889908
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㄷ",
+      "paths": [
+        "M263.045872,244.256881 H751.559633",
+        "M281.834862,244.256881 V751.559633 C281.834862,779.743119 291.229358,789.137615 319.412844,789.137615 H789.137615"
+      ],
+      "starts": [
+        [
+          263.045872,
+          244.256881,
+          60,
+          0
+        ],
+        [
+          281.834862,
+          244.256881,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            263.045872,
+            244.256881
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            281.834862,
+            244.256881
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㄸ",
+      "paths": [
+        "M112.733945,244.256881 H432.146789",
+        "M131.522936,244.256881 V751.559633 C131.522936,779.743119 140.917431,789.137615 169.100917,789.137615 H450.93578",
+        "M544.880734,244.256881 H864.293578",
+        "M563.669725,244.256881 V751.559633 C563.669725,779.743119 573.06422,789.137615 601.247706,789.137615 H883.082569"
+      ],
+      "starts": [
+        [
+          112.733945,
+          244.256881,
+          60,
+          0
+        ],
+        [
+          131.522936,
+          244.256881,
+          0,
+          60
+        ],
+        [
+          544.880734,
+          244.256881,
+          60,
+          0
+        ],
+        [
+          563.669725,
+          244.256881,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            112.733945,
+            244.256881
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            131.522936,
+            244.256881
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            544.880734,
+            244.256881
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            563.669725,
+            244.256881
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㄹ",
+      "paths": [
+        "M263.045872,187.889908 H732.770642 V450.93578",
+        "M281.834862,460.330275 H732.770642",
+        "M281.834862,460.330275 V779.743119 C281.834862,798.53211 291.229358,807.926606 319.412844,807.926606 H789.137615"
+      ],
+      "starts": [
+        [
+          263.045872,
+          187.889908,
+          60,
+          0
+        ],
+        [
+          281.834862,
+          460.330275,
+          60,
+          0
+        ],
+        [
+          281.834862,
+          460.330275,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            263.045872,
+            187.889908
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            281.834862,
+            460.330275
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            281.834862,
+            460.330275
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅁ",
+      "paths": [
+        "M244.256881,225.46789 V807.926606",
+        "M244.256881,225.46789 H770.348624 V807.926606",
+        "M244.256881,798.53211 H770.348624"
+      ],
+      "starts": [
+        [
+          244.256881,
+          225.46789,
+          0,
+          60
+        ],
+        [
+          244.256881,
+          225.46789,
+          60,
+          0
+        ],
+        [
+          244.256881,
+          798.53211,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            244.256881,
+            225.46789
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            244.256881,
+            225.46789
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            244.256881,
+            798.53211
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅂ",
+      "paths": [
+        "M263.045872,169.100917 V817.321101",
+        "M751.559633,169.100917 V817.321101",
+        "M263.045872,479.119266 H751.559633",
+        "M263.045872,807.926606 H751.559633"
+      ],
+      "starts": [
+        [
+          263.045872,
+          169.100917,
+          0,
+          60
+        ],
+        [
+          751.559633,
+          169.100917,
+          0,
+          60
+        ],
+        [
+          263.045872,
+          479.119266,
+          60,
+          0
+        ],
+        [
+          263.045872,
+          807.926606,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            263.045872,
+            169.100917
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            751.559633,
+            169.100917
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            263.045872,
+            479.119266
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            263.045872,
+            807.926606
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅃ",
+      "paths": [
+        "M112.733945,169.100917 V817.321101",
+        "M413.357798,169.100917 V817.321101",
+        "M112.733945,479.119266 H413.357798",
+        "M112.733945,807.926606 H413.357798",
+        "M563.669725,169.100917 V817.321101",
+        "M864.293578,169.100917 V817.321101",
+        "M563.669725,479.119266 H864.293578",
+        "M563.669725,807.926606 H864.293578"
+      ],
+      "starts": [
+        [
+          112.733945,
+          169.100917,
+          0,
+          60
+        ],
+        [
+          413.357798,
+          169.100917,
+          0,
+          60
+        ],
+        [
+          112.733945,
+          479.119266,
+          60,
+          0
+        ],
+        [
+          112.733945,
+          807.926606,
+          60,
+          0
+        ],
+        [
+          563.669725,
+          169.100917,
+          0,
+          60
+        ],
+        [
+          864.293578,
+          169.100917,
+          0,
+          60
+        ],
+        [
+          563.669725,
+          479.119266,
+          60,
+          0
+        ],
+        [
+          563.669725,
+          807.926606,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 8,
+      "order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            112.733945,
+            169.100917
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            413.357798,
+            169.100917
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            112.733945,
+            479.119266
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            112.733945,
+            807.926606
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            563.669725,
+            169.100917
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            864.293578,
+            169.100917
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            563.669725,
+            479.119266
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            563.669725,
+            807.926606
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅅ",
+      "paths": [
+        "M516.697248,169.100917 C479.119266,432.146789 366.385321,657.614679 169.100917,826.715596",
+        "M469.724771,488.513761 C563.669725,629.431193 695.192661,751.559633 845.504587,826.715596"
+      ],
+      "starts": [
+        [
+          516.697248,
+          169.100917,
+          -8.888928798882796,
+          59.337904789505274
+        ],
+        [
+          469.724771,
+          488.513761,
+          33.71518558336872,
+          49.63150472309907
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            516.697248,
+            169.100917
+          ],
+          "vector": [
+            -8.888928798882796,
+            59.337904789505274
+          ]
+        },
+        {
+          "from": [
+            469.724771,
+            488.513761
+          ],
+          "vector": [
+            33.71518558336872,
+            49.63150472309907
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅆ",
+      "paths": [
+        "M300.623853,169.100917 C272.440367,432.146789 206.678899,657.614679 93.944954,826.715596",
+        "M272.440367,497.908257 C338.201835,629.431193 413.357798,742.165138 488.513761,817.321101",
+        "M732.770642,169.100917 C704.587156,432.146789 638.825688,657.614679 526.091743,826.715596",
+        "M704.587156,497.908257 C770.348624,629.431193 845.504587,742.165138 920.66055,817.321101"
+      ],
+      "starts": [
+        [
+          300.623853,
+          169.100917,
+          -6.60125736977199,
+          59.63575606243314
+        ],
+        [
+          272.440367,
+          497.908257,
+          27.0801162418281,
+          53.54126730223218
+        ],
+        [
+          732.770642,
+          169.100917,
+          -6.60125736977199,
+          59.63575606243314
+        ],
+        [
+          704.587156,
+          497.908257,
+          27.080116241827948,
+          53.54126730223227
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            300.623853,
+            169.100917
+          ],
+          "vector": [
+            -6.60125736977199,
+            59.63575606243314
+          ]
+        },
+        {
+          "from": [
+            272.440367,
+            497.908257
+          ],
+          "vector": [
+            27.0801162418281,
+            53.54126730223218
+          ]
+        },
+        {
+          "from": [
+            732.770642,
+            169.100917
+          ],
+          "vector": [
+            -6.60125736977199,
+            59.63575606243314
+          ]
+        },
+        {
+          "from": [
+            704.587156,
+            497.908257
+          ],
+          "vector": [
+            27.080116241827948,
+            53.54126730223227
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅇ",
+      "paths": [
+        "M507.302752,187.889908 C338.201835,187.889908 225.46789,338.201835 225.46789,507.302752 C225.46789,685.798165 347.59633,826.715596 507.302752,826.715596 C676.40367,826.715596 798.53211,685.798165 798.53211,507.302752 C798.53211,338.201835 676.40367,187.889908 507.302752,187.889908"
+      ],
+      "starts": [
+        [
+          507.302752,
+          187.889908,
+          -59.96954186430957,
+          1.911556586874261
+        ]
+      ],
+      "strokeCount": 1,
+      "order": [
+        1
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            507.302752,
+            187.889908
+          ],
+          "vector": [
+            -59.96954186430957,
+            1.911556586874261
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅈ",
+      "paths": [
+        "M225.46789,244.256881 H751.559633 C657.614679,488.513761 450.93578,695.192661 187.889908,845.504587",
+        "M516.697248,526.091743 C601.247706,667.009174 713.981651,770.348624 845.504587,826.715596"
+      ],
+      "starts": [
+        [
+          225.46789,
+          244.256881,
+          60,
+          0
+        ],
+        [
+          516.697248,
+          526.091743,
+          31.36565220350398,
+          51.14876207542882
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            225.46789,
+            244.256881
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            516.697248,
+            526.091743
+          ],
+          "vector": [
+            31.36565220350398,
+            51.14876207542882
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅉ",
+      "paths": [
+        "M93.944954,225.46789 H432.146789 C375.779817,469.724771 263.045872,695.192661 75.155963,845.504587",
+        "M291.229358,535.486239 C356.990826,667.009174 432.146789,760.954128 507.302752,826.715596",
+        "M544.880734,225.46789 H901.87156 C845.504587,469.724771 732.770642,695.192661 544.880734,845.504587",
+        "M760.954128,535.486239 C817.321101,667.009174 873.688073,760.954128 939.449541,826.715596"
+      ],
+      "starts": [
+        [
+          93.944954,
+          225.46789,
+          60,
+          0
+        ],
+        [
+          291.229358,
+          535.486239,
+          27.208208424153256,
+          53.47628815043014
+        ],
+        [
+          544.880734,
+          225.46789,
+          60,
+          0
+        ],
+        [
+          760.954128,
+          535.486239,
+          23.876201208686037,
+          55.04477282941896
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            93.944954,
+            225.46789
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            291.229358,
+            535.486239
+          ],
+          "vector": [
+            27.208208424153256,
+            53.47628815043014
+          ]
+        },
+        {
+          "from": [
+            544.880734,
+            225.46789
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            760.954128,
+            535.486239
+          ],
+          "vector": [
+            23.876201208686037,
+            55.04477282941896
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅊ",
+      "paths": [
+        "M460.330275,93.944954 L544.880734,197.284404",
+        "M225.46789,300.623853 H751.559633 C657.614679,526.091743 450.93578,723.376147 187.889908,864.293578",
+        "M516.697248,573.06422 C601.247706,704.587156 713.981651,798.53211 845.504587,845.504587"
+      ],
+      "starts": [
+        [
+          460.330275,
+          93.944954,
+          37.994267390965156,
+          46.437437972220664
+        ],
+        [
+          225.46789,
+          300.623853,
+          60,
+          0
+        ],
+        [
+          516.697248,
+          573.06422,
+          32.9900142242734,
+          50.116453999482424
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            460.330275,
+            93.944954
+          ],
+          "vector": [
+            37.994267390965156,
+            46.437437972220664
+          ]
+        },
+        {
+          "from": [
+            225.46789,
+            300.623853
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            516.697248,
+            573.06422
+          ],
+          "vector": [
+            32.9900142242734,
+            50.116453999482424
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅋ",
+      "paths": [
+        "M225.46789,225.46789 H751.559633 C751.559633,488.513761 676.40367,695.192661 469.724771,845.504587",
+        "M244.256881,516.697248 H732.770642"
+      ],
+      "starts": [
+        [
+          225.46789,
+          225.46789,
+          60,
+          0
+        ],
+        [
+          244.256881,
+          516.697248,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            225.46789,
+            225.46789
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            244.256881,
+            516.697248
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅌ",
+      "paths": [
+        "M263.045872,206.678899 H751.559633",
+        "M281.834862,497.908257 H732.770642",
+        "M281.834862,206.678899 V770.348624 C281.834862,798.53211 291.229358,807.926606 319.412844,807.926606 H789.137615"
+      ],
+      "starts": [
+        [
+          263.045872,
+          206.678899,
+          60,
+          0
+        ],
+        [
+          281.834862,
+          497.908257,
+          60,
+          0
+        ],
+        [
+          281.834862,
+          206.678899,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            263.045872,
+            206.678899
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            281.834862,
+            497.908257
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            281.834862,
+            206.678899
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅍ",
+      "paths": [
+        "M187.889908,206.678899 H826.715596",
+        "M356.990826,206.678899 C375.779817,375.779817 375.779817,601.247706 338.201835,798.53211",
+        "M657.614679,206.678899 C638.825688,375.779817 638.825688,601.247706 676.40367,798.53211",
+        "M169.100917,807.926606 H845.504587"
+      ],
+      "starts": [
+        [
+          187.889908,
+          206.678899,
+          60,
+          0
+        ],
+        [
+          356.990826,
+          206.678899,
+          6.328221043396172,
+          59.66534688096532
+        ],
+        [
+          657.614679,
+          206.678899,
+          -6.328221043396172,
+          59.66534688096532
+        ],
+        [
+          169.100917,
+          807.926606,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            187.889908,
+            206.678899
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            356.990826,
+            206.678899
+          ],
+          "vector": [
+            6.328221043396172,
+            59.66534688096532
+          ]
+        },
+        {
+          "from": [
+            657.614679,
+            206.678899
+          ],
+          "vector": [
+            -6.328221043396172,
+            59.66534688096532
+          ]
+        },
+        {
+          "from": [
+            169.100917,
+            807.926606
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅎ",
+      "paths": [
+        "M469.724771,75.155963 L544.880734,178.495413",
+        "M225.46789,281.834862 H789.137615",
+        "M507.302752,413.357798 C375.779817,413.357798 281.834862,507.302752 281.834862,629.431193 C281.834862,751.559633 375.779817,845.504587 507.302752,845.504587 C638.825688,845.504587 732.770642,751.559633 732.770642,629.431193 C732.770642,507.302752 638.825688,413.357798 507.302752,413.357798"
+      ],
+      "starts": [
+        [
+          469.724771,
+          75.155963,
+          35.29030166506399,
+          48.52416520032861
+        ],
+        [
+          225.46789,
+          281.834862,
+          60,
+          0
+        ],
+        [
+          507.302752,
+          413.357798,
+          -59.96792572556382,
+          1.9616024503605893
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            469.724771,
+            75.155963
+          ],
+          "vector": [
+            35.29030166506399,
+            48.52416520032861
+          ]
+        },
+        {
+          "from": [
+            225.46789,
+            281.834862
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            507.302752,
+            413.357798
+          ],
+          "vector": [
+            -59.96792572556382,
+            1.9616024503605893
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅏ",
+      "paths": [
+        "M410 80 L410 940",
+        "M410 500 L710 500"
+      ],
+      "starts": [
+        [
+          410,
+          80,
+          0,
+          80
+        ],
+        [
+          410,
+          500,
+          80,
+          0
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://github.com/MagisterAdamus/hangeul-stroke-order/blob/935483f7e93d24aa2ec990bca1b43664307768d2/svg/15_a.svg",
+      "sourceFile": "/strokes/sources/15_a.svg",
+      "sourceHash": "bb311c48070b167008da0b4c59efa8a16512a00bae87048e6611fcc0d2769b70",
+      "creator": "Adam Stone",
+      "license": "CC-BY-SA-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "依來源箭頭順序與方向人工另繪正規化中心線；非自動輪廓擷取；待語言教師確認。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            410,
+            80
+          ],
+          "vector": [
+            0,
+            80
+          ]
+        },
+        {
+          "from": [
+            410,
+            500
+          ],
+          "vector": [
+            80,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅑ",
+      "paths": [
+        "M413.357798,112.733945 V901.87156",
+        "M413.357798,375.779817 H676.40367",
+        "M413.357798,601.247706 H676.40367"
+      ],
+      "starts": [
+        [
+          413.357798,
+          112.733945,
+          0,
+          60
+        ],
+        [
+          413.357798,
+          375.779817,
+          60,
+          0
+        ],
+        [
+          413.357798,
+          601.247706,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            413.357798,
+            112.733945
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            413.357798,
+            375.779817
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            413.357798,
+            601.247706
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅓ",
+      "paths": [
+        "M300.623853,488.513761 H582.458716",
+        "M582.458716,112.733945 V901.87156"
+      ],
+      "starts": [
+        [
+          300.623853,
+          488.513761,
+          60,
+          0
+        ],
+        [
+          582.458716,
+          112.733945,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            300.623853,
+            488.513761
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            582.458716,
+            112.733945
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅕ",
+      "paths": [
+        "M319.412844,375.779817 H601.247706",
+        "M319.412844,601.247706 H601.247706",
+        "M601.247706,112.733945 V901.87156"
+      ],
+      "starts": [
+        [
+          319.412844,
+          375.779817,
+          60,
+          0
+        ],
+        [
+          319.412844,
+          601.247706,
+          60,
+          0
+        ],
+        [
+          601.247706,
+          112.733945,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            319.412844,
+            375.779817
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            319.412844,
+            601.247706
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            601.247706,
+            112.733945
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅗ",
+      "paths": [
+        "M507.302752,432.146789 V695.192661",
+        "M131.522936,713.981651 H883.082569"
+      ],
+      "starts": [
+        [
+          507.302752,
+          432.146789,
+          0,
+          60
+        ],
+        [
+          131.522936,
+          713.981651,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            507.302752,
+            432.146789
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            131.522936,
+            713.981651
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅛ",
+      "paths": [
+        "M375.779817,450.93578 V695.192661",
+        "M638.825688,450.93578 V695.192661",
+        "M131.522936,713.981651 H883.082569"
+      ],
+      "starts": [
+        [
+          375.779817,
+          450.93578,
+          0,
+          60
+        ],
+        [
+          638.825688,
+          450.93578,
+          0,
+          60
+        ],
+        [
+          131.522936,
+          713.981651,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            375.779817,
+            450.93578
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            638.825688,
+            450.93578
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            131.522936,
+            713.981651
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅜ",
+      "paths": [
+        "M131.522936,356.990826 H883.082569",
+        "M507.302752,375.779817 V751.559633"
+      ],
+      "starts": [
+        [
+          131.522936,
+          356.990826,
+          60,
+          0
+        ],
+        [
+          507.302752,
+          375.779817,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            131.522936,
+            356.990826
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            507.302752,
+            375.779817
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅠ",
+      "paths": [
+        "M131.522936,356.990826 H883.082569",
+        "M375.779817,375.779817 V751.559633",
+        "M638.825688,375.779817 V751.559633"
+      ],
+      "starts": [
+        [
+          131.522936,
+          356.990826,
+          60,
+          0
+        ],
+        [
+          375.779817,
+          375.779817,
+          0,
+          60
+        ],
+        [
+          638.825688,
+          375.779817,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            131.522936,
+            356.990826
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            375.779817,
+            375.779817
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            638.825688,
+            375.779817
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅡ",
+      "paths": [
+        "M112.733945,526.091743 H901.87156"
+      ],
+      "starts": [
+        [
+          112.733945,
+          526.091743,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 1,
+      "order": [
+        1
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            112.733945,
+            526.091743
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅣ",
+      "paths": [
+        "M507.302752,112.733945 V901.87156"
+      ],
+      "starts": [
+        [
+          507.302752,
+          112.733945,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 1,
+      "order": [
+        1
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            507.302752,
+            112.733945
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅐ",
+      "paths": [
+        "M338.201835,112.733945 V901.87156",
+        "M338.201835,488.513761 H544.880734",
+        "M657.614679,93.944954 V920.66055"
+      ],
+      "starts": [
+        [
+          338.201835,
+          112.733945,
+          0,
+          60
+        ],
+        [
+          338.201835,
+          488.513761,
+          60,
+          0
+        ],
+        [
+          657.614679,
+          93.944954,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            338.201835,
+            112.733945
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            338.201835,
+            488.513761
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            657.614679,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅒ",
+      "paths": [
+        "M319.412844,112.733945 V901.87156",
+        "M319.412844,375.779817 H526.091743",
+        "M319.412844,601.247706 H526.091743",
+        "M657.614679,93.944954 V920.66055"
+      ],
+      "starts": [
+        [
+          319.412844,
+          112.733945,
+          0,
+          60
+        ],
+        [
+          319.412844,
+          375.779817,
+          60,
+          0
+        ],
+        [
+          319.412844,
+          601.247706,
+          60,
+          0
+        ],
+        [
+          657.614679,
+          93.944954,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            319.412844,
+            112.733945
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            319.412844,
+            375.779817
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            319.412844,
+            601.247706
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            657.614679,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅔ",
+      "paths": [
+        "M206.678899,488.513761 H450.93578",
+        "M450.93578,112.733945 V901.87156",
+        "M676.40367,93.944954 V920.66055"
+      ],
+      "starts": [
+        [
+          206.678899,
+          488.513761,
+          60,
+          0
+        ],
+        [
+          450.93578,
+          112.733945,
+          0,
+          60
+        ],
+        [
+          676.40367,
+          93.944954,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            206.678899,
+            488.513761
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            450.93578,
+            112.733945
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            676.40367,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅖ",
+      "paths": [
+        "M206.678899,375.779817 H450.93578",
+        "M206.678899,601.247706 H450.93578",
+        "M450.93578,112.733945 V901.87156",
+        "M676.40367,93.944954 V920.66055"
+      ],
+      "starts": [
+        [
+          206.678899,
+          375.779817,
+          60,
+          0
+        ],
+        [
+          206.678899,
+          601.247706,
+          60,
+          0
+        ],
+        [
+          450.93578,
+          112.733945,
+          0,
+          60
+        ],
+        [
+          676.40367,
+          93.944954,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            206.678899,
+            375.779817
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            206.678899,
+            601.247706
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            450.93578,
+            112.733945
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            676.40367,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅘ",
+      "paths": [
+        "M319.412844,488.513761 V676.40367",
+        "M93.944954,695.192661 H563.669725",
+        "M676.40367,93.944954 V920.66055",
+        "M676.40367,488.513761 H883.082569"
+      ],
+      "starts": [
+        [
+          319.412844,
+          488.513761,
+          0,
+          60
+        ],
+        [
+          93.944954,
+          695.192661,
+          60,
+          0
+        ],
+        [
+          676.40367,
+          93.944954,
+          0,
+          60
+        ],
+        [
+          676.40367,
+          488.513761,
+          60,
+          0
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            319.412844,
+            488.513761
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            93.944954,
+            695.192661
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            676.40367,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            676.40367,
+            488.513761
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅙ",
+      "paths": [
+        "M263.045872,488.513761 V676.40367",
+        "M75.155963,695.192661 H469.724771",
+        "M563.669725,93.944954 V920.66055",
+        "M563.669725,488.513761 H713.981651",
+        "M826.715596,75.155963 V939.449541"
+      ],
+      "starts": [
+        [
+          263.045872,
+          488.513761,
+          0,
+          60
+        ],
+        [
+          75.155963,
+          695.192661,
+          60,
+          0
+        ],
+        [
+          563.669725,
+          93.944954,
+          0,
+          60
+        ],
+        [
+          563.669725,
+          488.513761,
+          60,
+          0
+        ],
+        [
+          826.715596,
+          75.155963,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 5,
+      "order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            263.045872,
+            488.513761
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            75.155963,
+            695.192661
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            563.669725,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            563.669725,
+            488.513761
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            826.715596,
+            75.155963
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅚ",
+      "paths": [
+        "M338.201835,488.513761 V676.40367",
+        "M93.944954,695.192661 H601.247706",
+        "M732.770642,93.944954 V920.66055"
+      ],
+      "starts": [
+        [
+          338.201835,
+          488.513761,
+          0,
+          60
+        ],
+        [
+          93.944954,
+          695.192661,
+          60,
+          0
+        ],
+        [
+          732.770642,
+          93.944954,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            338.201835,
+            488.513761
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            93.944954,
+            695.192661
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            732.770642,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅝ",
+      "paths": [
+        "M75.155963,375.779817 H544.880734",
+        "M300.623853,394.568807 V751.559633",
+        "M582.458716,544.880734 H770.348624",
+        "M770.348624,93.944954 V920.66055"
+      ],
+      "starts": [
+        [
+          75.155963,
+          375.779817,
+          60,
+          0
+        ],
+        [
+          300.623853,
+          394.568807,
+          0,
+          60
+        ],
+        [
+          582.458716,
+          544.880734,
+          60,
+          0
+        ],
+        [
+          770.348624,
+          93.944954,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 4,
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            75.155963,
+            375.779817
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            300.623853,
+            394.568807
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            582.458716,
+            544.880734
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            770.348624,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅞ",
+      "paths": [
+        "M56.366972,375.779817 H469.724771",
+        "M263.045872,394.568807 V751.559633",
+        "M507.302752,544.880734 H657.614679",
+        "M657.614679,93.944954 V920.66055",
+        "M845.504587,75.155963 V939.449541"
+      ],
+      "starts": [
+        [
+          56.366972,
+          375.779817,
+          60,
+          0
+        ],
+        [
+          263.045872,
+          394.568807,
+          0,
+          60
+        ],
+        [
+          507.302752,
+          544.880734,
+          60,
+          0
+        ],
+        [
+          657.614679,
+          93.944954,
+          0,
+          60
+        ],
+        [
+          845.504587,
+          75.155963,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 5,
+      "order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            56.366972,
+            375.779817
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            263.045872,
+            394.568807
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            507.302752,
+            544.880734
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            657.614679,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            845.504587,
+            75.155963
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅟ",
+      "paths": [
+        "M75.155963,375.779817 H582.458716",
+        "M319.412844,394.568807 V751.559633",
+        "M751.559633,93.944954 V920.66055"
+      ],
+      "starts": [
+        [
+          75.155963,
+          375.779817,
+          60,
+          0
+        ],
+        [
+          319.412844,
+          394.568807,
+          0,
+          60
+        ],
+        [
+          751.559633,
+          93.944954,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 3,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            75.155963,
+            375.779817
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            319.412844,
+            394.568807
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        },
+        {
+          "from": [
+            751.559633,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "display": "ㅢ",
+      "paths": [
+        "M93.944954,582.458716 H620.036697",
+        "M751.559633,93.944954 V920.66055"
+      ],
+      "starts": [
+        [
+          93.944954,
+          582.458716,
+          60,
+          0
+        ],
+        [
+          751.559633,
+          93.944954,
+          0,
+          60
+        ]
+      ],
+      "strokeCount": 2,
+      "order": [
+        1,
+        2
+      ],
+      "source": "https://strokefox.com/data/ko-jamo-strokes.json.gz",
+      "sourceFile": "/strokes/hangul/strokefox-2026-11-04.json",
+      "sourceHash": "e80394afeef6abcc826bb5faa614fdd17f09899cf48e3d414f0a0df1c9def1f9",
+      "creator": "StrokeFox / BiLingoPlus LLC",
+      "license": "CC-BY-4.0",
+      "humanStatus": "pending",
+      "missingReason": null,
+      "sourceValidation": "Source-authored ordered centerlines; CC BY 4.0 checked; independent Korean teaching references reviewed; human teacher review pending.",
+      "modification": "保留來源 40 音逐筆中心線、順序與方向；109 方框等比例換算至 1024，六位小數。非字型輪廓猜測。",
+      "convention": "ㅈ／ㅊ採2／3筆連寫式；ㅉ為4筆。ㅇ／ㅎ圓圈由上方逆時針，雙子音由左至右，複合母音先左／上再右。",
+      "reference": "https://strokefox.com/hangul-stroke-order/",
+      "directions": [
+        {
+          "from": [
+            93.944954,
+            582.458716
+          ],
+          "vector": [
+            60,
+            0
+          ]
+        },
+        {
+          "from": [
+            751.559633,
+            93.944954
+          ],
+          "vector": [
+            0,
+            60
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createServer } from 'vite';
+import { createElement,Children,isValidElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import fs from 'node:fs';
+import { wordLetters } from '../src/word-letters.mjs';
+import { THEME_KEY } from '../src/theme.mjs';
+
+test('實際 React 標記：三個入口、完整字母表與持續掛載的雙語複習',async()=>{
+  const server=await createServer({server:{middlewareMode:true},appType:'custom'});
+  const previous=globalThis.window;
+  try {
+    globalThis.window={location:{hash:'#library'},localStorage:{getItem:()=>null}};
+    const {default:App}=await server.ssrLoadModule('/src/MvpApp.tsx');
+    const {default:Alphabet,CharacterInfo}=await server.ssrLoadModule('/src/Alphabet.tsx');
+    const {default:Phase0}=await server.ssrLoadModule('/src/Phase0.tsx');
+    const {writingCharacters,canPractice}=await server.ssrLoadModule('/src/writing.ts');
+    // Main practice remains mounted while the lab mounts a second canvas.
+    const canvases=renderToStaticMarkup(createElement('div',null,
+      createElement('div',{hidden:true},createElement(Phase0,{initialCharacterId:'ko-a'})),
+      createElement(Phase0,{initialCharacterId:'ja-a-hiragana',qa:true})));
+    const ids=[...canvases.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]);
+    assert.equal(ids.length,6);
+    assert.equal(new Set(ids).size,ids.length,'Each canvas owns its SVG definitions and help text');
+    for(const canvas of canvases.matchAll(/<svg\b[\s\S]*?<\/svg>/g)) {
+      const html=canvas[0];
+      const clip=html.match(/<clipPath id="([^"]+)"/)[1];
+      const arrow=html.match(/<marker id="([^"]+)"/)[1];
+      assert.ok(html.includes(`clip-path="url(#${clip})"`));
+      assert.ok(html.includes(`marker-end="url(#${arrow})"`));
+      assert.ok(ids.includes(html.match(/aria-describedby="([^"]+)"/)[1]));
+    }
+    for(const route of ['#home','#library','#alphabet','#review']) {
+      window.location.hash=route;
+      const html=renderToStaticMarkup(createElement(App));
+      assert.match(html,/學習內容快速切換/);
+      assert.match(html,/單字表/);assert.match(html,/五十音表/);assert.match(html,/測驗/);
+      // Both language sessions stay in the render tree, even on the other learning tabs.
+      assert.equal((html.match(/花幾分鐘，讓詞句留下來。/g)??[]).length,2);
+      assert.match(html,/<div hidden=""><section class="review-setup/);
+      assert.match(html,/aria-label="中文日文拼字測驗"/);
+      assert.match(html,/aria-label="中文韓文拼字測驗"/);
+    }
+    for(const [language,count] of [['ja',92],['ko',40]]) {
+      const html=renderToStaticMarkup(createElement(Alphabet,{language,onWrite:()=>{}}));
+      assert.equal((html.match(/aria-pressed="false"/g)??[]).length,count);
+      for(const c of writingCharacters.filter(c=>c.language===language)) assert.ok(html.includes(`aria-label="${c.display}，${c.romanization}"`));
+      assert.doesNotMatch(html,/<audio|播放錄音|播放語音/);
+    }
+    assert.equal(writingCharacters.filter(canPractice).length,129);
+    for(const c of writingCharacters.filter(c=>c.technicalStatus!=='passed')) assert.equal(canPractice(c),false);
+    const ja=JSON.parse(fs.readFileSync(new URL('../data/ja.entries.json',import.meta.url),'utf8'));
+    for(const [text,letters] of [['かさ',['か','さ']],['すいか',['す','い','か']]]) {
+      const word=ja.find(e=>e.text===text);
+      const html=renderToStaticMarkup(createElement(Alphabet,{language:'ja',onWrite:()=>{},linkedWord:word,linkedLetters:wordLetters(word),onReturn:()=>{},onQuiz:()=>{}}));
+      assert.equal((html.match(/data-linked="true"/g)??[]).length,letters.length);
+      for(const letter of letters) assert.ok(html.includes(`aria-label="${letter}，${writingCharacters.find(c=>c.display===letter).romanization}，單字使用的字母"`));
+      assert.match(html,/返回單字/);assert.match(html,/返回測驗/);
+      // The counterpart katakana tiles stay unmarked.
+      assert.doesNotMatch(html,/aria-label="[カサスイ]，[^"]*單字使用的字母/);
+    }
+    for(const [mode,label] of [['auto','自動'],['light','淺色'],['dark','深色']]) {
+      window.localStorage={getItem:key=>key===THEME_KEY?JSON.stringify({version:1,mode}):null};
+      window.matchMedia=()=>({matches:true});
+      for(const route of ['#library','#alphabet','#review']) {
+        window.location.hash=route;
+        const html=renderToStaticMarkup(createElement(App));
+        assert.ok(html.includes(`<button aria-pressed="true"><span aria-hidden="true">✓ </span>${label}</button>`));
+        assert.match(html,/閱讀主題/);
+      }
+    }
+    for(const character of writingCharacters.filter(c=>c.language==='ko')) {
+      let launched=null;
+      const tree=CharacterInfo({character,onWrite:id=>{launched=id;}});
+      const visit=node=>{if(!isValidElement(node))return;if(node.type==='button'&&node.props.children==='進入書寫練習')node.props.onClick();Children.forEach(node.props.children,visit);};
+      visit(tree);assert.equal(launched,character.id);
+      const html=renderToStaticMarkup(createElement(Phase0,{initialCharacterId:launched}));
+      assert.ok(html.includes(`aria-label="${character.display} 書寫區"`));
+      assert.equal((html.match(/class="guide"/g)??[]).length,character.strokeCount);
+      assert.match(html,/沿線描寫/);assert.doesNotMatch(html,/方向正確就自動補完/);
+    }
+    const mieum=writingCharacters.find(c=>c.display==='ㅁ');
+    const snapshot={ink:[mieum.paths[0]],rawInk:[],mode:'guided',phase:'waiting',message:'已保留第一筆',demo:false,step:0,paused:true,showAnswer:false};
+    const restored=renderToStaticMarkup(createElement(Phase0,{initialCharacterId:mieum.id,snapshot}));
+    assert.match(restored,/completed-ink/);assert.match(restored,/已保留第一筆/);
+    const restarted=renderToStaticMarkup(createElement(Phase0,{initialCharacterId:mieum.id}));
+    assert.doesNotMatch(restarted,/completed-ink/);
+  } finally {
+    if(previous===undefined) delete globalThis.window;else globalThis.window=previous;
+    await server.close();
+  }
+});
