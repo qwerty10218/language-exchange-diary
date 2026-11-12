@@ -105,7 +105,7 @@ export function createGuidedStroke(expected, overrides = {}) {
       const travel = distance(previous, point);
       if (!travel) return;
       this.rawTravel += travel;
-      if (travel > config.side * config.maxInputGap) { this.invalid = '軌跡不連續，請沿整筆描寫。'; return; }
+      if (travel > Math.min(config.side * config.maxInputGap, length * config.maxSearchFraction)) { this.invalid = '軌跡不連續，請沿整筆描寫。'; return; }
       // Off-line motion never buys forward progress. Rejoin close to the frozen arc.
       if (this.recovering) {
         const rejoin = project(point, samples, lengths, this.arc, Math.min(length, this.arc + Math.min(config.side * config.maxInputGap, length * config.maxSearchFraction)));
@@ -152,7 +152,7 @@ export function createGuidedStroke(expected, overrides = {}) {
       if (this.phase !== 'drawing') return this.result;
       this.phase = 'validating';
       const reason = this.invalid || (this.recovering ? '請回到目前筆畫末端再繼續描寫。' : '') || (this.rawPoints.length < 4 || this.rawTravel < length * config.completion ? '軌跡太短，請完整描寫。' : '') ||
-        (this.progress < config.completion ? '尚未完成這一筆，請沿引導線寫到底。' : '') ||
+        (this.progress < config.completion || this.directionPeak / length < config.completion ? '尚未完成這一筆，請沿引導線寫到底。' : '') ||
         (this.closeTravel / this.rawTravel < config.closeRatio ? '請讓手指多沿著目前筆畫描寫。' : '');
       this.result = { ok: !reason, reason: reason || '這一筆完成，看看正確筆畫。' };
       this.phase = reason ? 'rejected' : 'accepted';

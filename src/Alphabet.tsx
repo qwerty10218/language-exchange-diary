@@ -4,6 +4,7 @@ import type {WritingCharacter} from './writing';
 import type { Language } from './types';
 import type { Entry } from './types';
 import { kanaGrid } from './word-letters.mjs';
+import SpeechButton from './SpeechButton';
 type Props={language:Language;onWrite:(id:string)=>void;linkedWord?:Entry|null;linkedLetters?:{text:string;letters:string[];unsupported:string[]}|null;onReturn?:()=>void;onQuiz?:()=>void};
 export default function Alphabet({language,onWrite,linkedWord,linkedLetters,onReturn,onQuiz}:Props) {
   const [selected,setSelected]=useState<string|null>(null);
@@ -21,5 +22,5 @@ export default function Alphabet({language,onWrite,linkedWord,linkedLetters,onRe
 }
 
 export function CharacterInfo({character,onWrite}:{character:WritingCharacter;onWrite:(id:string)=>void}) {
- const language=character.language;return <><h2 lang={language}>{character.display} <small>{character.label}</small></h2><dl><dt>{character.category==='ko_consonants'?'字母名稱':'讀音對照'}</dt><dd lang={language}>{character.reading}</dd><dt>羅馬拼音</dt><dd>{character.romanization}</dd>{character.soundExample && <><dt>音節例字</dt><dd lang="ko">{character.soundExample}</dd></>}</dl><p>{character.pronunciationNote}</p><p>真人語音尚未收錄。</p>{canPractice(character)?<><button className="primary-button" onClick={()=>onWrite(character.id)}>進入書寫練習</button><p className="device-note">標準路徑已通過技術檢查；字形、筆順與真機手感仍待人工確認。</p></>:<p role="status">{character.paths.length?'書寫待修正：技術檢查未通過，尚不開放練習。':'書寫待補：尚無可信的逐筆中心線。'}</p>}<a href={character.readingSource} target="_blank" rel="noreferrer">讀音參考</a></>;
+ const language=character.language;return <><h2 lang={language}>{character.display} <small>{character.label}</small></h2><dl><dt>{character.category==='ko_consonants'?'字母名稱':'讀音對照'}</dt><dd lang={language}>{character.reading}</dd><dt>羅馬拼音</dt><dd>{character.romanization}</dd>{character.soundExample && <><dt>音節例字</dt><dd lang="ko">{character.soundExample}</dd></>}</dl><p>{character.pronunciationNote}</p><SpeechButton text={character.reading} language={language} label={character.category==='ko_consonants'?`${character.display} 字母名稱`:character.display}/><p>真人語音尚未收錄。</p>{canPractice(character)?<><button className="primary-button" onClick={()=>onWrite(character.id)}>進入書寫練習</button><p className="device-note">標準路徑已通過技術檢查；字形、筆順與真機手感仍待人工確認。</p></>:<p role="status">{character.paths.length?'書寫待修正：技術檢查未通過，尚不開放練習。':'書寫待補：尚無可信的逐筆中心線。'}</p>}<a href={character.readingSource} target="_blank" rel="noreferrer">讀音參考</a></>;
 }

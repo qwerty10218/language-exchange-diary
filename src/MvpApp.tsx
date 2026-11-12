@@ -5,6 +5,8 @@ import Review from './Review';
 import Alphabet from './Alphabet';
 import Quiz from './Quiz';
 import ThemeControl from './ThemeControl';
+import SpeechButton from './SpeechButton';
+import {entrySpeechText,speechPlayer} from './speech.mjs';
 import type {WritingSnapshot} from './Phase0';
 import { gradeWord, loadLearning, saveLearning, summarize } from './quiz-model.mjs';
 import { wordLetters } from './word-letters.mjs';
@@ -48,6 +50,7 @@ function EntryCard({entry, status, selected, onSelect}: {entry: Entry; status?: 
       </dl>
       {entry.examples.length > 0 && <div className="entry-examples"><h3>例句</h3>{entry.examples.map((example,i) => <div key={i}><p lang={entry.language}>{example.text}</p>{example.reading && <p lang={entry.language}>{example.reading}</p>}<p>{example.meaning_zh}</p></div>)}</div>}
       <p className="audio-unavailable">真人錄音尚未收錄</p>
+      <SpeechButton text={entrySpeechText(entry)} language={entry.language} label={entry.text}/>
     </div></details>
   </article>;
 }
@@ -58,6 +61,7 @@ export default function MvpApp() {
   const writingSessions=useRef(new Map<string,WritingSnapshot>());
   const openWriting = (id: string) => { setWritingStarted(true);setWritingId(id); window.location.hash='writing'; setPage('writing'); };
   const [language, setLanguage] = useState<Language>('ja');
+  useEffect(()=>{speechPlayer.stop();},[page,language]);
   const [queries, setQueries] = useState({ko:'',ja:''});
   const [selectedWords,setSelectedWords]=useState<Record<Language,string|null>>({ko:null,ja:null});
   const wordOrigins=useRef<Record<Language,{page:'home'|'library';scroll:number}>>({ja:{page:'library',scroll:0},ko:{page:'library',scroll:0}});
