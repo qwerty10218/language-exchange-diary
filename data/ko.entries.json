@@ -1216,5 +1216,47 @@
     "notes": "整理日期：2026-11-09",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-simsimhada",
+    "language": "ko",
+    "kind": "word",
+    "text": "심심하다",
+    "meaning_zh": "無聊、閒得發慌",
+    "reading": null,
+    "romaji": "simsimhada",
+    "personal_mnemonic": "sim sim ha da",
+    "examples": [],
+    "notes": "偏向沒事做而無聊；保留朋友的原始記音。",
+    "review_status": "needs_review",
+    "audio": null
+  },
+  {
+    "id": "ko-ramyeon",
+    "language": "ko",
+    "kind": "word",
+    "text": "라면",
+    "meaning_zh": "韓式泡麵、拉麵",
+    "reading": null,
+    "romaji": "ramyeon",
+    "personal_mnemonic": "la men",
+    "examples": [],
+    "notes": "保留朋友的原始記音。",
+    "review_status": "needs_review",
+    "audio": null
+  },
+  {
+    "id": "ko-udong",
+    "language": "ko",
+    "kind": "word",
+    "text": "우동",
+    "meaning_zh": "烏龍麵、烏冬",
+    "reading": null,
+    "romaji": "udong",
+    "personal_mnemonic": "wu dong",
+    "examples": [],
+    "notes": "保留朋友的原始記音。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
