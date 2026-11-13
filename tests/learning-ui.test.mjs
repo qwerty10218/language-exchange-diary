@@ -14,6 +14,12 @@ test('實際 React 標記：獨立功能頁、完整字母表及不遺失的測�
     globalThis.window={location:{hash:'#library'},localStorage:{getItem:()=>null}};
     const {default:App}=await server.ssrLoadModule('/src/MvpApp.tsx');
     const {default:Alphabet,CharacterInfo}=await server.ssrLoadModule('/src/Alphabet.tsx');
+    const {default:GuidedWriting}=await server.ssrLoadModule('/src/GuidedWriting.tsx');
+    for(const [characterId,language] of [['ko-a','ko'],['ja-a-hiragana','ja']]){
+      const guided=renderToStaticMarkup(createElement(GuidedWriting,{characterId,visible:true,onBack:()=>{}}));
+      assert.ok(guided.includes(`<h1 tabindex="-1" lang="${language}">`));
+      assert.doesNotMatch(guided,/<select|自由書寫|提交判定/);
+    }
     const {default:Phase0}=await server.ssrLoadModule('/src/Phase0.tsx');
     const {default:SpeechButton}=await server.ssrLoadModule('/src/SpeechButton.tsx');
     const {writingCharacters,canPractice}=await server.ssrLoadModule('/src/writing.ts');
@@ -24,14 +30,14 @@ test('實際 React 標記：獨立功能頁、完整字母表及不遺失的測�
       assert.ok(html.includes(`<span lang="${language}">${text}</span>`));
     }
     const japanesePractice=renderToStaticMarkup(createElement(Phase0,{initialCharacterId:'ja-a-hiragana'}));
-    assert.match(japanesePractice,/每筆至少沿線畫到 75%/);
+    assert.match(japanesePractice,/放開後自動判定/);
     assert.doesNotMatch(japanesePractice,/方向正確就自動補完|起拉觸發距離/);
     // Main practice remains mounted while the lab mounts a second canvas.
     const canvases=renderToStaticMarkup(createElement('div',null,
       createElement('div',{hidden:true},createElement(Phase0,{initialCharacterId:'ko-a'})),
       createElement(Phase0,{initialCharacterId:'ja-a-hiragana',qa:true})));
     const ids=[...canvases.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]);
-    assert.equal(ids.length,8);
+    assert.equal(ids.length,7);
     assert.equal(new Set(ids).size,ids.length,'Each canvas owns its SVG definitions and help text');
     for(const canvas of canvases.matchAll(/<svg\b[\s\S]*?<\/svg>/g)) {
       const html=canvas[0];

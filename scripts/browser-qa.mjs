@@ -2,6 +2,7 @@
 // playwright; DIARY_AXE_MODULES can point to one containing @axe-core/playwright.
 // No browser testing dependencies are shipped with the application.
 import assert from 'node:assert/strict';
+import {guidedWritingQA,guidedWritingLayoutQA} from './guided-writing-qa.mjs';
 import {createRequire} from 'node:module';
 import {resolve,join} from 'node:path';
 import {mkdir,writeFile} from 'node:fs/promises';
@@ -256,7 +257,7 @@ try {
       assert.equal(await page.locator('h1:visible').innerText(),'單字表');
       const desktop=await browser.newContext({viewport:{width:1440,height:1000}}),desktopPage=await desktop.newPage();
       await desktopPage.goto(base+'#library');await desktopPage.waitForSelector('.entry-card');
-      await noOverflow(desktopPage,`${name}/desktop`);await desktopPage.screenshot({path:join(output,`${name}-desktop.png`)});await desktop.close();
+      await noOverflow(desktopPage,`${name}/desktop`);await desktopPage.screenshot({path:join(output,`${name}-desktop.png`)});await guidedWritingLayoutQA(desktopPage,base,name,output);engineReport.layoutChecks+=12;await desktop.close();
       // Deterministic API-only audio interaction checks; never imply a listening test.
       const audio=await context.newPage();await speechStub(audio);await audio.goto(base+'#library');
       await audio.locator('.word-speech-button').first().click();
@@ -277,6 +278,7 @@ try {
       const missing=await context.newPage();await speechStub(missing,['en']);await missing.goto(base+'#library');
       await missing.waitForSelector('#word-speech-help');assert.match(await missing.locator('#word-speech-help').innerText(),/系統下載/);
       assert.ok(await missing.locator('.word-speech-button').first().isDisabled());
+      const guidedPage=await context.newPage();guidedPage.on('pageerror',error=>errors.push(`${name}/guided: ${error.message}`));guidedPage.on('response',response=>{if(response.status()>=400)errors.push(`${name}/guided: HTTP ${response.status()} ${response.url()}`);});await guidedWritingQA(guidedPage,base,name,output);const guidedAudit=await new AxeBuilder({page:guidedPage}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();assert.deepEqual(guidedAudit.violations.map(v=>v.id),[]);engineReport.axeChecks.push({route:'guided-complete',violations:[]});engineReport.layoutChecks+=6;engineReport.guidedWriting='passed';await guidedPage.close();
       report.engines.push(engineReport);console.log(`${name}: flows passed, ${engineReport.layoutChecks} layouts, ${engineReport.axeChecks.length} axe audits`);
       await context.close();
     } finally {await browser.close();}
