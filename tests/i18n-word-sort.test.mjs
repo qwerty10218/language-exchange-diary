@@ -1,0 +1,36 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {toSimplified,loadScript,SCRIPT_KEY} from '../src/zh-script.mjs';
+import {wordGroup,wordGroups,sortAndFilterWords} from '../src/word-sort.mjs';
+import {readFileSync} from 'node:fs';
+const ja=JSON.parse(readFileSync(new URL('../data/ja.entries.json',import.meta.url)));
+const ko=JSON.parse(readFileSync(new URL('../data/ko.entries.json',import.meta.url)));
+test('OpenCC offline character/phrase conversion, original Japanese/Korean data remain untouched',()=>{
+  assert.equal(toSimplified('學習筆記，讀音、單字與簡體轉換'),'学习笔记，读音、单字与简体转换');
+  assert.equal(toSimplified('首頁'), '首页');
+  const source=ja.find(e=>e.text==='猫');
+  const korean=ko.find(e=>e.text==='우산');
+  assert.ok(source);assert.ok(korean);
+  assert.equal(source.text,'猫');
+  assert.equal(korean.personal_mnemonic,'Wu san');
+  assert.equal(loadScript(()=>({getItem:()=>null})),'hant');
+  assert.equal(loadScript(()=>({getItem:k=>k===SCRIPT_KEY?'hans':null})),'hans');
+  assert.equal(loadScript(()=>({getItem:()=> 'bad'})),'hant');
+});
+test('五十音排序依讀音而非漢字外觀；韓文以音節初聲分組',()=>{
+  assert.equal(wordGroup(ja.find(e=>e.text==='なす')),'な');
+  assert.equal(wordGroup(ja.find(e=>e.text==='すいか')),'さ');
+  assert.equal(wordGroup(ko.find(e=>e.text==='우산')),'ㅇ');
+  assert.equal(wordGroup(ko.find(e=>e.text==='라면')),'ㄹ');
+  assert.ok(wordGroups('ja').includes('あ'));
+  assert.ok(wordGroups('ko').includes('ㄱ'));
+  const sorted=sortAndFilterWords(ja,'ja','alphabet','な');
+  assert.ok(sorted.some(e=>e.text==='なす'));
+  assert.ok(sorted.some(e=>e.text==='なに'));
+  assert.ok(sorted.every(e=>wordGroup(e)==='な'));
+  const korean=sortAndFilterWords(ko,'ko','alphabet','ㄹ');
+  assert.ok(korean.some(e=>e.text==='라면'));
+  const unchanged=ja.map(e=>e.id);
+  sortAndFilterWords(ja,'ja','recent','all');
+  assert.deepEqual(ja.map(e=>e.id),unchanged);
+});
