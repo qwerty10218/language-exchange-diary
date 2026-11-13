@@ -110,3 +110,16 @@
 - P2 待改善：主 JS 約 595 kB（gzip 約 159 kB），build 有 chunk 大小提醒；可後續按學習流程切分。僅具第一候選映射的繁簡轉換仍可能有未收錄的語境歧義。
 - 狀態：本機技術驗收通過，可供使用者驗收；需明確授權 Commit / Push 才能更新 PR #1，再確認 CI 和真機結果後決定合併／正式發布。
 - 重跑瀏覽器：先 `npm run build`；`DIARY_BROWSER_MODULES` 指向含 `playwright` 的 `node_modules`，`DIARY_AXE_MODULES` 指向含 `@axe-core/playwright` 的 `node_modules`，確保已安裝 Chrome 與 Playwright WebKit，再執行 `npm run test:browser`。未將工具依賴加入網站。
+
+## PR #2 字母格子篩選整合驗收（2026-11-13）
+
+- 本節取代上一節「尚未 Commit / Push」的交付狀態：PR #1 已整合上一輪修正及最新分支，`6c5d55c` 的 Actions 通過；PR #2 同步此基底後再交付，不合併 main、不部署。
+- 精確比對任意位置：韓文全 19 子音與 21 母音，11 組複合收音拆開、緊音與複合母音保持完整；接受 canonical／compatibility jamo。日文平片假名分開，漢字只用詞庫完整假名，無讀音時不猜測；濁音、半濁音、小假名、促音、長音不折算成其他字。來源仍是 needs_review，不宣稱讀音經老師驗證。
+- 修正原篩選器的手機格子不足 44 px、清除鍵只有 36 px、選字收合後焦點遺失、無結果只清搜尋及「顯示全部」仍留下搜尋條件等問題；移除已不用的首字下拉樣式，抽出 `LetterFilter.tsx`。
+- 預設收合；選字立即收合並返回觸發按鈕；再選同字取消，標記清除只清字母，「顯示全部」與無結果重設會清搜尋及字母並回教學順序。切換語言清掉無效字母；詳情返回保留搜尋、字母、排序、捲動和焦點。
+- 320／375 px 採五欄，390／430 px 及較寬畫面採六欄；實測所有格子與主要控制項至少 44×44 px。原生按鈕支援 Tab／Enter／Space，Escape 收合；使用 aria-expanded、aria-pressed 及中日韓語言標記。
+- `npm ci`、`npm run check` 通過；483 項測試，包含全部初聲／母音、11 組複合收音、緊音收音、Unicode 等價字、日文濁音與小字、漢字缺讀音、繁簡搜尋交集及整份詞庫不變。日韓 JSON、單字 ID、記音及 localStorage 進度格式未更動。
+- Chrome／Windows Playwright WebKit 各 156 組版面／9 次 axe WCAG A/AA 掃描（合計 312／18）通過，無 JS 錯誤與資源 404；涵蓋前節的學習、語音控制與筆順回歸，並增加四種格子、鍵盤操作、取消與重設的手機實際互動。
+- 截圖與機器報告在 `.cache/acceptance/`：例如 `chrome-320-hant-ja-grid-0.png`、`webkit-390-hans-ko-grid-1.png` 和 `report.json`。以 production 子路徑測試；不把暫存截圖加入 Git。
+- 未驗證真實 iPhone／VoiceOver，語音聽感仍需人工；Windows WebKit 無原生語音 API，合成語音控制另以 stub 驗證。原有う／や／ネ 3 字封鎖與約 598 kB 主 JS 的 build 提醒維持，不能宣稱完整真人發音或 132 字人工驗收完成。
+- 合併順序：先驗收／合併 PR #1，再將 PR #2 base 改為 main、檢視剩餘差異並重跑 CI，最後由擁有者決定合併與發布。

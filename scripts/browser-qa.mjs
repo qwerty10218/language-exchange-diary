@@ -20,9 +20,57 @@ const learning=JSON.stringify({version:2,records:{'ja-a-ri-ga-to':{correct:2,wro
 const errors=[];
 const nav=async(page,target)=>{await page.locator(`nav a[href="#${target}"]`).click();await page.waitForURL(`**/#${target}`);};
 const script=async(page,mode)=>page.locator('.script-switch button').nth(mode==='hans'?1:0).click();
+async function selectLetter(page,letter,tab=0){
+  if(await page.locator('.letter-filter-toggle').getAttribute('aria-expanded')!=='true')await page.locator('.letter-filter-toggle').click();
+  await page.locator('.letter-script-tabs button').nth(tab).click();
+  await page.locator(`.letter-filter-grid button[aria-label*=" ${letter} "]`).click();
+  assert.equal(await page.locator('.letter-filter-toggle').getAttribute('aria-expanded'),'false');
+  assert.ok((await page.locator(':focus').getAttribute('class'))?.includes('letter-filter-toggle'));
+}
 async function noOverflow(page,label){
   const width=await page.evaluate(()=>({viewport:innerWidth,document:document.documentElement.scrollWidth}));
   assert.ok(width.document<=width.viewport+1,`${label}: ${JSON.stringify(width)}`);
+}
+async function checkGrid(page,info,language){
+  const {name,width,mode,engineReport}=info;
+  const toggle=page.locator('.letter-filter-toggle');
+  await toggle.focus();await page.keyboard.press('Space');
+  assert.equal(await toggle.getAttribute('aria-expanded'),'true');
+  for(const [tab,count] of [[0,language==='ja'?46:19],[1,language==='ja'?46:21]]){
+    await page.locator('.letter-script-tabs button').nth(tab).click();
+    assert.equal(await page.locator('.letter-filter-grid button').count(),count);
+    assert.equal(await page.locator('.letter-filter-grid button:disabled').count(),0);
+    const small=await page.locator('.letter-filter-grid button').evaluateAll(elements=>elements.filter(el=>{const r=el.getBoundingClientRect();return r.width<44||r.height<44;}).map(el=>el.textContent));
+    assert.deepEqual(small,[],`${name}/${width}/${language}: grid hit areas`);
+    await noOverflow(page,`${name}/${width}/${mode}/${language}-grid`);engineReport.layoutChecks++;
+    if(width===390&&mode==='hans'&&tab===0){
+      const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
+      engineReport.axeChecks.push({route:`${language}-filter-open`,violations:result.violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)}))});
+      assert.deepEqual(result.violations.map(v=>v.id),[],`${name}/${language} open filter accessibility`);
+    }
+    if([320,375,390,430].includes(width))await page.locator('.word-explore-controls').screenshot({path:join(output,`${name}-${width}-${mode}-${language}-grid-${tab}.png`)});
+  }
+  // Escape returns focus to the disclosure; Enter on a letter selects and closes.
+  await page.locator('.letter-script-tabs button').first().focus();await page.keyboard.press('Escape');
+  assert.equal(await toggle.getAttribute('aria-expanded'),'false');
+  await toggle.press('Enter');
+  const letter=language==='ja'?'ス':'ㅏ';
+  const pick=page.locator(`.letter-filter-grid button[aria-label*=" ${letter} "]`);
+  await pick.focus();await pick.press('Enter');
+  assert.equal(await toggle.getAttribute('aria-expanded'),'false');
+  assert.equal(await page.locator('.active-letter-filter strong').innerText(),letter);
+  assert.ok((await page.locator('.entry-original').allTextContents()).includes(language==='ja'?'ジュース':'라면'));
+  await selectLetter(page,letter,1);assert.equal(await page.locator('.active-letter-filter').count(),0);
+  if(language==='ja'){
+    await selectLetter(page,'す');
+    for(const word of ['なす','すいか'])assert.ok((await page.locator('.entry-original').allTextContents()).includes(word));
+    await page.locator('.active-letter-filter button').click();
+  } else {
+    await selectLetter(page,'ㅁ');await page.locator('#word-search').fill('无聊');
+    assert.deepEqual(await page.locator('.entry-original').allTextContents(),['심심하다']);
+    await toggle.click();await page.locator('.letter-filter-foot button').click();
+    assert.equal(await page.locator('.entry-card').count(),90);assert.equal(await page.locator('#word-search').inputValue(),'');
+  }
 }
 async function speechStub(page,languages=['ja','ko']){
   await page.addInitScript(langs=>{
@@ -47,36 +95,54 @@ try {
         if(!localStorage.getItem(progressKey))localStorage.setItem(progressKey,learning);
       },{progressKey,legacyKey,legacy,learning});
       await page.goto(base+'#library');await page.waitForSelector('.entry-card');
+      const originalTexts=await page.locator('.entry-original').allTextContents();
       // Traditional and Simplified searches find the same source entry.
       const search=page.locator('#word-search');
       await search.fill('謝謝');const traditional=await page.locator('.entry-original').allTextContents();
-      await script(page,'hans');await search.fill('谢谢');
+      await script(page,'hans');await search.fill('');
+      assert.deepEqual(await page.locator('.entry-original').allTextContents(),originalTexts,'Script switching preserves every Japanese original, including kanji');
+      await search.fill('谢谢');
       assert.deepEqual(await page.locator('.entry-original').allTextContents(),traditional);
       await search.fill('');await script(page,'hant');
-      await page.getByRole('combobox',{name:'首字分類',exact:true}).selectOption('な');
-      assert.ok((await page.locator('.entry-original').allTextContents()).includes('なす'));
+      assert.equal(await page.locator('.letter-filter-toggle').getAttribute('aria-expanded'),'false');
+      assert.ok(await page.locator('.letter-filter-toggle').evaluate(el=>document.getElementById(el.getAttribute('aria-controls')).hidden));
+      await selectLetter(page,'に');
+      assert.ok((await page.locator('.entry-original').allTextContents()).includes('なに'));
       await search.fill('什麼');assert.deepEqual(await page.locator('.entry-original').allTextContents(),['なに']);
       await search.fill('不存在');await page.getByRole('button',{name:'重設搜尋與篩選'}).click();
       assert.equal(await page.locator('.entry-card').count(),36);
       await page.getByRole('combobox',{name:'單字排序',exact:true}).selectOption('recent');
       assert.equal(await page.locator('.entry-original').first().innerText(),'なに');
       // Detail return preserves filters, search and scroll, including browser Back.
-      await search.fill('');await page.getByRole('combobox',{name:'單字排序',exact:true}).selectOption('alphabet');
+      await search.fill('し');await selectLetter(page,'し');await page.getByRole('combobox',{name:'單字排序',exact:true}).selectOption('alphabet');
       const word=page.locator('[data-word-id="ja-u3057-3051-3093"]');
       const target=await word.count()?word:page.locator('.entry-word-link').nth(20);
-      await target.scrollIntoViewIfNeeded();const selected=await target.getAttribute('data-word-id');const scroll=await page.evaluate(()=>scrollY);
+      await target.scrollIntoViewIfNeeded();const selected=await target.getAttribute('data-word-id');
+      // Measure at the real input event: automation may scroll a target again to
+      // avoid the fixed bottom navigation before dispatching its pointer action.
+      await target.evaluate(el=>el.addEventListener('pointerdown',()=>{window.__qaListScroll=scrollY;},{once:true}));
       await target.click();await page.waitForURL('**/#word');
+      const scroll=await page.evaluate(()=>window.__qaListScroll);
       await page.getByRole('button',{name:'返回單字表',exact:false}).click();await page.waitForURL('**/#library');
       await page.waitForFunction(y=>Math.abs(scrollY-y)<3,scroll);
       assert.equal(await page.getByRole('combobox',{name:'單字排序',exact:true}).inputValue(),'alphabet');
+      assert.equal(await page.locator('#word-search').inputValue(),'し');
+      assert.equal(await page.locator('.active-letter-filter strong').innerText(),'し');
       assert.equal(await page.locator(':focus').getAttribute('data-word-id'),selected);
       await page.locator(`[data-word-id="${selected}"]`).click();await page.waitForURL('**/#word');await page.goBack();
-      await page.waitForFunction(y=>Math.abs(scrollY-y)<3,scroll);
-      // Reset language-incompatible initial filters.
-      await page.getByRole('combobox',{name:'首字分類',exact:true}).selectOption('な');
+      await page.waitForFunction(y=>Math.abs(scrollY-y)<3,scroll,{timeout:5000}).catch(async error=>{console.log(name,'return scroll',{expected:scroll,actual:await page.evaluate(()=>scrollY)});await page.screenshot({path:join(output,`${name}-scroll-failure.png`)});throw error;});
+      await page.locator('.list-heading button').click();
+      // Reset language-incompatible letter filters.
+      await selectLetter(page,'に');
       await page.locator('.language-tabs button').first().click();
-      assert.equal(await page.getByRole('combobox',{name:'首字分類',exact:true}).inputValue(),'all');
+      assert.equal(await page.locator('.active-letter-filter').count(),0);
+      assert.equal(await page.locator('.letter-filter-toggle').getAttribute('aria-expanded'),'false');
       assert.equal(await page.locator('.entry-card').count(),90);
+      for(const [letter,tab,expected] of [['ㅁ',0,['라면','심심하다']],['ㅏ',1,['라면']],['ㅅ',0,['우산']],['ㄹ',0,['라면']]]){
+        await selectLetter(page,letter,tab);
+        for(const word of expected)assert.ok((await page.locator('.entry-original').allTextContents()).includes(word),`${letter}: ${word}`);
+        await page.locator('.active-letter-filter button').click();
+      }
       await page.locator('.language-tabs button').last().click();
       // An unfinished answer survives lookup, home, writing, language and script switches.
       await nav(page,'review');await page.getByRole('button',{name:'開始測驗 →',exact:true}).click();
@@ -154,6 +220,7 @@ try {
             }
             if((width===320||width===390||width===1440)&&route==='library')await page.screenshot({path:join(output,`${name}-${width}-${mode}-library.png`)});
             if(route==='library'){
+              await checkGrid(page,{name,width,mode,engineReport},'ja');
               const longest=page.locator('.entry-word-link').filter({hasText:'パーソナルコンピューター'});
               await longest.click();await noOverflow(page,`${name}/${width}/${mode}/word`);engineReport.layoutChecks++;
               if(width===390&&mode==='hans'){
@@ -163,6 +230,7 @@ try {
               }
               await page.locator('.word-detail > button').first().click();
               await page.locator('.language-tabs button').first().click();
+              await checkGrid(page,{name,width,mode,engineReport},'ko');
               await noOverflow(page,`${name}/${width}/${mode}/ko-library`);engineReport.layoutChecks++;
               const longestKorean=await page.locator('.entry-word-link').evaluateAll(elements=>elements.sort((a,b)=>b.querySelector('.entry-original').textContent.length-a.querySelector('.entry-original').textContent.length)[0].dataset.wordId);
               await page.locator(`[data-word-id="${longestKorean}"]`).click();

@@ -264,9 +264,6 @@ main.mvp-body { max-width:1200px; padding:0 36px 40px; margin:auto; }
 .mvp-topbar .script-switch { margin-left:auto; display:flex; flex:none; border:1px solid var(--control-border); border-radius:9px; padding:2px; gap:2px; background:var(--soft); }
 .mvp-topbar .script-switch button { min-width:44px; min-height:44px; font-size:.84rem; border:0; background:transparent; padding:5px 8px; border-radius:7px; }
 .mvp-topbar .script-switch button[aria-pressed=true] { color:var(--ink); background:var(--paper); box-shadow:0 1px 3px var(--line); font-weight:700; }
-.word-filters { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; align-items:end; margin:15px 0 20px; }
-.word-filters label { display:flex; min-width:0; flex-direction:column; gap:5px; color:var(--muted); font-size:.75rem; }
-.word-filters select { min-height:44px; width:100%; border:1px solid var(--control-border); border-radius:10px; background:var(--paper); color:var(--ink); padding:8px 12px; font:inherit; font-size:.9rem; }
 .entry-list { gap:8px; }
 .entry-card.compact-word { display:flex; flex-wrap:nowrap; gap:4px; align-items:center; padding:2px 10px 2px 0; min-height:64px; overflow:hidden; }
 .mvp-body .entry-card.compact-word .entry-word-link { flex:1 1 auto; min-width:0; min-height:60px; padding:11px 12px 11px 17px; gap:8px; }
@@ -309,7 +306,7 @@ main.mvp-body { max-width:1200px; padding:0 36px 40px; margin:auto; }
   .brand small { display:none; }
 }
 @media(max-width:700px) {
-  .search-field input,.word-filters select,.hangul-input input { font-size:1rem; }
+  .search-field input,.hangul-input input { font-size:1rem; }
   main.mvp-body { padding-bottom:calc(110px + env(safe-area-inset-bottom)); }
   .phase0-host { padding-bottom:calc(100px + env(safe-area-inset-bottom)); }
   .mvp-body .word-speech-button { font-size:.8rem; }
