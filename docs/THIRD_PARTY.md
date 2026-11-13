@@ -46,3 +46,8 @@ StrokeFox / BiLingoPlus LLC，2026-11-04 自製逐筆中心線，CC BY 4.0；39�
 - Apache 2.0 全文保留於 `licenses/OpenCC-APACHE-2.0.txt`，原字典與專案授權可在上游查閱。
 - 轉換僅用於中文介面與中文註釋顯示，不覆寫正式詞庫的原始日文、韓文、個人記音與發音欄位。
 - 網站產物另附 `public/licenses/OpenCC-APACHE-2.0.txt`，頁尾提供授權連結。React Context 在渲染時選擇中文顯示；不監聽或改寫 React DOM。日文筆記的「漢字：」內容與包含假名的日文引文保留原樣。
+
+## 2026-11-13 韓文音節字塊的組合描寫
+- `src/hangul-blocks.mjs` 在瀏覽器把既有韓文中心線仿射縮放、定位為完整音節；原始 `data/writing-index.json` 與本地來源檔不改寫，沒有從字型輪廓猜筆順或下載新素材。
+- 各來源原作者、網址與 CC BY 4.0／CC BY-SA 4.0 記錄逐組件保留於來源區；組合定位的衍生筆畫採 CC BY-SA 4.0，既有全文為 `public/strokes/sources/CC-BY-SA-4.0.txt`。修改方式為軸向縮放、位置調整與複合母音布局，沒有人工字形認證。
+- 布局依 Unicode 17.0 Chapter 18 的初聲／母音／終聲結構：https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-18/ 。技術檢查另列於 `data/hangul-block-qa.json`；此 metadata 不取代教師審核。

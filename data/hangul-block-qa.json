@@ -1,0 +1,1303 @@
+{
+  "version": 1,
+  "signature": "5347500f490087326325bd9cafb641a3bfe364c31196bfd4899a3d6922a6113d",
+  "humanStatus": "pending",
+  "characters": [
+    {
+      "display": "가",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "감",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "값",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "고",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "괜",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "권",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "그",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "금",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "기",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "꽉",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "날",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "내",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "냥",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "네",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "녁",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "노",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "눈",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "는",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "늘",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "니",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "님",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "닙",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "다",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "닭",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "답",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "더",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "덥",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "동",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "돼",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "라",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "랑",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "래",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "료",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "를",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "름",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "마",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "만",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "맙",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "맞",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "먹",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "면",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "무",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "물",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "뭐",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "밥",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "방",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "백",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "비",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "뻐",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "쁘",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "사",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "산",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "생",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "서",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "선",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "셔",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "소",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "수",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "습",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "시",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "식",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "실",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "심",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "씨",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "아",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "야",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "어",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "언",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "에",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "예",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "오",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "요",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "우",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "워",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "월",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "유",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "은",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "을",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "음",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "의",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "이",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "일",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "입",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "자",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "저",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "전",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "제",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "지",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "집",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "차",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "첫",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "추",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "춥",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "커",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "컴",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "터",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "트",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "튼",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "팅",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "퓨",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "피",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "하",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "합",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "해",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "험",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "화",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "회",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "후",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    }
+  ]
+}
