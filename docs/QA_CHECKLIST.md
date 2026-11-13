@@ -94,3 +94,32 @@
 - [ ] 不需要登入或後端服務就能從網址開始使用
 - [ ] 有第三方版權告知和來源頁
 - [ ] Production build 通過；必要測試通過；由擁有者批准發布
+
+## 2026-11-13 PR #1 本機整合驗收
+
+- 基底：main `07e57f0`；唯一開放 PR #1 / `54cc7da`，無衝突。main 部署 Actions `43278914777`、PR Actions `43380246363` 均成功；本機新增修正尚未 Commit / Push，線上 PR 的綠燈不代表已驗證這些新增修正。
+- 本機分支：`codex/ux-integration`。未改動日韓原始詞庫、既有進度格式或 storage key，保留 PR 的 7 個新詞與原始記音。
+- 修正：React Context 繁簡顯示、OpenCC 最長詞及歧義保護、列表返回位置及焦點、跨首頁／查表／書寫保留題目和翻卡、字母選取保留、完整重設、半形假名及濁音排序、可見的缺語音提示與讀屏名稱。移除舊介面樣式；維持奶茶手帳風格。
+- 手機篩選保留原生下拉：兩欄可同時看見目前排序和分類；相較需要左右滑找選項的分類列，更適合日韓切換。320 px 縮減裝飾性英文標語，重設移至結果列，不擠占篩選空間。
+- `npm ci` 成功（首次既有 Vite 程序鎖檔，停止該專案程序後重跑成功，0 套件漏洞）；`npm run check` 包含 `validate:data`、`writing:qa`、`typecheck`、`test`、`build`，全部通過；469 項測試。專案沒有另設 lint / formatter 命令。
+- `npm run test:browser`：使用選配的外部 Playwright / axe-core runtime，Chrome 與 WebKit 各 108 組版面、7 頁 WCAG A/AA 自動掃描，全部通過且未發現違規；包含 320／375／390／430／768／1440 px、淺色繁體／深色簡體、日韓列表和長單字詳情、翻卡。另以一般桌面 context 檢查 1440 px。報告與截圖在 `.cache/acceptance/`（不加入 Git）。
+- 已測互動：繁簡搜尋、排序與篩選並用、無結果重設、按鈕及瀏覽器返回的捲動與焦點、查表與跨頁保留未完成答案、翻卡保留、字母精確標紅、字母→寫字→返回、實際指標描寫與筆畫保留、44 px 主要觸控目標、鍵盤跳至內容、原始 localStorage 不變、偏好重整保存。Chrome 畫布使用 CDP 觸控事件；Windows WebKit 使用指標拖曳。
+- 整詞播放控制以明確的 Speech API stub 驗證日／韓語系、假名、停止、替換播放、慢速與缺語音；不等同真人聽驗。此 Windows Chrome 可列出日文語音但未安裝韓文語音；Windows Playwright WebKit 不提供 SpeechSynthesis，已核對不支援提示，不代表 iPhone Safari 不支援。
+- Production preview 從 `/language-exchange-diary/` 載入與重整；涵蓋延遲載入書寫資源，未見 JS 錯誤或 HTTP 404。Pages workflow 改為發布前跑完整 `npm run check`，尚未觸發部署。
+- P1 待驗：實體 iPhone Safari 的觸控、縮放、VoiceOver、日韓語音品質及聲音下載後行為；老師確認字形與筆順。書寫索引 132 字、129 技術可用、う／や／ネ 3 字維持封鎖，均未宣稱人工驗收完成；真人錄音仍未收錄。
+- P2 待改善：主 JS 約 595 kB（gzip 約 159 kB），build 有 chunk 大小提醒；可後續按學習流程切分。僅具第一候選映射的繁簡轉換仍可能有未收錄的語境歧義。
+- 狀態：本機技術驗收通過，可供使用者驗收；需明確授權 Commit / Push 才能更新 PR #1，再確認 CI 和真機結果後決定合併／正式發布。
+- 重跑瀏覽器：先 `npm run build`；`DIARY_BROWSER_MODULES` 指向含 `playwright` 的 `node_modules`，`DIARY_AXE_MODULES` 指向含 `@axe-core/playwright` 的 `node_modules`，確保已安裝 Chrome 與 Playwright WebKit，再執行 `npm run test:browser`。未將工具依賴加入網站。
+
+## PR #2 字母格子篩選整合驗收（2026-11-13）
+
+- 本節取代上一節「尚未 Commit / Push」的交付狀態：PR #1 已整合上一輪修正及最新分支，`6c5d55c` 的 Actions 通過；PR #2 同步此基底後再交付，不合併 main、不部署。
+- 精確比對任意位置：韓文全 19 子音與 21 母音，11 組複合收音拆開、緊音與複合母音保持完整；接受 canonical／compatibility jamo。日文平片假名分開，漢字只用詞庫完整假名，無讀音時不猜測；濁音、半濁音、小假名、促音、長音不折算成其他字。來源仍是 needs_review，不宣稱讀音經老師驗證。
+- 修正原篩選器的手機格子不足 44 px、清除鍵只有 36 px、選字收合後焦點遺失、無結果只清搜尋及「顯示全部」仍留下搜尋條件等問題；移除已不用的首字下拉樣式，抽出 `LetterFilter.tsx`。
+- 預設收合；選字立即收合並返回觸發按鈕；再選同字取消，標記清除只清字母，「顯示全部」與無結果重設會清搜尋及字母並回教學順序。切換語言清掉無效字母；詳情返回保留搜尋、字母、排序、捲動和焦點。
+- 320／375 px 採五欄，390／430 px 及較寬畫面採六欄；實測所有格子與主要控制項至少 44×44 px。原生按鈕支援 Tab／Enter／Space，Escape 收合；使用 aria-expanded、aria-pressed 及中日韓語言標記。
+- `npm ci`、`npm run check` 通過；483 項測試，包含全部初聲／母音、11 組複合收音、緊音收音、Unicode 等價字、日文濁音與小字、漢字缺讀音、繁簡搜尋交集及整份詞庫不變。日韓 JSON、單字 ID、記音及 localStorage 進度格式未更動。
+- Chrome／Windows Playwright WebKit 各 156 組版面／9 次 axe WCAG A/AA 掃描（合計 312／18）通過，無 JS 錯誤與資源 404；涵蓋前節的學習、語音控制與筆順回歸，並增加四種格子、鍵盤操作、取消與重設的手機實際互動。
+- 截圖與機器報告在 `.cache/acceptance/`：例如 `chrome-320-hant-ja-grid-0.png`、`webkit-390-hans-ko-grid-1.png` 和 `report.json`。以 production 子路徑測試；不把暫存截圖加入 Git。
+- 未驗證真實 iPhone／VoiceOver，語音聽感仍需人工；Windows WebKit 無原生語音 API，合成語音控制另以 stub 驗證。原有う／や／ネ 3 字封鎖與約 598 kB 主 JS 的 build 提醒維持，不能宣稱完整真人發音或 132 字人工驗收完成。
+- 合併順序：先驗收／合併 PR #1，再將 PR #2 base 改為 main、檢視剩餘差異並重跑 CI，最後由擁有者決定合併與發布。

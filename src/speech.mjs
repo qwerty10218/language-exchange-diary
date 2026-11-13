@@ -8,6 +8,7 @@ export function preferredVoice(voices, language, uri = '') {
 const rank = v => (/enhanced|premium|natural|neural/i.test(v.name)?8:0)+(v.localService?2:0)+(v.default?1:0);
 export function entrySpeechText(entry) {
   const text=(entry.language==='ja'?entry.reading||entry.text:entry.text)?.trim()??'';
+  if(entry.language==='ja'&&/\p{Script=Han}/u.test(text))return ''; // Unverified kanji reading: do not guess.
   // Never read personal mnemonics, Chinese glosses or romanization as Japanese/Korean.
   const valid=entry.language==='ja'?/^[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}\p{P}\p{Z}\p{N}ー〜～]+$/u:/^[\p{Script=Hangul}\p{P}\p{Z}\p{N}]+$/u;
   return valid.test(text)?text:'';

@@ -5,12 +5,11 @@ const jaGroups=['あ','か','さ','た','な','は','ま','や','ら','わ','其
 const foldOnset={ㄲ:'ㄱ',ㄸ:'ㄷ',ㅃ:'ㅂ',ㅆ:'ㅅ',ㅉ:'ㅈ'};
 export function wordGroups(language){return language==='ja'?jaGroups:koGroups;}
 function kanaReading(entry){
-  const text=(entry.reading||entry.text||'').trim().replace(/[\u30A1-\u30F6]/g,ch=>String.fromCodePoint(ch.codePointAt(0)-0x60));
-  return text.normalize('NFD').replace(/[\u3099\u309A]/g,'');
+  return (entry.reading||entry.text||'').trim().normalize('NFKC').replace(/[\u30A1-\u30F6]/g,ch=>String.fromCodePoint(ch.codePointAt(0)-0x60));
 }
 export function wordGroup(entry){
   if(entry.language==='ja'){
-    const letter=Array.from(kanaReading(entry))[0]||'';
+    const letter=Array.from(kanaReading(entry).normalize('NFD'))[0]||'';
     if(/[あいうえおぁぃぅぇぉ]/u.test(letter))return 'あ';
     if(/[かきくけこ]/u.test(letter))return 'か';
     if(/[さしすせそ]/u.test(letter))return 'さ';
@@ -33,7 +32,7 @@ export function sortAndFilterWords(entries,language,sort='original',group='all')
   const filtered=entries.filter(e=>group==='all'||wordGroup(e)===group);
   if(sort==='recent')return filtered.slice().reverse();
   if(sort!=='alphabet')return filtered;
-  const collation=new Intl.Collator(language==='ja'?'ja':'ko',{sensitivity:'base',numeric:true});
+  const collation=new Intl.Collator(language==='ja'?'ja':'ko',{sensitivity:'variant',numeric:true});
   return filtered.slice().sort((a,b)=>{
     const ak=language==='ja'?kanaReading(a):a.text;
     const bk=language==='ja'?kanaReading(b):b.text;

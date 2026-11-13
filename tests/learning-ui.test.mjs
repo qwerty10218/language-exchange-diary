@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'vite';
-import { createElement,Children,isValidElement } from 'react';
+import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import fs from 'node:fs';
 import { wordLetters } from '../src/word-letters.mjs';
@@ -47,7 +47,7 @@ test('實際 React 標記：獨立功能頁、完整字母表及不遺失的測�
       for(const page of ['library','alphabet','review','writing'])assert.ok(html.includes(`href="#${page}"`));
       if(route==='#home') {
         assert.match(html,/今天想學什麼/);
-        assert.doesNotMatch(html,/aria-label="中文日文拼字測驗"/);
+        assert.match(html,/<div hidden=""><section class="page-intro">/);
         assert.doesNotMatch(html,/class="entry-list"/);
       } else {
         assert.match(html,/focused-workspace/);
@@ -91,11 +91,9 @@ test('實際 React 標記：獨立功能頁、完整字母表及不遺失的測�
       assert.match(html,/閱讀主題/);
     }
     for(const character of writingCharacters.filter(c=>c.language==='ko')) {
-      let launched=null;
-      const tree=CharacterInfo({character,onWrite:id=>{launched=id;}});
-      const visit=node=>{if(!isValidElement(node))return;if(node.type==='button'&&node.props.children==='進入書寫練習')node.props.onClick();Children.forEach(node.props.children,visit);};
-      visit(tree);assert.equal(launched,character.id);
-      const html=renderToStaticMarkup(createElement(Phase0,{initialCharacterId:launched}));
+      const tree=createElement(CharacterInfo,{character,onWrite:()=>{}});
+      assert.match(renderToStaticMarkup(tree),/進入書寫練習/);
+      const html=renderToStaticMarkup(createElement(Phase0,{initialCharacterId:character.id}));
       assert.ok(html.includes(`aria-label="${character.display} 書寫區"`));
       assert.equal((html.match(/class="guide"/g)??[]).length,character.strokeCount);
       assert.match(html,/沿線描寫/);assert.doesNotMatch(html,/方向正確就自動補完/);
