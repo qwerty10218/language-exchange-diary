@@ -82,8 +82,9 @@ export default function MvpApp() {
   useEffect(()=>{speechPlayer.stop();},[page,language]);
   const [queries, setQueries] = useState({ko:'',ja:''});
   const [selectedWords,setSelectedWords]=useState<Record<Language,string|null>>({ko:null,ja:null});
-  const wordOrigins=useRef<Record<Language,{page:'home'|'library';scroll:number}>>({ja:{page:'library',scroll:0},ko:{page:'library',scroll:0}});
+  const wordOrigins=useRef<Record<Language,{page:'library'|'word';scroll:number}>>({ja:{page:'library',scroll:0},ko:{page:'library',scroll:0}});
   const restoreScroll=useRef<number|null>(null);
+  const listScroll=useRef(0);
   const [initialLearning]=useState(()=>loadLearning(()=>window.localStorage));
   const [records,setRecords]=useState(initialLearning.records);
   const recordsRef=useRef(records);
@@ -99,8 +100,7 @@ export default function MvpApp() {
   }, []);
   useEffect(() => { heading.current?.focus(); }, [page]);
   useEffect(()=>{
-    if(restoreScroll.current===null) return;
-    const position=restoreScroll.current;restoreScroll.current=null;
+    const position=restoreScroll.current??0;restoreScroll.current=null;
     const frame=window.requestAnimationFrame(()=>window.scrollTo({top:position,behavior:'auto'}));
     return ()=>window.cancelAnimationFrame(frame);
   },[page]);
@@ -108,8 +108,8 @@ export default function MvpApp() {
   const query = queries[language];
   const selectedWord=entries[language].find(e=>e.id===selectedWords[language])??null;
   const letterLink=selectedWord?wordLetters(selectedWord):null;
-  const openWord=(entry:Entry)=>{setSelectedWords(current=>({...current,[entry.language]:entry.id}));navigate('word');};
-  const selectWord=(entry:Entry)=>{wordOrigins.current[entry.language]={page:'library',scroll:window.scrollY};setSelectedWords(current=>({...current,[entry.language]:entry.id}));navigate('alphabet');};
+  const openWord=(entry:Entry)=>{listScroll.current=window.scrollY;setSelectedWords(current=>({...current,[entry.language]:entry.id}));navigate('word');};
+  const selectWord=(entry:Entry)=>{wordOrigins.current[entry.language]={page:page==='word'?'word':'library',scroll:window.scrollY};setSelectedWords(current=>({...current,[entry.language]:entry.id}));navigate('alphabet');};
   const returnToWord=()=>{const origin=wordOrigins.current[language];restoreScroll.current=origin.scroll;navigate(origin.page);};
   const onGrade=(id:string,correct:boolean)=>{
     const next=gradeWord(recordsRef.current,id,correct);recordsRef.current=next;setRecords(next);
@@ -163,7 +163,7 @@ export default function MvpApp() {
           <section className="focused-workspace">
             {languageTabs}
             {page==='library'&&<>{search}{filterControls}{resultList}</>}
-            {page==='word'&&(selectedWord?<WordDetail entry={selectedWord} onBack={()=>navigate('library')} onLetters={()=>selectWord(selectedWord)}/>:<section className="empty-state"><h3>請先選擇單字</h3><button onClick={()=>navigate('library')}>回到單字表</button></section>)}
+            {page==='word'&&(selectedWord?<WordDetail entry={selectedWord} onBack={()=>{restoreScroll.current=listScroll.current;navigate('library');}} onLetters={()=>selectWord(selectedWord)}/>:<section className="empty-state"><h3>請先選擇單字</h3><button onClick={()=>navigate('library')}>回到單字表</button></section>)}
             {page==='alphabet'&&<Alphabet language={language} onWrite={openWriting} linkedWord={selectedWord} linkedLetters={letterLink} onReturn={returnToWord} onQuiz={()=>navigate('review')}/>}
             <div hidden={page!=='review'}>
               <div className="mode-switch"><button className="text-button" onClick={()=>navigate('flashcards')}>改用翻卡練習 →</button></div>
