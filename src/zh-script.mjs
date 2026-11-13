@@ -29,10 +29,10 @@ function languageContent(node){
 }
 // The original DOM text/attributes are preserved in WeakMaps, so switching
 // back to Traditional never reverse-converts words or damages original data.
+const originals=new WeakMap();
+const attrs=new WeakMap();
 export function observeChineseScript(root,mode) {
   if(!root || typeof MutationObserver==='undefined')return ()=>{};
-  const originals=new WeakMap();
-  const attrs=new WeakMap();
   const translateText=node=>{
     if(languageContent(node))return;
     const value=node.nodeValue??'';
