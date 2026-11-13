@@ -9,6 +9,8 @@ test('最新真實詞庫可搜尋原文、中文、讀音、個人記音及備�
   assert.equal(ja.length,36);assert.equal(ko.length,90);
   for(const q of ['소고기','牛肉','sou ku ki'])assert.ok(searchEntries(ko,q).some(e=>e.text==='소고기'));
   for(const q of ['試験','しけん','考試'])assert.ok(searchEntries(ja,q).some(e=>e.text==='しけん'));
+  assert.ok(searchEntries(ja,'考试').some(e=>e.text==='しけん'), 'Simplified Chinese must match the Traditional gloss');
+  assert.ok(searchEntries(ja,'考試').some(e=>e.text==='しけん'));
   assert.deepEqual(searchEntries(ko,'  SHI　HOM  ').map(e=>e.text),['시험']);
   assert.deepEqual(searchEntries(ko,'Wu san').map(e=>e.text),['우산']);
   assert.equal(searchEntries(ko,'試験').length,0);assert.equal(searchEntries(ja,'Shi hom').length,0);
