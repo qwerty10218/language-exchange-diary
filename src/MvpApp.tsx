@@ -8,7 +8,8 @@ import ThemeControl from './ThemeControl';
 import SpeechButton from './SpeechButton';
 import {entrySpeechText,speechPlayer} from './speech.mjs';
 import {loadScript,saveScript,observeChineseScript} from './zh-script.mjs';
-import {wordGroups,sortAndFilterWords} from './word-sort.mjs';
+import {sortAndFilterWords} from './word-sort.mjs';
+import {letterTabs,filterByLetter} from './word-letter-filter.mjs';
 import type {WritingSnapshot} from './Phase0';
 import { gradeWord, loadLearning, saveLearning, summarize } from './quiz-model.mjs';
 import { wordLetters } from './word-letters.mjs';
@@ -71,13 +72,15 @@ export default function MvpApp() {
   const rootRef=useRef<HTMLDivElement>(null);
   const [chineseScript,setChineseScript]=useState<'hant'|'hans'>(()=>loadScript());
   const [sortOrder,setSortOrder]=useState<'original'|'recent'|'alphabet'>('original');
-  const [initialGroup,setInitialGroup]=useState('all');
+  const [selectedLetter,setSelectedLetter]=useState<string|null>(null);
+  const [letterTab,setLetterTab]=useState<'hiragana'|'katakana'|'consonants'|'vowels'>('hiragana');
+  const [letterFilterOpen,setLetterFilterOpen]=useState(false);
   const [writingId, setWritingId] = useState('ko-a');
   const [writingStarted,setWritingStarted]=useState(()=>currentPage()==='writing');
   const writingSessions=useRef(new Map<string,WritingSnapshot>());
   const openWriting = (id: string) => { setWritingStarted(true);setWritingId(id); window.location.hash='writing'; setPage('writing'); };
   const [language, setLanguage] = useState<Language>('ja');
-  const switchLanguage=(lang:Language)=>{setLanguage(lang);setInitialGroup('all');};
+  const switchLanguage=(lang:Language)=>{setLanguage(lang);setSelectedLetter(null);setLetterTab(lang==='ja'?'hiragana':'consonants');setLetterFilterOpen(false);};
   useEffect(()=>observeChineseScript(rootRef.current,chineseScript),[chineseScript,page,language]);
   useEffect(()=>{speechPlayer.stop();},[page,language]);
   const [queries, setQueries] = useState({ko:'',ja:''});
@@ -115,7 +118,7 @@ export default function MvpApp() {
     const next=gradeWord(recordsRef.current,id,correct);recordsRef.current=next;setRecords(next);
     if(!initialLearning.readOnly) setLearningError(saveLearning(()=>window.localStorage,next)??initialLearning.error);
   };
-  const filtered = useMemo(()=>sortAndFilterWords(searchEntries(entries[language],query) as Entry[],language,sortOrder,initialGroup),[language,query,sortOrder,initialGroup]);
+  const filtered=useMemo(()=>filterByLetter(sortAndFilterWords(searchEntries(entries[language],query) as Entry[],language,sortOrder),selectedLetter),[language,query,sortOrder,selectedLetter]);
   const changeScript=(mode:'hant'|'hans')=>{saveScript(mode);setChineseScript(mode);};
   const onAnswer = (id: string, status: 'remembered' | 'forgotten') => {
     const next = recordReview(progress, id, status);
@@ -124,10 +127,32 @@ export default function MvpApp() {
   };
   const languageTabs = <div className="language-tabs" role="group" aria-label="筆記語言">{(['ko','ja'] as const).map(lang => <button key={lang} aria-pressed={language === lang} onClick={() => switchLanguage(lang)}><span className="language-stamp" aria-hidden="true">{lang === 'ko' ? '한' : 'あ'}</span><span>{lang === 'ko' ? '韓文筆記' : '日文筆記'}<small>{labels[lang]}</small></span><span className="tab-count">{entries[lang].length}</span></button>)}</div>;
   const search = <div className="search-block"><label htmlFor="word-search">搜尋{language === 'ko' ? '韓文' : '日文'}筆記</label><div className="search-field"><Icon name="search"/><input id="word-search" type="search" value={query} onChange={e => setQueries({...queries,[language]:e.target.value})} placeholder="搜尋原文、中文、讀音或個人記音" autoComplete="off"/>{query && <button className="clear-search" aria-label="清除搜尋" onClick={() => setQueries({...queries,[language]:''})}>×</button>}</div></div>;
-  const filterControls=<div className="word-filters">
-    <label>排序<select aria-label="單字排序" value={sortOrder} onChange={e=>setSortOrder(e.target.value as typeof sortOrder)}><option value="original">教學順序</option><option value="recent">最新加入</option><option value="alphabet">{language==='ja'?'五十音順':'가나다 順'}</option></select></label>
-    <label>首字分類<select aria-label="首字分類" value={initialGroup} onChange={e=>setInitialGroup(e.target.value)}><option value="all">全部</option>{wordGroups(language).map(g=><option key={g} value={g}>{g==='其他'?'其他':language==='ja'?g+' 行':g}</option>)}</select></label>
-    {(initialGroup!=='all'||sortOrder!=='original')&&<button className="text-button" onClick={()=>{setInitialGroup('all');setSortOrder('original');}}>清除篩選</button>}
+  const activeTabs=letterTabs[language];
+  const activeTab=activeTabs.find(t=>t.id===letterTab)??activeTabs[0];
+  const filterControls=<div className="word-explore-controls">
+    <div className="word-explore-toolbar">
+      <button className="letter-filter-toggle" type="button" aria-expanded={letterFilterOpen} aria-controls="letter-filter-options" onClick={()=>setLetterFilterOpen(open=>!open)}>
+        <Icon name="grid"/> 字母篩選 <span aria-hidden="true">{letterFilterOpen?'▴':'▾'}</span>
+      </button>
+      <label className="word-sort-select">排序
+        <select aria-label="單字排序" value={sortOrder} onChange={e=>setSortOrder(e.target.value as typeof sortOrder)}>
+          <option value="original">教學順序</option><option value="recent">最新加入</option><option value="alphabet">{language==='ja'?'五十音順':'가나다 順'}</option>
+        </select>
+      </label>
+    </div>
+    {selectedLetter&&<div className="active-letter-filter" aria-live="polite"><span>已篩選：<strong lang={language}>{selectedLetter}</strong> · 包含此字母的單字</span><button type="button" onClick={()=>setSelectedLetter(null)} aria-label={`清除字母篩選 ${selectedLetter}`}>清除 ×</button></div>}
+    {letterFilterOpen&&<section id="letter-filter-options" className="letter-filter-panel" aria-label="按字母篩選單字">
+      <div className="letter-script-tabs" role="group" aria-label={language==='ja'?'假名種類':'韓文字母種類'}>
+        {activeTabs.map(tab=><button key={tab.id} type="button" aria-pressed={activeTab.id===tab.id} onClick={()=>setLetterTab(tab.id as typeof letterTab)}>{tab.label}</button>)}
+      </div>
+      <div className="letter-filter-grid" role="group" aria-label={activeTab.label}>
+        {activeTab.letters.map(letter=><button type="button" key={letter} lang={language} aria-label={`篩選包含 ${letter} 的單字`} aria-pressed={selectedLetter===letter} onClick={()=>{
+            setSelectedLetter(current=>current===letter?null:letter);
+            setLetterFilterOpen(false);
+          }}>{letter}</button>)}
+      </div>
+      <div className="letter-filter-foot"><span>篩選詞句中任意位置包含此字母的單字。</span><button type="button" className="text-button" onClick={()=>{setSelectedLetter(null);setLetterFilterOpen(false);}}>顯示全部</button></div>
+    </section>}
   </div>;
   const resultList = <><div className="list-heading"><h2>{query.trim()?'搜尋結果':'全部詞句'}</h2><p role="status">{filtered.length} 筆</p></div>
     <div className="entry-list">{filtered.map((entry:Entry) => <EntryCard key={entry.id} entry={entry} onOpen={openWord}/>)}</div>
