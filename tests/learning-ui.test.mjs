@@ -57,7 +57,8 @@ test('實際 React 標記：獨立功能頁、完整字母表及不遺失的測�
         if(route!=='#review')assert.match(html,/<div hidden=""><div class="mode-switch"/);
         if(route==='#library') {
           assert.match(html,/class="entry-list"/);
-          assert.match(html,/aria-label="播放整詞合成語音：/);
+          assert.match(html,/class="word-speech-button"/);
+          assert.match(html,/aria-label="[^\"]+：此瀏覽器不支援朗讀"/);
           assert.match(html,/聽發音/);
         }
         if(route==='#alphabet')assert.match(html,/完整五十音表/);
