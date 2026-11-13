@@ -41,6 +41,8 @@ StrokeFox / BiLingoPlus LLC，2026-11-04 自製逐筆中心線，CC BY 4.0；39�
 ## 2026-11-13 中文繁簡轉換資料
 - 開源來源：OpenCC（BYVoid 與 OpenCC contributors），Apache License 2.0。
 - 資料來源檔：`data/dictionary/TSCharacters.txt`、`data/dictionary/TSPhrases.txt`，取自 `https://github.com/BYVoid/OpenCC`。
-- 本專案僅抽取第一候選字詞映射，去除無改變的項目並轉成 `data/zh-hant-to-hans.json`；不包含 OpenCC 的完整語境演算法，遇到歧義詞仍可能需要人工修正。
+- 已於 2026-11-13 逐筆核對：TSCharacters 固定版本 `5c764a5a886f46eb365656ed91a0410d7162fac6`（3221 個變更映射），TSPhrases 固定版本 `9e9d730659fc7db366b43b4437b307444d87e23e`（498 詞，包含不變詞以保護「乾隆」等歧義）。所有映射均與該版本第一候選一致。
+- `data/zh-hant-to-hans.json` 是上述來源的第一候選衍生資料；採最長詞優先、單次替換，詞語結果不再逐字二次轉換。不包含 OpenCC 的完整語境演算法，未收錄歧義仍需人工確認。
 - Apache 2.0 全文保留於 `licenses/OpenCC-APACHE-2.0.txt`，原字典與專案授權可在上游查閱。
 - 轉換僅用於中文介面與中文註釋顯示，不覆寫正式詞庫的原始日文、韓文、個人記音與發音欄位。
+- 網站產物另附 `public/licenses/OpenCC-APACHE-2.0.txt`，頁尾提供授權連結。React Context 在渲染時選擇中文顯示；不監聽或改寫 React DOM。日文筆記的「漢字：」內容與包含假名的日文引文保留原樣。

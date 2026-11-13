@@ -13,7 +13,8 @@
     "check": "npm run validate:data && npm run writing:qa && npm run typecheck && npm test && npm run build",
     "writing:import": "node scripts/import-writing.mjs",
     "writing:qa": "node scripts/writing-qa.mjs",
-    "hangul:import": "node scripts/import-hangul.mjs"
+    "hangul:import": "node scripts/import-hangul.mjs",
+    "test:browser": "node scripts/browser-qa.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",
