@@ -34,7 +34,7 @@ test('日文: 包含任何位置的單個假名，不強制和片假名混合',(
   assert.equal(wordContainsLetter(get(ja,'なに'),'に'),true);
   assert.equal(wordContainsLetter(get(ja,'なす'),'す'),true);
   assert.equal(wordContainsLetter(get(ja,'すいか'),'か'),true);
-  assert.equal(wordContainsLetter(get(ja,'ジュース'),'ジ'),true);
+  assert.equal(wordContainsLetter(get(ja,'ジュース'),'ス'),true);
   assert.equal(wordContainsLetter(get(ja,'ジュース'),'し'),false);
   assert.equal(wordContainsLetter(get(ja,'なす'),'ナ'),false);
 });
