@@ -140,15 +140,15 @@ export default function MvpApp() {
             {languageTabs}
             {page==='library'&&<>{search}{resultList}</>}
             {page==='alphabet'&&<Alphabet language={language} onWrite={openWriting} linkedWord={selectedWord} linkedLetters={letterLink} onReturn={returnToWord} onQuiz={()=>navigate('review')}/>}
-            {page==='review'&&<>
+            <div hidden={page!=='review'}>
               <div className="mode-switch"><button className="text-button" onClick={()=>navigate('flashcards')}>改用翻卡練習 →</button></div>
               {(['ko','ja'] as const).map(lang=><div key={lang} hidden={lang!==language}><Quiz entries={entries[lang]} language={lang} records={records} preferredId={selectedWords[lang]} onGrade={onGrade} onLookup={()=>navigate('alphabet')} storageError={learningError}/></div>)}
-            </>}
-            {page==='flashcards'&&<>
+            </div>
+            <div hidden={page!=='flashcards'}>
               <div className="mode-switch"><button className="text-button" onClick={()=>navigate('review')}>← 回到拼字測驗</button></div>
               {storageError&&<p className="storage-warning" role="alert">{storageError}</p>}
               {(['ko','ja'] as const).map(lang=><div key={lang} hidden={lang!==language}><Review entries={entries[lang]} language={lang} progress={progress} onAnswer={onAnswer} onBrowse={()=>navigate('library')}/></div>)}
-            </>}
+            </div>
           </section>
         </>}
       <footer className="mvp-footer"><span>言語交換日記 · 一起學，一起記。</span><p>整詞發音使用裝置合成語音，非真人錄音；詞庫更新後需重新部署才會同步。</p></footer>
