@@ -72,13 +72,13 @@ export default function MvpApp() {
   const [chineseScript,setChineseScript]=useState<'hant'|'hans'>(()=>loadScript());
   const [sortOrder,setSortOrder]=useState<'original'|'recent'|'alphabet'>('original');
   const [initialGroup,setInitialGroup]=useState('all');
-  useEffect(()=>observeChineseScript(rootRef.current,chineseScript),[chineseScript,page,language]);
   const [writingId, setWritingId] = useState('ko-a');
   const [writingStarted,setWritingStarted]=useState(()=>currentPage()==='writing');
   const writingSessions=useRef(new Map<string,WritingSnapshot>());
   const openWriting = (id: string) => { setWritingStarted(true);setWritingId(id); window.location.hash='writing'; setPage('writing'); };
   const [language, setLanguage] = useState<Language>('ja');
   const switchLanguage=(lang:Language)=>{setLanguage(lang);setInitialGroup('all');};
+  useEffect(()=>observeChineseScript(rootRef.current,chineseScript),[chineseScript,page,language]);
   useEffect(()=>{speechPlayer.stop();},[page,language]);
   const [queries, setQueries] = useState({ko:'',ja:''});
   const [selectedWords,setSelectedWords]=useState<Record<Language,string|null>>({ko:null,ja:null});
@@ -130,7 +130,7 @@ export default function MvpApp() {
     {(initialGroup!=='all'||sortOrder!=='original')&&<button className="text-button" onClick={()=>{setInitialGroup('all');setSortOrder('original');}}>清除篩選</button>}
   </div>;
   const resultList = <><div className="list-heading"><h2>{query.trim()?'搜尋結果':'全部詞句'}</h2><p role="status">{filtered.length} 筆</p></div>
-    <div className="entry-list">{filtered.map(entry => <EntryCard key={entry.id} entry={entry} onOpen={openWord}/>)}</div>
+    <div className="entry-list">{filtered.map((entry:Entry) => <EntryCard key={entry.id} entry={entry} onOpen={openWord}/>)}</div>
     {!filtered.length && <section className="empty-state"><h3>沒有找到這個詞</h3><p>可以試著輸入原文、中文或朋友的記音。</p><button onClick={() => setQueries({...queries,[language]:''})}>清除搜尋</button></section>}
   </>;
   return <div ref={rootRef} className="mvp-shell">
