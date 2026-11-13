@@ -36,3 +36,11 @@
 
 ## 2026-11-12 韓文新增來源
 StrokeFox / BiLingoPlus LLC，2026-11-04 自製逐筆中心線，CC BY 4.0；39個新增字採此來源，ㅏ沿用原CC BY-SA 4.0。原JSON、SHA-256固定版本、授權全文與manifest位於 public/strokes/hangul/，轉換／筆法差異及教師待驗狀態見 HANGUL_WRITING.md。未使用字型外框猜筆順。
+
+
+## 2026-11-13 中文繁簡轉換資料
+- 開源來源：OpenCC（BYVoid 與 OpenCC contributors），Apache License 2.0。
+- 資料來源檔：`data/dictionary/TSCharacters.txt`、`data/dictionary/TSPhrases.txt`，取自 `https://github.com/BYVoid/OpenCC`。
+- 本專案僅抽取第一候選字詞映射，去除無改變的項目並轉成 `data/zh-hant-to-hans.json`；不包含 OpenCC 的完整語境演算法，遇到歧義詞仍可能需要人工修正。
+- Apache 2.0 全文保留於 `licenses/OpenCC-APACHE-2.0.txt`，原字典與專案授權可在上游查閱。
+- 轉換僅用於中文介面與中文註釋顯示，不覆寫正式詞庫的原始日文、韓文、個人記音與發音欄位。
