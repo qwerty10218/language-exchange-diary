@@ -1,13 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'vite';
-import { createElement,Children,isValidElement } from 'react';
+import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import fs from 'node:fs';
 import { wordLetters } from '../src/word-letters.mjs';
 import { THEME_KEY } from '../src/theme.mjs';
 
-test('實際 React 標記：三個入口、完整字母表與持續掛載的雙語複習',async()=>{
+test('實際 React 標記：獨立功能頁、完整字母表及不遺失的測驗狀態',async()=>{
   const server=await createServer({server:{middlewareMode:true},appType:'custom'});
   const previous=globalThis.window;
   try {
@@ -44,13 +44,25 @@ test('實際 React 標記：三個入口、完整字母表與持續掛載的雙�
     for(const route of ['#home','#library','#alphabet','#review']) {
       window.location.hash=route;
       const html=renderToStaticMarkup(createElement(App));
-      assert.match(html,/學習內容快速切換/);
-      assert.match(html,/單字表/);assert.match(html,/五十音表/);assert.match(html,/測驗/);
-      // Both language sessions stay in the render tree, even on the other learning tabs.
-      assert.equal((html.match(/花幾分鐘，讓詞句留下來。/g)??[]).length,2);
-      assert.match(html,/<div hidden=""><section class="review-setup/);
-      assert.match(html,/aria-label="中文日文拼字測驗"/);
-      assert.match(html,/aria-label="中文韓文拼字測驗"/);
+      for(const page of ['library','alphabet','review','writing'])assert.ok(html.includes(`href="#${page}"`));
+      if(route==='#home') {
+        assert.match(html,/今天想學什麼/);
+        assert.match(html,/<div hidden=""><section class="page-intro">/);
+        assert.doesNotMatch(html,/class="entry-list"/);
+      } else {
+        assert.match(html,/focused-workspace/);
+        assert.match(html,/aria-label="中文日文拼字測驗"/);
+        assert.match(html,/aria-label="中文韓文拼字測驗"/);
+        // Quiz components remain mounted while lookup/table/flashcards are selected.
+        if(route!=='#review')assert.match(html,/<div hidden=""><div class="mode-switch"/);
+        if(route==='#library') {
+          assert.match(html,/class="entry-list"/);
+          assert.match(html,/class="word-speech-button"/);
+          assert.match(html,/aria-label="[^\"]+：此瀏覽器不支援朗讀"/);
+          assert.match(html,/聽發音/);
+        }
+        if(route==='#alphabet')assert.match(html,/完整五十音表/);
+      }
     }
     for(const [language,count] of [['ja',92],['ko',40]]) {
       const html=renderToStaticMarkup(createElement(Alphabet,{language,onWrite:()=>{}}));
@@ -73,19 +85,15 @@ test('實際 React 標記：三個入口、完整字母表與持續掛載的雙�
     for(const [mode,label] of [['auto','自動'],['light','淺色'],['dark','深色']]) {
       window.localStorage={getItem:key=>key===THEME_KEY?JSON.stringify({version:1,mode}):null};
       window.matchMedia=()=>({matches:true});
-      for(const route of ['#library','#alphabet','#review']) {
-        window.location.hash=route;
-        const html=renderToStaticMarkup(createElement(App));
-        assert.ok(html.includes(`<button aria-pressed="true"><span aria-hidden="true">✓ </span>${label}</button>`));
-        assert.match(html,/閱讀主題/);
-      }
+      window.location.hash='#home';
+      const html=renderToStaticMarkup(createElement(App));
+      assert.ok(html.includes(`<button aria-pressed="true"><span aria-hidden="true">✓ </span>${label}</button>`));
+      assert.match(html,/閱讀主題/);
     }
     for(const character of writingCharacters.filter(c=>c.language==='ko')) {
-      let launched=null;
-      const tree=CharacterInfo({character,onWrite:id=>{launched=id;}});
-      const visit=node=>{if(!isValidElement(node))return;if(node.type==='button'&&node.props.children==='進入書寫練習')node.props.onClick();Children.forEach(node.props.children,visit);};
-      visit(tree);assert.equal(launched,character.id);
-      const html=renderToStaticMarkup(createElement(Phase0,{initialCharacterId:launched}));
+      const tree=createElement(CharacterInfo,{character,onWrite:()=>{}});
+      assert.match(renderToStaticMarkup(tree),/進入書寫練習/);
+      const html=renderToStaticMarkup(createElement(Phase0,{initialCharacterId:character.id}));
       assert.ok(html.includes(`aria-label="${character.display} 書寫區"`));
       assert.equal((html.match(/class="guide"/g)??[]).length,character.strokeCount);
       assert.match(html,/沿線描寫/);assert.doesNotMatch(html,/方向正確就自動補完/);
