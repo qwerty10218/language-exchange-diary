@@ -2,7 +2,7 @@ import {useEffect,useId,useState,useSyncExternalStore} from 'react';
 import {speechPlayer,EMPTY_SPEECH,matchingVoices,preferredVoice} from './speech.mjs';
 import type {Language} from './types';
 const serverSnapshot=()=>EMPTY_SPEECH;
-export default function SpeechButton({text,language,label=text}:{text:string;language:Language;label?:string}) {
+export default function SpeechButton({text,language,label=text,compact=false}:{text:string;language:Language;label?:string;compact?:boolean}) {
   const id=useId(),hintId=`${id}-speech-hint`;
   const state=useSyncExternalStore(speechPlayer.subscribe,speechPlayer.getSnapshot,serverSnapshot);
   const [voice,setVoice]=useState('');
@@ -11,7 +11,19 @@ export default function SpeechButton({text,language,label=text}:{text:string;lan
   const selected=preferredVoice(voices,language,voice) as SpeechSynthesisVoice|null;
   const own=state.owner===id,busy=own&&(state.status==='loading'||state.status==='speaking');
   useEffect(()=>()=>speechPlayer.stop(id),[id,text,language]);
-  if(!text.trim())return <p className="device-note">此詞讀音待確認，暫不提供朗讀。</p>;
+  if(!text.trim())return compact?<span className="word-speech-unavailable">讀音待確認</span>:<p className="device-note">此詞讀音待確認，暫不提供朗讀。</p>;
+  if(compact) {
+    const unavailable=!state.supported?'此瀏覽器不支援朗讀':!selected?'需要在系統中啟用對應日文或韓文聲音':'';
+    return <div className="word-speech-control">
+      <button type="button" className="word-speech-button" disabled={!!unavailable}
+        title={unavailable||'使用裝置合成語音朗讀整個詞句（非真人錄音）'}
+        aria-label={unavailable?`${label}：${unavailable}`:`${busy?'停止':'播放'}整詞合成語音：${label}`}
+        onClick={()=>busy?speechPlayer.stop(id):speechPlayer.play(id,text,language,voice,rate)}>
+        <span aria-hidden="true">{busy?'■':'▶'}</span> {busy?'停止':'聽發音'}
+      </button>
+      {own&&state.message&&<span role="status" className="word-speech-unavailable">{state.message}</span>}
+    </div>;
+  }
   return <div className="speech-control">
     <button type="button" aria-label={`${busy?'停止朗讀':'朗讀（合成語音）'}：${label}`} aria-describedby={hintId} disabled={!state.supported||!selected} onClick={()=>busy?speechPlayer.stop(id):speechPlayer.play(id,text,language,voice,rate)}>{busy?'停止朗讀':'朗讀（合成語音）'}</button>
     <p id={hintId} className="device-note">{!state.supported?'此瀏覽器尚未提供語音朗讀。':!selected?`尚無${language==='ja'?'日文':'韓文'}聲音，請在裝置系統下載對應語音後重開頁面。`:'裝置合成語音，非真人錄音；自然程度依所選聲音而異，部分聲音需要連網。'}</p>
