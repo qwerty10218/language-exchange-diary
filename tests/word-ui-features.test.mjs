@@ -26,14 +26,14 @@ test('簡體查詢也能找到繁體詞義，但不跨日韓詞庫',()=>{
 test('繁簡顯示偏好可保存，錯誤儲存狀態不會使功能崩潰',()=>{
   const values=new Map();
   const storage={getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value)};
-  assert.equal(loadScript(storage),'hant');
-  saveScript('hans',storage);
+  assert.equal(loadScript(()=>storage),'hant');
+  saveScript('hans',()=>storage);
   assert.equal(values.get(SCRIPT_KEY),'hans');
-  assert.equal(loadScript(storage),'hans');
-  saveScript('hant',storage);
-  assert.equal(loadScript(storage),'hant');
-  assert.equal(loadScript({getItem:()=>{throw Error('blocked')}}),'hant');
-  assert.doesNotThrow(()=>saveScript('hans',{setItem:()=>{throw Error('blocked')}}));
+  assert.equal(loadScript(()=>storage),'hans');
+  saveScript('hant',()=>storage);
+  assert.equal(loadScript(()=>storage),'hant');
+  assert.equal(loadScript(()=>({getItem:()=>{throw Error('blocked')}})),'hant');
+  assert.doesNotThrow(()=>saveScript('hans',()=>({setItem:()=>{throw Error('blocked')}})));
 });
 
 test('日文依假名行、韓文依子音首字母篩選，排序不會修改原詞庫',()=>{
