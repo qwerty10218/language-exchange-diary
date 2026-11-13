@@ -114,8 +114,7 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
     document.title=t(pages.find(item=>item.id===page)?.label??(page==='word'?'單字詳情':'翻卡複習'))+' · '+t('言語交換日記');
   },[page,chineseScript]);
   useEffect(()=>{
-    if(restoreScroll.current===null) return;
-    const position=restoreScroll.current;restoreScroll.current=null;
+    const position=restoreScroll.current??0;restoreScroll.current=null;
     const frame=window.requestAnimationFrame(()=>window.scrollTo({top:position,behavior:'auto'}));
     return ()=>window.cancelAnimationFrame(frame);
   },[page]);
