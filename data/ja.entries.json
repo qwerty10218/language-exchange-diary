@@ -502,5 +502,19 @@
     "notes": "漢字：何。複習 な、認識 に。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ja-kani",
+    "language": "ja",
+    "kind": "word",
+    "text": "かに",
+    "meaning_zh": "螃蟹",
+    "reading": "かに",
+    "romaji": "kani",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "漢字：蟹。複習 か、に。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
