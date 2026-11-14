@@ -1258,5 +1258,19 @@
     "notes": "保留朋友的原始記音。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-chingu",
+    "language": "ko",
+    "kind": "word",
+    "text": "친구",
+    "meaning_zh": "朋友",
+    "reading": null,
+    "romaji": "chingu",
+    "personal_mnemonic": "qin gu",
+    "examples": [],
+    "notes": "保留朋友的原始記音。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
