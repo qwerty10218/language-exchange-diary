@@ -516,5 +516,19 @@
     "notes": "漢字：蟹。複習 か、に。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ja-shiranai",
+    "language": "ja",
+    "kind": "phrase",
+    "text": "しらない",
+    "meaning_zh": "不知道",
+    "reading": "しらない",
+    "romaji": "shiranai",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "漢字：知らない。普通體、口語用法；和韓文 몰라 都可表達「不知道」。複習 し、な、い，認識 ら。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
