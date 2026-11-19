@@ -1286,5 +1286,19 @@
     "notes": "保留朋友原始記音 mu la；口語、非敬語，禮貌說法為 몰라요。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-yeohaeng",
+    "language": "ko",
+    "kind": "word",
+    "text": "여행",
+    "meaning_zh": "旅行",
+    "reading": null,
+    "romaji": "yeohaeng",
+    "personal_mnemonic": "you hing",
+    "examples": [],
+    "notes": "保留朋友的原始記音 you hing。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
