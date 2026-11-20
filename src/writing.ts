@@ -7,6 +7,8 @@ export type WritingCharacter = {
   source:string|null; license:string|null; creator:string|null; sourceHash:string|null; sourceFile:string|null;
   modification?:string; humanStatus:'pending'|'verified'; technicalStatus:'pending'|'passed'|'failed';
   issues:string[]; missingReason:string|null; tests?:Record<string,boolean>;
+  strokeFrames?:{sx:number;sy:number;tx:number;ty:number;sourceId:string;sourceIndex:number}[];
+  components?:{display:string;creator:string|null;license:string|null;source:string|null}[];
 };
 export const writingCharacters = index.characters as WritingCharacter[];
 export const canPractice = (c: WritingCharacter) => c.paths.length>0 && c.technicalStatus==='passed';

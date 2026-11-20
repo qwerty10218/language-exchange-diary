@@ -13,14 +13,14 @@ import {loadScript,saveScript} from './zh-script.mjs';
 import {sortAndFilterWords} from './word-sort.mjs';
 import {filterByLetter} from './word-letter-filter.mjs';
 import LetterFilter from './LetterFilter';
-import type {WritingSnapshot} from './Phase0';
+
 import { gradeWord, loadLearning, saveLearning } from './quiz-model.mjs';
 import { wordLetters } from './word-letters.mjs';
 import { loadProgress, recordReview, saveProgress, searchEntries } from './learning.mjs';
 import type { Entry, Language } from './types';
 import './mvp.css';
 
-const Phase0 = lazy(() => import('./Phase0'));
+const GuidedWriting = lazy(() => import('./GuidedWriting'));
 const WritingLab = import.meta.env.DEV ? lazy(() => import('./WritingLab')) : null;
 const entries: Record<Language, Entry[]> = { ja: jaEntries as Entry[], ko: koEntries as Entry[] };
 type Page = 'home' | 'library' | 'word' | 'alphabet' | 'review' | 'flashcards' | 'writing' | 'lab';
@@ -55,7 +55,7 @@ function EntryCard({entry,onOpen}:{entry:Entry;onOpen:(entry:Entry)=>void}) {
     <SpeechButton text={entrySpeechText(entry)} language={entry.language} label={entry.text} compact/>
   </article>;
 }
-function WordDetail({entry,onBack,onLetters}:{entry:Entry;onBack:()=>void;onLetters:()=>void}){
+function WordDetail({entry,onBack,onLetters,onPractice}:{entry:Entry;onBack:()=>void;onLetters:()=>void;onPractice:()=>void}){
   const {t,note}=useChinese();
   return <section className="word-detail notebook-panel" aria-label={t("單字詳細資料")}>
     <button className="text-button" onClick={onBack}>{t("← 返回單字表")}</button>
@@ -68,6 +68,7 @@ function WordDetail({entry,onBack,onLetters}:{entry:Entry;onBack:()=>void;onLett
       {entry.notes&&<><dt>{t("學習筆記")}</dt><dd>{note(entry.notes)}</dd></>}
     </dl>
     {entry.examples.length>0&&<section className="word-examples"><h3>{t("例句")}</h3>{entry.examples.map((example,i)=><div key={i}><p lang={entry.language}>{example.text}</p>{example.reading&&<p lang={entry.language}>{example.reading}</p>}<p>{t(example.meaning_zh)}</p></div>)}</section>}
+    <button className="secondary-button" onClick={onPractice}>{t("練習這個詞")}</button>
     <button className="secondary-button" onClick={onLetters}>{t("查看這個詞的字母 ›")}</button>
     <p className="device-note">{t("合成語音並非真人錄音；原文、讀音與個人記音不會因中文顯示模式改變。")}</p>
   </section>;
@@ -85,8 +86,10 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
   const [selectedLetter,setSelectedLetter]=useState<string|null>(null);
   const [writingId, setWritingId] = useState('ko-a');
   const [writingStarted,setWritingStarted]=useState(()=>currentPage()==='writing');
-  const writingSessions=useRef(new Map<string,WritingSnapshot>());
-  const openWriting = (id: string) => { setWritingStarted(true);setWritingId(id); window.location.hash='writing'; setPage('writing'); };
+  const [writingWord,setWritingWord]=useState<Entry|undefined>();
+  const [writingKeys,setWritingKeys]=useState<string[]>([]);
+  const writingKey=writingWord?`word:${writingWord.id}`:`letter:${writingId}`;
+  const openWriting = (id: string) => { setWritingStarted(true);setWritingWord(undefined);setWritingId(id);setWritingKeys(keys=>keys.includes(`letter:${id}`)?keys:[...keys,`letter:${id}`]); window.location.hash='writing'; setPage('writing'); };
   const [language, setLanguage] = useState<Language>('ja');
   const switchLanguage=(lang:Language)=>{if(lang!==language){setLanguage(lang);setSelectedLetter(null);}};
   useEffect(()=>{speechPlayer.stop();},[page,language]);
@@ -108,7 +111,7 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
     return () => window.removeEventListener('hashchange', update);
   }, [page,language]);
   useEffect(() => {
-    const target=page==='writing'?document.querySelector<HTMLElement>('.phase0-host h1'):heading.current;
+    const target=page==='writing'?document.querySelector<HTMLElement>('[data-active-writing] h1'):heading.current;
     target?.setAttribute('tabindex','-1');target?.focus({preventScroll:true});
     if(page==='library'&&selectedWord){document.querySelector<HTMLElement>('[data-word-id="'+selectedWord.id+'"]')?.focus({preventScroll:true});}
   }, [page]);
@@ -146,12 +149,12 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
     {!filtered.length && <section className="empty-state"><h3>{t("沒有找到這個詞")}</h3><p>{t("可以試著輸入原文、中文或朋友的記音。")}</p><button onClick={resetFilters}>{t('重設搜尋與篩選')}</button></section>}
   </>;
   return <div className="mvp-shell">
-    <a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();(page==='writing'?document.querySelector<HTMLElement>('.phase0-host h1'):heading.current)?.focus();}}>{t("跳至主要內容")}</a>
+    <a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();(page==='writing'?document.querySelector<HTMLElement>('[data-active-writing] h1'):heading.current)?.focus();}}>{t("跳至主要內容")}</a>
     <header className="mvp-topbar"><a className="brand" href="#home" onClick={()=>navigate('home')}><span className="brand-mark" aria-hidden="true">{t("言")}</span><span>{t("言語交換日記")}<small>LANGUAGE EXCHANGE DIARY</small></span></a>
       <div className="script-switch" role="group" aria-label={t("中文顯示")}><button aria-pressed={chineseScript==='hant'} onClick={()=>changeScript('hant')}>{t("繁")}</button><button aria-pressed={chineseScript==='hans'} onClick={()=>changeScript('hans')}>{t("简")}</button></div>
       <nav aria-label={t("主導覽")}>{pages.map(item => <a key={item.id} href={`#${item.id}`} aria-current={page===item.id||page==='flashcards'&&item.id==='review'||page==='word'&&item.id==='library'?'page':undefined} onClick={()=>navigate(item.id)}><Icon name={item.icon}/><span>{t(item.label)}</span></a>)}</nav>
     </header>
-    {(writingStarted||page==='writing') && <div className="phase0-host" id="writing-content" hidden={page!=='writing'}><div className="prototype-banner"><button className="text-button" onClick={()=>{setLanguage(writingId.startsWith('ko-')?'ko':'ja');navigate('alphabet');}}>{t("← 返回字母表")}</button>{import.meta.env.DEV&&<button onClick={()=>navigate('lab')}>{t("開發調校室")}</button>}</div><Suspense fallback={<p role="status">{t("載入書寫練習…")}</p>}><Phase0 key={writingId} initialCharacterId={writingId} visible={page==='writing'} snapshot={writingSessions.current.get(writingId)} onSnapshot={value=>writingSessions.current.set(writingId,value)} onCharacterChange={openWriting}/></Suspense></div>}
+    {(writingStarted||page==='writing') && <div className="phase0-host" id="writing-content" hidden={page!=='writing'}><Suspense fallback={<p role="status">{t("載入書寫練習…")}</p>}>{[...new Set([...writingKeys,writingKey])].map(key=>{const word=key.startsWith('word:')?Object.values(entries).flat().find(e=>e.id===key.slice(5)):undefined;return <div key={key} data-active-writing={key===writingKey?true:undefined} hidden={key!==writingKey}><GuidedWriting entry={word} characterId={key.startsWith('letter:')?key.slice(7):'ko-a'} visible={page==='writing'&&key===writingKey} onBack={()=>{if(word){switchLanguage(word.language);setSelectedWords(current=>({...current,[word.language]:word.id}));navigate('word');}else{switchLanguage(key.slice(7).startsWith('ko-')?'ko':'ja');navigate('alphabet');}}}/></div>;})}</Suspense></div>}
     {page==='lab'&&WritingLab&&<Suspense fallback={<p>{t("載入調校室…")}</p>}><WritingLab/></Suspense>}
     <main id="main-content" tabIndex={-1} className="mvp-body" hidden={page==='writing'||page==='lab'}>
       {page==='home'
@@ -176,7 +179,7 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
           <section className="focused-workspace">
             {languageTabs}
             {page==='library'&&<>{search}{filterControls}<SpeechAvailability language={language}/>{resultList}</>}
-            {page==='word'&&(selectedWord?<WordDetail entry={selectedWord} onBack={returnToWord} onLetters={()=>selectWord(selectedWord)}/>:<section className="empty-state"><h3>{t("請先選擇單字")}</h3><button onClick={()=>navigate('library')}>{t("回到單字表")}</button></section>)}
+            {page==='word'&&(selectedWord?<WordDetail entry={selectedWord} onBack={returnToWord} onPractice={()=>{setWritingWord(selectedWord);setWritingKeys(keys=>keys.includes(`word:${selectedWord.id}`)?keys:[...keys,`word:${selectedWord.id}`]);navigate('writing');}} onLetters={()=>selectWord(selectedWord)}/>:<section className="empty-state"><h3>{t("請先選擇單字")}</h3><button onClick={()=>navigate('library')}>{t("回到單字表")}</button></section>)}
             <div hidden={page!=='alphabet'}><Alphabet visible={page==='alphabet'} language={language} onWrite={openWriting} linkedWord={selectedWord} linkedLetters={letterLink} onReturn={selectedWord?()=>navigate('word'):undefined} onQuiz={()=>navigate('review')}/></div>
             <div hidden={page!=='review'}>
               <div className="mode-switch"><button className="text-button" onClick={()=>navigate('flashcards')}>{t("改用翻卡練習 →")}</button></div>
