@@ -10,7 +10,9 @@ import ThemeControl from './ThemeControl';
 import SpeechButton,{SpeechAvailability} from './SpeechButton';
 import {entrySpeechText,speechPlayer} from './speech.mjs';
 import {loadScript,saveScript} from './zh-script.mjs';
-import {wordGroups,sortAndFilterWords} from './word-sort.mjs';
+import {sortAndFilterWords} from './word-sort.mjs';
+import {filterByLetter} from './word-letter-filter.mjs';
+import LetterFilter from './LetterFilter';
 import type {WritingSnapshot} from './Phase0';
 import { gradeWord, loadLearning, saveLearning } from './quiz-model.mjs';
 import { wordLetters } from './word-letters.mjs';
@@ -80,13 +82,13 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
   const {t}=useChinese();
   const [page, setPage] = useState<Page>(currentPage);
   const [sortOrder,setSortOrder]=useState<'original'|'recent'|'alphabet'>('original');
-  const [initialGroup,setInitialGroup]=useState('all');
+  const [selectedLetter,setSelectedLetter]=useState<string|null>(null);
   const [writingId, setWritingId] = useState('ko-a');
   const [writingStarted,setWritingStarted]=useState(()=>currentPage()==='writing');
   const writingSessions=useRef(new Map<string,WritingSnapshot>());
   const openWriting = (id: string) => { setWritingStarted(true);setWritingId(id); window.location.hash='writing'; setPage('writing'); };
   const [language, setLanguage] = useState<Language>('ja');
-  const switchLanguage=(lang:Language)=>{setLanguage(lang);setInitialGroup('all');};
+  const switchLanguage=(lang:Language)=>{if(lang!==language){setLanguage(lang);setSelectedLetter(null);}};
   useEffect(()=>{speechPlayer.stop();},[page,language]);
   const [queries, setQueries] = useState({ko:'',ja:''});
   const [selectedWords,setSelectedWords]=useState<Record<Language,string|null>>({ko:null,ja:null});
@@ -129,7 +131,8 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
     const next=gradeWord(recordsRef.current,id,correct);recordsRef.current=next;setRecords(next);
     if(!initialLearning.readOnly) setLearningError(saveLearning(()=>window.localStorage,next)??initialLearning.error);
   };
-  const filtered = useMemo(()=>sortAndFilterWords(searchEntries(entries[language],query) as Entry[],language,sortOrder,initialGroup),[language,query,sortOrder,initialGroup]);
+  const filtered = useMemo(()=>filterByLetter(sortAndFilterWords(searchEntries(entries[language],query) as Entry[],language,sortOrder),selectedLetter),[language,query,sortOrder,selectedLetter]);
+  const resetFilters=()=>{setQueries({...queries,[language]:''});setSelectedLetter(null);setSortOrder('original');};
   const onAnswer = (id: string, status: 'remembered' | 'forgotten') => {
     const next = recordReview(progress, id, status);
     setProgress(next);
@@ -137,13 +140,10 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
   };
   const languageTabs = <div className="language-tabs" role="group" aria-label={t("筆記語言")}>{(['ko','ja'] as const).map(lang => <button key={lang} aria-pressed={language === lang} onClick={() => switchLanguage(lang)}><span className="language-stamp" aria-hidden="true">{lang === 'ko' ? '한' : 'あ'}</span><span>{lang === 'ko' ? t('韓文筆記') : t('日文筆記')}<small>{t(labels[lang])}</small></span><span className="tab-count">{entries[lang].length}</span></button>)}</div>;
   const search = <div className="search-block"><label htmlFor="word-search">{t("搜尋")}{language === 'ko' ? t('韓文') : t('日文')}{t("筆記")}</label><div className="search-field"><Icon name="search"/><input id="word-search" type="search" value={query} onChange={e => setQueries({...queries,[language]:e.target.value})} placeholder={t("搜尋原文、中文、讀音或個人記音")} autoComplete="off"/>{query && <button className="clear-search" aria-label={t("清除搜尋")} onClick={() => setQueries({...queries,[language]:''})}>×</button>}</div></div>;
-  const filterControls=<div className="word-filters">
-    <label>{t("排序")}<select aria-label={t("單字排序")} value={sortOrder} onChange={e=>setSortOrder(e.target.value as typeof sortOrder)}><option value="original">{t("教學順序")}</option><option value="recent">{t("最新加入")}</option><option value="alphabet">{language==='ja'?t('五十音順'):t('가나다 順')}</option></select></label>
-    <label>{t("首字分類")}<select aria-label={t("首字分類")} value={initialGroup} onChange={e=>setInitialGroup(e.target.value)}><option value="all">{t("全部")}</option>{wordGroups(language).map(g=><option key={g} value={g}>{g==='其他'?t('其他'):language==='ja'?g+t(' 行'):g}</option>)}</select></label>
-  </div>;
-  const resultList = <><div className="list-heading"><h2>{query.trim()?t('搜尋結果'):t('全部詞句')}</h2>{(query||initialGroup!=='all'||sortOrder!=='original')&&<button className="text-button" onClick={()=>{setQueries({...queries,[language]:''});setInitialGroup('all');setSortOrder('original');}}>{t('重設')}</button>}<p role="status">{filtered.length}{t(" 筆")}</p></div>
+  const filterControls=<LetterFilter key={language} language={language} selected={selectedLetter} onSelect={setSelectedLetter} sort={sortOrder} onSort={setSortOrder} onReset={resetFilters}/>;
+  const resultList = <><div className="list-heading"><h2>{query.trim()?t('搜尋結果'):t('全部詞句')}</h2>{(query||selectedLetter||sortOrder!=='original')&&<button className="text-button" onClick={resetFilters}>{t('重設')}</button>}<p role="status">{filtered.length}{t(" 筆")}</p></div>
     <div className="entry-list">{filtered.map((entry:Entry) => <EntryCard key={entry.id} entry={entry} onOpen={openWord}/>)}</div>
-    {!filtered.length && <section className="empty-state"><h3>{t("沒有找到這個詞")}</h3><p>{t("可以試著輸入原文、中文或朋友的記音。")}</p><button onClick={()=>{setQueries({...queries,[language]:''});setInitialGroup('all');setSortOrder('original');}}>{t('重設搜尋與篩選')}</button></section>}
+    {!filtered.length && <section className="empty-state"><h3>{t("沒有找到這個詞")}</h3><p>{t("可以試著輸入原文、中文或朋友的記音。")}</p><button onClick={resetFilters}>{t('重設搜尋與篩選')}</button></section>}
   </>;
   return <div className="mvp-shell">
     <a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();(page==='writing'?document.querySelector<HTMLElement>('.phase0-host h1'):heading.current)?.focus();}}>{t("跳至主要內容")}</a>

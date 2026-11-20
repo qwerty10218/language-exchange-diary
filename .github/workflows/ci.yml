@@ -2,7 +2,9 @@ name: Verify language diary changes
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, fix/word-audio-simpler-ui-20261113]
+  push:
+    branches: ['feat/**']
 
 permissions:
   contents: read

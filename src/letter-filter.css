@@ -1,0 +1,24 @@
+.word-explore-controls { margin:14px 0 20px; }
+.word-explore-toolbar { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:end; gap:12px; }
+.letter-filter-heading { margin:0; font-size:1rem; }
+.mvp-body .letter-filter-toggle { min-height:44px; width:100%; display:flex; justify-content:center; align-items:center; gap:8px; border-radius:10px; padding:8px; background:var(--paper); color:var(--ink); font-size:.9rem; }
+.word-sort-select { display:flex; min-width:0; flex-direction:column; gap:4px; color:var(--muted); font-size:.75rem; }
+.word-sort-select select { min-height:44px; width:100%; font:inherit; font-size:1rem; border:1px solid var(--control-border); border-radius:10px; background:var(--paper); padding:8px; color:var(--ink); }
+.letter-filter-panel { margin-top:12px; padding:14px; border:1px solid var(--line); border-radius:14px; background:var(--paper); }
+.letter-script-tabs { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.mvp-body .letter-script-tabs button { min-height:44px; border-radius:9px; padding:8px; color:var(--ink); font-size:.9rem; }
+.letter-filter-help,.letter-filter-foot>span { font-size:.8rem; color:var(--muted); }
+.letter-filter-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:6px; }
+.mvp-body .letter-filter-grid button { position:relative; min-width:44px; min-height:46px; padding:6px 2px; border-radius:9px; font-size:1.2rem; background:var(--soft); color:var(--ink); }
+.mvp-body .letter-filter-grid button[aria-pressed=true] { background:var(--rose-bg); border:2px solid var(--rose-border); color:var(--rose); font-weight:700; }
+.letter-selected-mark { position:absolute; right:3px; top:0; font-size:.6rem; }
+.letter-filter-foot { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-top:12px; }
+.active-letter-filter { display:flex; align-items:center; justify-content:space-between; gap:8px; background:var(--rose-bg); border:1px solid var(--rose-border); border-radius:10px; margin-top:10px; padding:5px 10px; font-size:.85rem; }
+.active-letter-filter strong { font-size:1.1rem; color:var(--rose); }
+.mvp-body .active-letter-filter button { min-height:44px; flex-shrink:0; padding:8px; color:var(--rose); background:transparent; border:0; font-size:.85rem; }
+.word-explore-controls button { scroll-margin-block:16px 100px; }
+@media(max-width:380px) {
+  .word-explore-toolbar { gap:8px; }
+  .letter-filter-panel { padding:10px; }
+  .letter-filter-grid { grid-template-columns:repeat(5,minmax(0,1fr)); }
+}
