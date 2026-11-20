@@ -1,3 +1,4 @@
+import {toSimplified} from './zh-script.mjs';
 export const PROGRESS_KEY = 'language-exchange-diary:review:v1';
 /** @typedef {'remembered' | 'forgotten'} ReviewStatus */
 /** @typedef {Record<string, ReviewStatus>} Progress */
@@ -10,7 +11,8 @@ export function searchEntries(entries, query) {
   return entries.filter(entry => {
     const haystack = normalizeSearch([entry.text, entry.meaning_zh, entry.reading, entry.romaji,
       entry.personal_mnemonic, entry.notes, ...entry.examples.flatMap(e => [e.text, e.meaning_zh, e.reading])].filter(Boolean).join(' '));
-    return terms.every(term => haystack.includes(term));
+    const simplified=normalizeSearch(toSimplified(haystack));
+    return terms.every(term=>haystack.includes(term)||simplified.includes(normalizeSearch(toSimplified(term))));
   });
 }
 export function reviewPool(entries, includeStrongLanguage = false) {

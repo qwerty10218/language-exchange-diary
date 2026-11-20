@@ -446,5 +446,61 @@
     "notes": "漢字：試験；複習し、接觸け與ん；整理日期：2026-11-09",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ja-sake",
+    "language": "ja",
+    "kind": "word",
+    "text": "さけ",
+    "meaning_zh": "酒、日本酒",
+    "reading": "さけ",
+    "romaji": "sake",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "漢字：酒。已由使用者提及教學。",
+    "review_status": "needs_review",
+    "audio": null
+  },
+  {
+    "id": "ja-sakana",
+    "language": "ja",
+    "kind": "word",
+    "text": "さかな",
+    "meaning_zh": "魚",
+    "reading": "さかな",
+    "romaji": "sakana",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "漢字：魚。用 さ、か 複習並認識 な。",
+    "review_status": "needs_review",
+    "audio": null
+  },
+  {
+    "id": "ja-nasu",
+    "language": "ja",
+    "kind": "word",
+    "text": "なす",
+    "meaning_zh": "茄子",
+    "reading": "なす",
+    "romaji": "nasu",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "漢字：茄子。複習 な、す。",
+    "review_status": "needs_review",
+    "audio": null
+  },
+  {
+    "id": "ja-nani",
+    "language": "ja",
+    "kind": "word",
+    "text": "なに",
+    "meaning_zh": "什麼",
+    "reading": "なに",
+    "romaji": "nani",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "漢字：何。複習 な、認識 に。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]

@@ -5,15 +5,22 @@ import { mergeEntries } from '../scripts/merge-entries.mjs';
 import { normalizeSearch, searchEntries, reviewPool, reviewQueue, recordReview, loadProgress, saveProgress, PROGRESS_KEY } from '../src/learning.mjs';
 const read = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const ko=read('../data/ko.entries.json'),ja=read('../data/ja.entries.json');
-test('119筆真實詞庫可搜尋原文、中文、讀音、個人記音及備註，不跨語言混合',()=>{
-  assert.equal(ja.length,32);assert.equal(ko.length,87);
+test('最新真實詞庫可搜尋原文、中文、讀音、個人記音及備註，不跨語言混合',()=>{
+  assert.equal(ja.length,36);assert.equal(ko.length,90);
   for(const q of ['소고기','牛肉','sou ku ki'])assert.ok(searchEntries(ko,q).some(e=>e.text==='소고기'));
   for(const q of ['試験','しけん','考試'])assert.ok(searchEntries(ja,q).some(e=>e.text==='しけん'));
+  assert.ok(searchEntries(ja,'考试').some(e=>e.text==='しけん'), 'Simplified Chinese must match the Traditional gloss');
+  assert.ok(searchEntries(ja,'考試').some(e=>e.text==='しけん'));
   assert.deepEqual(searchEntries(ko,'  SHI　HOM  ').map(e=>e.text),['시험']);
   assert.deepEqual(searchEntries(ko,'Wu san').map(e=>e.text),['우산']);
   assert.equal(searchEntries(ko,'試験').length,0);assert.equal(searchEntries(ja,'Shi hom').length,0);
-  assert.equal(searchEntries(ja,'  ').length,32);assert.equal(searchEntries(ja,'不存在的查詢').length,0);
+  assert.equal(searchEntries(ja,'  ').length,ja.length);assert.equal(searchEntries(ja,'不存在的查詢').length,0);
   assert.equal(normalizeSearch('ＳＨＩ　HOM'),'shi hom');
+  for(const word of ['さけ','さかな','なす','なに'])assert.ok(ja.some(e=>e.text===word),word);
+  for(const word of ['심심하다','라면','우동'])assert.ok(ko.some(e=>e.text===word),word);
+  assert.equal(ko.find(e=>e.text==='심심하다').personal_mnemonic,'sim sim ha da');
+  assert.equal(ko.find(e=>e.text==='라면').personal_mnemonic,'la men');
+  assert.equal(ko.find(e=>e.text==='우동').personal_mnemonic,'wu dong');
 });
 test('合併不覆蓋同詞的既有ID、記音、非空內容，補缺與衝突可查',()=>{
   const base={...ko[0],notes:'既有教學備註',personal_mnemonic:'original'};
@@ -42,10 +49,10 @@ test('現有ID、筆記、候選原始記音與待查狀態保留',()=>{
 });
 test('複習排除指定粗口，忘記優先，支援5/10/全部並且不改原詞庫',()=>{
   const pool=reviewPool(ko),before=ko.map(e=>e.id);
-  assert.equal(pool.length,86);assert.equal(reviewPool(ko,true).length,87);assert.ok(!pool.some(e=>e.text==='ㅅㅂ'));
+  assert.equal(pool.length,ko.length-1);assert.equal(reviewPool(ko,true).length,ko.length);assert.ok(!pool.some(e=>e.text==='ㅅㅂ'));
   const progress={[pool[0].id]:'remembered',[pool.at(-1).id]:'forgotten'};
   assert.equal(reviewQueue(pool,progress,5).length,5);assert.equal(reviewQueue(pool,progress,10).length,10);
-  assert.equal(reviewQueue(pool,progress,'all').length,86);assert.equal(reviewQueue(pool,progress,5)[0].id,pool.at(-1).id);
+  assert.equal(reviewQueue(pool,progress,'all').length,pool.length);assert.equal(reviewQueue(pool,progress,5)[0].id,pool.at(-1).id);
   assert.deepEqual(ko.map(e=>e.id),before);assert.deepEqual(reviewQueue([],{},5),[]);
 });
 test('每台裝置獨立儲存；重新讀取保留記得／忘記且不修改詞庫',()=>{

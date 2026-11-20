@@ -1,3 +1,4 @@
+import {useChinese} from './Chinese';
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { writingCharacters, canPractice } from './writing';
 import { WRITING_SETTINGS, strokeOptions } from './writing-config.mjs';
@@ -20,6 +21,9 @@ const tuningFields: { key: TuningKey; label: string; min: number; max: number }[
 ];
 const pathFrom = (points: Point[]) => points.map((p, i) => `${i ? 'L' : 'M'}${p.x},${p.y}`).join(' ');
 export default function Phase0({initialCharacterId, qa = false, config = WRITING_SETTINGS,visible=true,snapshot,onSnapshot,onCharacterChange}: {initialCharacterId?: string; qa?: boolean; config?: typeof WRITING_SETTINGS;visible?:boolean;snapshot?:WritingSnapshot;onSnapshot?:(value:WritingSnapshot)=>void;onCharacterChange?:(id:string)=>void}) {
+  const {t}=useChinese();
+  const heading=useRef<HTMLHeadingElement>(null);
+  useEffect(()=>{if(visible)heading.current?.focus({preventScroll:true});},[visible]);
   const instanceId=useId();
   const clipId=`${instanceId}-writing-clip`,arrowId=`${instanceId}-arrow`,helpId=`${instanceId}-canvas-help`;
   const selectedLanguage=writingCharacters.find(c=>c.id===initialCharacterId)?.language;
@@ -107,13 +111,13 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
     setMessage('三項檢查通過：筆畫數、順序方向、近似軌跡。這是原型教學回饋。');
   };
   return <main>
-    <header><p className="eyebrow">言語交換日記 / PHASE 0</p><h1>慢慢寫，記住一筆。</h1><p>共用書寫練習 · 僅開放通過技術檢查的字元</p></header>
-    <section className="notice">132 字已列入索引；缺路徑或技術檢查失敗者不開放一般書寫。技術通過不等同字形與筆順人工認證。</section>
-    <section className="card" aria-label="書寫原型">
-      <label>選擇字元<select aria-label="選擇書寫字元" value={index} disabled={phase==='accepted'||phase==='drawing'} onChange={e => { const next=characters[Number(e.target.value)];if(onCharacterChange)onCharacterChange(next.id);else{reset();setIndex(Number(e.target.value));} }}>{characters.map((c,i)=><option key={c.id} value={i}>{c.display} · {c.label}{c.technicalStatus==='failed'?' · QA 失敗':''}</option>)}</select></label><p>{character.display} · {character.paths.length} 筆 · 人工驗證待完成{character.technicalStatus==='failed'?' · 僅供開發排查，未通過技術檢查':''}</p>
-      <SpeechButton text={character.reading} language={character.language} label={character.category==='ko_consonants'?`${character.display} 字母名稱`:character.display}/>
-      <div className="buttons modes"><button aria-pressed={mode === 'guided'} onClick={() => { reset(); setMode('guided'); }}>引導描寫</button><button aria-pressed={mode === 'free'} onClick={() => { reset(); setMode('free'); }}>自由書寫</button></div>
-      {import.meta.env.DEV && mode === 'guided' && <details className="tuning"><summary>開發：練習容錯調整</summary><p>調整會重置目前字元；僅此頁面暫存，不更新詞庫。筆順、方向與跳段限制不開放關閉。</p>{tuningFields.map(field => <label key={field.key}>{field.label}：<output>{Math.round(tuning[field.key] * 100)}%</output><input type="range" aria-label={field.label} min={Math.round(field.min * 100)} max={Math.round(field.max * 100)} step="1" value={Math.round(tuning[field.key] * 100)} onChange={e => {
+    <header><p className="eyebrow">{t("言語交換日記 / PHASE 0")}</p><h1 ref={heading} tabIndex={-1}>{t("慢慢寫，記住一筆。")}</h1><p>{t("共用書寫練習 · 僅開放通過技術檢查的字元")}</p></header>
+    <section className="notice">{t("132 字已列入索引；缺路徑或技術檢查失敗者不開放一般書寫。技術通過不等同字形與筆順人工認證。")}</section>
+    <section className="card" aria-label={t("書寫原型")}>
+      <label>{t("選擇字元")}<select aria-label={t("選擇書寫字元")} value={index} disabled={phase==='accepted'||phase==='drawing'} onChange={e => { const next=characters[Number(e.target.value)];if(onCharacterChange)onCharacterChange(next.id);else{reset();setIndex(Number(e.target.value));} }}>{characters.map((c,i)=><option key={c.id} value={i}>{c.display} · {t(c.label)}{c.technicalStatus==='failed'?t(' · QA 失敗'):''}</option>)}</select></label><p>{character.display} · {character.paths.length}{t(" 筆 · 人工驗證待完成")}{character.technicalStatus==='failed'?t(' · 僅供開發排查，未通過技術檢查'):''}</p>
+      <SpeechButton text={character.reading} language={character.language} label={character.category==='ko_consonants'?t`${character.display} 字母名稱`:character.display}/>
+      <div className="buttons modes"><button aria-pressed={mode === 'guided'} onClick={() => { reset(); setMode('guided'); }}>{t("引導描寫")}</button><button aria-pressed={mode === 'free'} onClick={() => { reset(); setMode('free'); }}>{t("自由書寫")}</button></div>
+      {import.meta.env.DEV && mode === 'guided' && <details className="tuning"><summary>{t("開發：練習容錯調整")}</summary><p>{t("調整會重置目前字元；僅此頁面暫存，不更新詞庫。筆順、方向與跳段限制不開放關閉。")}</p>{tuningFields.map(field => <label key={field.key}>{t(field.label)}：<output>{Math.round(tuning[field.key] * 100)}%</output><input type="range" aria-label={field.label} min={Math.round(field.min * 100)} max={Math.round(field.max * 100)} step="1" value={Math.round(tuning[field.key] * 100)} onChange={e => {
         const value = Number(e.target.value) / 100;
         reset(); setTuning(current => {
           const next = { ...current, [field.key]: value };
@@ -121,10 +125,10 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
           if (field.key === 'maxDeviation') next.snapRadius = Math.min(next.snapRadius, value);
           return next;
         });
-      }}/></label>)}<button onClick={() => { reset(); setTuning({ ...GUIDE_DEFAULTS, ...config.global,...(fullTrace?HANGUL_SETTINGS:{}),...(config!==WRITING_SETTINGS?config.global:{}) }); }}>還原集中設定</button></details>}
-      <p id={helpId}>{mode === 'guided' ? `沿線描寫・${phase === 'completed' ? '全部完成' : `目前第 ${ink.length + 1} 筆`}；每筆至少沿線畫到 75%，再放開判定。只點一下或短拉不會補完。` : `隱藏範本，自由寫完後提交判定（${character.paths.length} 筆）。`}</p>
-      <svg ref={svg} className="writing" viewBox="0 0 1024 1024" preserveAspectRatio="xMidYMid meet" data-phase={phase} aria-label={`${character.display} 書寫區`} aria-describedby={helpId} onPointerDown={e => {
-        if (active.current) { cancel('多指操作已取消此筆，請使用單指書寫。'); return; }
+      }}/></label>)}<button onClick={() => { reset(); setTuning({ ...GUIDE_DEFAULTS, ...config.global,...(fullTrace?HANGUL_SETTINGS:{}),...(config!==WRITING_SETTINGS?config.global:{}) }); }}>{t("還原集中設定")}</button></details>}
+      <p id={helpId}>{mode === 'guided' ? t`沿線描寫・${phase === 'completed' ? t('全部完成') : t`目前第 ${ink.length + 1} 筆`}；每筆至少沿線畫到 75%，再放開判定。只點一下或短拉不會補完。` : t`隱藏範本，自由寫完後提交判定（${character.paths.length} 筆）。`}</p>
+      <svg ref={svg} className="writing" viewBox="0 0 1024 1024" preserveAspectRatio="xMidYMid meet" data-phase={phase} aria-label={t`${character.display} 書寫區`} aria-describedby={helpId} onPointerDown={e => {
+        if (active.current) { cancel(t('多指操作已取消此筆，請使用單指書寫。')); return; }
         if (demo || phase === 'accepted' || phase === 'validating' || e.button !== 0 || !e.isPrimary) return;
         if (phase==='completed' || (mode === 'guided' && ink.length >= character.paths.length)) return;
         const point = screenToSvg(e.currentTarget, e.clientX, e.clientY);
@@ -147,7 +151,7 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
         }
         setLive(current.guide ? [] : current.rawPoints.filter(p => insideSquare(p)));
         setLiveProgress(current.guide?.progress ?? 0);
-        if (current.guide) setMessage(current.guide.invalid || (current.guide.recovering ? '暫時離開引導線，回到目前筆跡末端就能繼續。' : `沿第 ${ink.length + 1} 筆繼續，停頓也沒關係。`));
+        if (current.guide) setMessage(current.guide.invalid || (current.guide.recovering ? t('暫時離開引導線，回到目前筆跡末端就能繼續。') : t`沿第 ${ink.length + 1} 筆繼續，停頓也沒關係。`));
       }} onPointerUp={e => {
         const current = active.current;
         if (!current || current.id !== e.pointerId) return;
@@ -157,7 +161,7 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
         if (!insideSquare(point)) current.outside = true;
         if (current.guide && !current.outside) { completeGuided(current); return; }
         active.current = null; e.currentTarget.releasePointerCapture(e.pointerId); setLive([]); setLiveProgress(0);
-        if (current.outside) { current.guide?.cancel(); setPhase('rejected'); setMessage(`請在字框內重畫第 ${ink.length + 1} 筆。`); return; }
+        if (current.outside) { current.guide?.cancel(); setPhase('rejected'); setMessage(t`請在字框內重畫第 ${ink.length + 1} 筆。`); return; }
         rawInk.current = [...rawInk.current, current.rawPoints]; setInk([...ink, pathFrom(current.rawPoints)]); setPhase('waiting');
       }} onPointerCancel={e => { if (active.current?.id===e.pointerId) cancel(); }} onLostPointerCapture={e => { if (active.current?.id===e.pointerId) cancel(); }}>
         <defs><clipPath id={clipId}><rect width="1024" height="1024"/></clipPath><marker id={arrowId} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="var(--focus)"/></marker></defs>
@@ -171,11 +175,11 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
         {acceptedStroke !== null && <path d={character.paths[acceptedStroke]} pathLength="1" className="demo accepted-animation" style={{animationDuration: `${playback.acceptanceMs}ms`}}/>}
         </g>
       </svg>
-      <p role="status" className="feedback">{demo ? `示範第 ${step + 1}／${character.paths.length} 筆${paused ? '（暫停）' : ''}。` : message} <span>已寫 {ink.length}／{character.paths.length} 筆</span></p>
-      {phase==='completed'&&<div className="buttons"><button onClick={reset}>再練一次</button><button onClick={()=>{const next=characters[(index+1)%characters.length];if(onCharacterChange)onCharacterChange(next.id);else{reset();setIndex((index+1)%characters.length);}}}>下一個字母 →</button></div>}
-      <div className="buttons controls"><button onClick={() => { reset(); setDemo(true); setMessage('依序觀看每一筆。'); }}>示範／重播</button><button disabled={!demo} onClick={() => setPaused(!paused)}>{paused ? '繼續' : '暫停'}</button><button disabled={phase === 'accepted' || demo} onClick={() => { cancel(); rawInk.current = rawInk.current.slice(0, -1); setInk(ink.slice(0, -1)); setPhase('waiting'); }}>退回一筆</button><button onClick={reset}>清除</button><button disabled={demo || phase === 'drawing' || phase === 'accepted'} onClick={submit}>提交判定</button>{mode === 'free' && <button onClick={() => setShowAnswer(!showAnswer)}>{showAnswer ? '隱藏答案' : '顯示答案'}</button>}</div>
+      <p role="status" className="feedback">{demo ? t`示範第 ${step + 1}／${character.paths.length} 筆${paused ? t('（暫停）') : ''}。` : t(message)} <span>{t("已寫 ")}{ink.length}／{character.paths.length}{t(" 筆")}</span></p>
+      {phase==='completed'&&<div className="buttons"><button onClick={reset}>{t("再練一次")}</button><button onClick={()=>{const next=characters[(index+1)%characters.length];if(onCharacterChange)onCharacterChange(next.id);else{reset();setIndex((index+1)%characters.length);}}}>{t("下一個字母 →")}</button></div>}
+      <div className="buttons controls"><button onClick={() => { reset(); setDemo(true); setMessage(t('依序觀看每一筆。')); }}>{t("示範／重播")}</button><button disabled={!demo} onClick={() => setPaused(!paused)}>{paused ? t('繼續') : t('暫停')}</button><button disabled={phase === 'accepted' || demo} onClick={() => { cancel(); rawInk.current = rawInk.current.slice(0, -1); setInk(ink.slice(0, -1)); setPhase('waiting'); }}>{t("退回一筆")}</button><button onClick={reset}>{t("清除")}</button><button disabled={demo || phase === 'drawing' || phase === 'accepted'} onClick={submit}>{t("提交判定")}</button>{mode === 'free' && <button onClick={() => setShowAnswer(!showAnswer)}>{showAnswer ? t('隱藏答案') : t('顯示答案')}</button>}</div>
     </section>
-    <section className="card"><h2>真人音訊審核</h2><p>尚無真人錄音。日韓各 5 條調查記錄列於專案資料，未通過授權與人工檢聽，不提供播放。</p><p>韓文字母名稱與音節實際讀音須分開審核。</p></section>
-    <footer><p>當前字元素材：{character.creator} · {character.license} · <a href={character.source ?? undefined}>固定版本來源</a>。原曲線與來源、授權、修改說明見 <a href={`${import.meta.env.BASE_URL}strokes/catalog/`}>字元資料及來源頁</a>。</p><p>判定僅供練習，手機與教師審查待完成。自由書寫保留原始筆跡。</p></footer>
+    <section className="card"><h2>{t("真人音訊審核")}</h2><p>{t("尚無真人錄音。日韓各 5 條調查記錄列於專案資料，未通過授權與人工檢聽，不提供播放。")}</p><p>{t("韓文字母名稱與音節實際讀音須分開審核。")}</p></section>
+    <footer><p>{t("當前字元素材：")}{character.creator} · {character.license} · <a href={character.source ?? undefined}>{t("固定版本來源")}</a>{t("。原曲線與來源、授權、修改說明見 ")}<a href={`${import.meta.env.BASE_URL}strokes/catalog/`}>{t("字元資料及來源頁")}</a>。</p><p>{t("判定僅供練習，手機與教師審查待完成。自由書寫保留原始筆跡。")}</p></footer>
   </main>;
 }
