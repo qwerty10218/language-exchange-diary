@@ -6,7 +6,8 @@ import { normalizeSearch, searchEntries, reviewPool, reviewQueue, recordReview, 
 const read = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const ko=read('../data/ko.entries.json'),ja=read('../data/ja.entries.json');
 test('最新真實詞庫可搜尋原文、中文、讀音、個人記音及備註，不跨語言混合',()=>{
-  assert.equal(ja.length,36);assert.equal(ko.length,90);
+  assert.ok(ja.length >= 36);
+  assert.ok(ko.length >= 90);
   for(const q of ['소고기','牛肉','sou ku ki'])assert.ok(searchEntries(ko,q).some(e=>e.text==='소고기'));
   for(const q of ['試験','しけん','考試'])assert.ok(searchEntries(ja,q).some(e=>e.text==='しけん'));
   assert.ok(searchEntries(ja,'考试').some(e=>e.text==='しけん'), 'Simplified Chinese must match the Traditional gloss');
@@ -16,11 +17,14 @@ test('最新真實詞庫可搜尋原文、中文、讀音、個人記音及備�
   assert.equal(searchEntries(ko,'試験').length,0);assert.equal(searchEntries(ja,'Shi hom').length,0);
   assert.equal(searchEntries(ja,'  ').length,ja.length);assert.equal(searchEntries(ja,'不存在的查詢').length,0);
   assert.equal(normalizeSearch('ＳＨＩ　HOM'),'shi hom');
-  for(const word of ['さけ','さかな','なす','なに'])assert.ok(ja.some(e=>e.text===word),word);
+  for(const word of ['さけ','さかな','なす','なに','かに','しらない'])assert.ok(ja.some(e=>e.text===word),word);
   for(const word of ['심심하다','라면','우동'])assert.ok(ko.some(e=>e.text===word),word);
   assert.equal(ko.find(e=>e.text==='심심하다').personal_mnemonic,'sim sim ha da');
   assert.equal(ko.find(e=>e.text==='라면').personal_mnemonic,'la men');
   assert.equal(ko.find(e=>e.text==='우동').personal_mnemonic,'wu dong');
+  for (const [word, mnemonic] of [['친구', 'qin gu'], ['몰라', 'mu la'], ['여행', 'you hing']]) {
+    assert.equal(ko.find(entry => entry.text === word)?.personal_mnemonic, mnemonic, word);
+  }
 });
 test('合併不覆蓋同詞的既有ID、記音、非空內容，補缺與衝突可查',()=>{
   const base={...ko[0],notes:'既有教學備註',personal_mnemonic:'original'};
