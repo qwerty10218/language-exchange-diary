@@ -64,6 +64,18 @@
       }
     },
     {
+      "display": "구",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
       "display": "권",
       "technicalStatus": "passed",
       "checks": {
@@ -496,6 +508,18 @@
       }
     },
     {
+      "display": "몰",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
       "display": "무",
       "technicalStatus": "passed",
       "checks": {
@@ -832,6 +856,18 @@
       }
     },
     {
+      "display": "여",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
       "display": "예",
       "technicalStatus": "passed",
       "checks": {
@@ -1120,6 +1156,18 @@
       }
     },
     {
+      "display": "친",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
       "display": "커",
       "technicalStatus": "passed",
       "checks": {
@@ -1241,6 +1289,18 @@
     },
     {
       "display": "해",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "행",
       "technicalStatus": "passed",
       "checks": {
         "forward": true,
