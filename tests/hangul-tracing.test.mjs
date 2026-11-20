@@ -50,6 +50,24 @@ test('短暫離開磁吸距離後可在附近回線繼續，不會永久卡住',
   for(const p of line.slice(73))trace.add(p);
   assert.equal(trace.recovering,false);assert.equal(trace.finish().ok,true,trace.result.reason);
 });
+test('ㅏ 第二筆偏離後回到筆跡末端，可立即恢復描寫',()=>{
+  const character=hangul.find(c=>c.display==='ㅏ');
+  const strokes=character.paths.map(samplePath);
+  const points=strokes[1];
+  const trace=createTracingStroke(strokes,1,tracingOptions(character,1));
+  trace.start(points[0]);
+  const middle=Math.floor(points.length/2);
+  for(const point of points.slice(1,middle+1))trace.add(point);
+  const tip=points[middle];
+  // Preserve the path direction while moving perpendicularly out and back.
+  for(const offset of [40,80,120,150,110,70,30,0]) {
+    trace.add({x:tip.x,y:tip.y+offset});
+    if(offset===150)assert.equal(trace.recovering,true);
+  }
+  assert.equal(trace.recovering,false);
+  for(const point of points.slice(middle+1))trace.add(point);
+  assert.equal(trace.finish().ok,true,trace.result.reason);
+});
 test('圓圈終點等於起點也不能靠點兩端完成，逆向圓圈確實拒絕',()=>{
   const c=hangul.find(c=>c.display==='ㅇ'),samples=c.paths.map(samplePath),ps=samples[0];
   const dots=simulate(samples,0,[ps[0],ps[0],ps.at(-1),ps.at(-1)]);assert.equal(dots.finish().ok,false);

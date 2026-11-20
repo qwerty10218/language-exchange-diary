@@ -44,7 +44,7 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
   const rawInk = useRef<Point[][]>(snapshot?.rawInk??[]);
   const pendingRaw=useRef<Point[]|null>(null);
   const svg = useRef<SVGSVGElement>(null), paths = useRef<(SVGPathElement | null)[]>([]);
-  const active = useRef<{ id: number; rawPoints: Point[]; guide: ReturnType<typeof createGuidedStroke> | ReturnType<typeof createTracingStroke> | ReturnType<typeof createBlockStroke> | null; outside: boolean } | null>(null);
+  const active = useRef<{ id: number; canvas: DOMRect; scale: number; rawPoints: Point[]; guide: ReturnType<typeof createGuidedStroke> | ReturnType<typeof createTracingStroke> | ReturnType<typeof createBlockStroke> | null; outside: boolean } | null>(null);
   const character = characters[index];
   const fullTrace=character.language==='ko';
   const playback=fullTrace?{...HANGUL_SETTINGS,...(config!==WRITING_SETTINGS?config.global:{})}:config.global;
@@ -93,7 +93,16 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
   };
   const reset = () => { cancel(); window.clearTimeout(acceptanceTimer.current); rawInk.current = []; pendingRaw.current=null;setAcceptedStroke(null); setPhase('waiting'); setInk([]); setDemo(false); setStep(0); setPaused(false); setShowAnswer(false); setMessage('請從第一筆開始。'); };
   useEffect(() => {
-    const onResize = () => { cancel('畫面尺寸或縮放已改變，未完成的一筆已取消。'); };
+    const onResize = () => {
+      const stroke = active.current;
+      const rect = svg.current?.getBoundingClientRect();
+      if (!stroke || !rect) return;
+      const {canvas, scale} = stroke;
+      const moved = (['left', 'top', 'width', 'height'] as const).some(key => Math.abs(canvas[key] - rect[key]) > 1);
+      if (moved || Math.abs(scale - (window.visualViewport?.scale ?? 1)) > .001) {
+        cancel('畫面尺寸或縮放已改變，未完成的一筆已取消。');
+      }
+    };
     const onHide = () => { if (document.hidden) { cancel(); setPaused(true); } };
     window.addEventListener('resize', onResize);
     window.visualViewport?.addEventListener('resize', onResize);
@@ -155,22 +164,30 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
         const overrides=import.meta.env.DEV?Object.fromEntries(tuningFields.map(field=>[field.key,tuning[field.key]])):{};
         const guide = mode==='guided'?(fullTrace?(character.strokeFrames?createBlockStroke(character.paths.map((_,n)=>expected(n)),ink.length,character.strokeFrames[ink.length],tracingOptions(writingCharacters.find(c=>c.id===character.strokeFrames![ink.length].sourceId)!,character.strokeFrames[ink.length].sourceIndex)):createTracingStroke(character.paths.map((_,n)=>expected(n)),ink.length,{...tracingOptions(character,ink.length),...(config!==WRITING_SETTINGS?config.global:{}),...overrides})):createGuidedStroke(expected(ink.length),{...strokeOptions(character,ink.length,config),...overrides})):null;
         guide?.start(point);
-        active.current = { id: e.pointerId, rawPoints: [{x:point.x,y:point.y}], guide, outside: false };
+        active.current = { id: e.pointerId, canvas: e.currentTarget.getBoundingClientRect(), scale: window.visualViewport?.scale ?? 1, rawPoints: [{x:point.x,y:point.y}], guide, outside: false };
         setPhase('drawing'); setLive(guide ? [] : [point]); setLiveProgress(0); e.currentTarget.setPointerCapture(e.pointerId);
       }} onPointerMove={e => {
         if (active.current?.id !== e.pointerId) return;
         const current = active.current;
         const events = e.nativeEvent.getCoalescedEvents?.() ?? [];
-        for (const event of events.length ? events : [e]) {
+        for (const event of [...events, e]) {
           const point = screenToSvg(e.currentTarget, event.clientX, event.clientY);
           if (!point) { cancel(); return; }
+          const previous = current.rawPoints.at(-1);
+          if (previous && previous.x === point.x && previous.y === point.y) continue;
           current.rawPoints.push({x:point.x,y:point.y}); current.guide?.add(point);
           if (!insideSquare(point)) current.outside = true;
           // Validate on release, requiring a separate actual gesture for each stroke.
         }
         setLive(current.guide ? [] : current.rawPoints.filter(p => insideSquare(p)));
         setLiveProgress(current.guide?.progress ?? 0);
-        if (current.guide) setMessage(current.guide.invalid || (current.guide.recovering ? t('暫時離開引導線，回到目前筆跡末端就能繼續。') : t`沿第 ${ink.length + 1} 筆繼續，停頓也沒關係。`));
+        if (current.guide) {
+          setMessage(current.guide.invalid
+            ? t(current.guide.invalid) + t(' 放開後重畫這一筆。')
+            : current.guide.recovering
+              ? t('暫時離開引導線，回到亮色筆跡末端就能繼續。')
+              : t`沿第 ${ink.length + 1} 筆繼續，停頓也沒關係。`);
+        }
       }} onPointerUp={e => {
         const current = active.current;
         if (!current || current.id !== e.pointerId) return;
@@ -179,7 +196,7 @@ export default function Phase0({initialCharacterId, qa = false, config = WRITING
         current.rawPoints.push({x:point.x,y:point.y}); current.guide?.add(point);
         if (!insideSquare(point)) current.outside = true;
         if (current.guide && !current.outside) { completeGuided(current); return; }
-        active.current = null; e.currentTarget.releasePointerCapture(e.pointerId); setLive([]); setLiveProgress(0);
+        active.current = null; if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId); setLive([]); setLiveProgress(0);
         if (current.outside) { current.guide?.cancel(); setPhase('rejected'); setMessage(t`請在字框內重畫第 ${ink.length + 1} 筆。`); return; }
         rawInk.current = [...rawInk.current, current.rawPoints]; setInk([...ink, pathFrom(current.rawPoints)]); setPhase('waiting');
       }} onPointerCancel={e => { if (active.current?.id===e.pointerId) cancel(); }} onLostPointerCapture={e => { if (active.current?.id===e.pointerId) cancel(); }}>

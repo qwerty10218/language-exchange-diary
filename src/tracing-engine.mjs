@@ -73,10 +73,15 @@ export function createTracingStroke(allStrokes,index,overrides={}) {
       if(!match||match.gap>config.side*config.maxDeviation){this.invalid='偏離目前筆畫太遠，請重畫這一筆。';return;}
       if(match.gap>config.side*config.snapRadius){this.recovering=true;return;}
       this.closeTravel+=travel;
-      if(match.arc<=this.arc)return;
-      const advance=match.arc-this.arc;
-      if(!this.recovering)this.coveredArc+=advance;
+      const wasRecovering=this.recovering;
       this.recovering=false;
+      if(match.arc<=this.arc){
+        // Rejoining at the ink tip is valid. Off-guide travel cannot fund a jump.
+        if(wasRecovering)this.pendingTravel=0;
+        return;
+      }
+      const advance=match.arc-this.arc;
+      if(!wasRecovering)this.coveredArc+=advance;
       for(let i=1;i<samples.length;i++)if(lengths[i]>this.arc&&lengths[i]<match.arc)this.snappedPoints.push(samples[i]);
       this.snappedPoints.push(match.point);this.arc=match.arc;this.progress=this.arc/length;
       this.pendingTravel=Math.max(0,this.pendingTravel-advance/config.travelMultiplier);
