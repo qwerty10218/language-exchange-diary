@@ -1300,5 +1300,19 @@
     "notes": "保留朋友的原始記音 you hing。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-baedal",
+    "language": "ko",
+    "kind": "word",
+    "text": "배달",
+    "meaning_zh": "外送；配送",
+    "reading": null,
+    "romaji": "baedal",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "배달 음식：外送餐點。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]

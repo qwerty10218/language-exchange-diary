@@ -292,6 +292,18 @@
       }
     },
     {
+      "display": "달",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
       "display": "닭",
       "technicalStatus": "passed",
       "checks": {
@@ -569,6 +581,18 @@
     },
     {
       "display": "방",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "배",
       "technicalStatus": "passed",
       "checks": {
         "forward": true,
