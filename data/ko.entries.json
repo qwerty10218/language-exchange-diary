@@ -1314,5 +1314,19 @@
     "notes": "배달 음식：外送餐點。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-jayu",
+    "language": "ko",
+    "kind": "word",
+    "text": "자유",
+    "meaning_zh": "自由",
+    "reading": null,
+    "romaji": "jayu",
+    "personal_mnemonic": "cha yu",
+    "examples": [],
+    "notes": "保留朋友的原始記音 cha yu。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
