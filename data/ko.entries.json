@@ -1328,5 +1328,19 @@
     "notes": "保留朋友的原始記音 cha yu。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-hana",
+    "language": "ko",
+    "kind": "word",
+    "text": "하나",
+    "meaning_zh": "一、數字 1（韓語固有數詞）",
+    "reading": null,
+    "romaji": "hana",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "韓語固有數詞「一」；與日文 はな（花）讀音相似但詞義不同。未提供原始記音，故記音欄留空。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
