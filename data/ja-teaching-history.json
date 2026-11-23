@@ -141,6 +141,18 @@
       "actually_taught_on": null,
       "evidence": "11/22 推薦，使用者曾詢問是否學過；目前未見實際教過確認。與韓文 하나 不是同一條詞。 2026-11-23 使用者表示「推薦的我應該都教了」；視為可能已教，但未逐筆確認、未確認實際日期。",
       "in_ja_word_bank": false
+    },
+    {
+      "kana": "いえ",
+      "meaning_zh": "家、房子",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-23"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "2026-11-23 使用者詢問今天教什麼，依兩假名及最多一個新假名原則推薦「いえ」；尚未確認朋友實際學過。",
+      "in_ja_word_bank": false
     }
   ]
 }
