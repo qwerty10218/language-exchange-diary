@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "last_updated_on": "2026-11-23",
+  "scope": "使用者每日教朋友的日文單字；不是朋友所有已知日文的完整清單。",
+  "status_definitions": {
+    "friend_knows": "朋友已經學過，使用者明確轉述；不能因此推定是使用者教的。",
+    "taught_confirmed": "使用者明確表示實際教過；不能僅憑推薦或詞庫收錄推定。",
+    "reported_taught": "歷史筆記或對話摘要曾提及教過，但日期或直接確認仍不足。",
+    "recommended_only": "曾推薦但未獲使用者確認已教。",
+    "deferred": "提議過但因難度等原因延後，不視為已教。"
+  },
+  "recommendation_policy": [
+    "當天使用者只提供韓文且未提供日文時，主動推薦一個日文單字；日文推薦本身不代表學過。",
+    "推薦前同時檢查本檔的所有歷史詞（包含曾推薦、延後、朋友已知）與 data/ja.entries.json 的所有原文、reading；除非使用者明確想複習，均不重複推薦。",
+    "優先兩個假名、生活常見且意義具體的名詞；每天最多引入一個新假名。『已學過的假名』必須有教學證據，否則稱『曾接觸的假名』。",
+    "只在使用者確認實際教過時改為 taught_confirmed；朋友說『學過』但沒說由誰教，應用 friend_knows。無法確定日期時記 null，不能猜日期。",
+    "推薦新字後要更新本檔推薦紀錄；使用者確認學過或要求修正時同樣更新，保留證據及 GitHub 版本紀錄。",
+    "本檔及詞庫可能不包含朋友私下所學；無紀錄只代表『目前找不到證據』，不能保證從未學過。",
+    "日文與韓文記錄嚴格分開；例如日文 はな（花）與韓文 하나（一）不能混算。"
+  ],
+  "entries": [
+    {
+      "kana": "うし",
+      "meaning_zh": "牛",
+      "status": "friend_knows",
+      "recommendation_dates": [
+        "2026-11-20",
+        "2026-11-23"
+      ],
+      "confirmed_on": "2026-11-23",
+      "actually_taught_on": null,
+      "evidence": "使用者 2026-11-23 表示：朋友說他已學過；未確認由使用者教、亦未確認原學習日期。",
+      "in_ja_word_bank": false
+    },
+    {
+      "kana": "すし",
+      "meaning_zh": "壽司",
+      "status": "reported_taught",
+      "recommendation_dates": [
+        "2026-11-20"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "過往教學筆記／對話摘要提及約 11 月初教過；精確日期及朋友是否記得仍未再次核對。",
+      "in_ja_word_bank": true
+    },
+    {
+      "kana": "かに",
+      "meaning_zh": "螃蟹",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-14"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "11/14 推薦；後續收錄 GitHub 詞庫，但未明確確認朋友學過。",
+      "in_ja_word_bank": true
+    },
+    {
+      "kana": "くさ",
+      "meaning_zh": "草",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-15"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "11/15 推薦，尚無已教確認。",
+      "in_ja_word_bank": false
+    },
+    {
+      "kana": "しらない",
+      "meaning_zh": "不知道",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-16"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "11/16 推薦並納入詞庫，尚無已教確認。",
+      "in_ja_word_bank": true
+    },
+    {
+      "kana": "ならう",
+      "meaning_zh": "學習、跟人學",
+      "status": "deferred",
+      "recommendation_dates": [
+        "2026-11-18"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "11/18 提案；使用者認為太難，後改推薦其他單字。",
+      "in_ja_word_bank": false
+    },
+    {
+      "kana": "かお",
+      "meaning_zh": "臉",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-18"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "11/18 改為推薦；尚未確認實際教過。",
+      "in_ja_word_bank": false
+    },
+    {
+      "kana": "そら",
+      "meaning_zh": "天空",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-19"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "11/19 推薦；尚未確認實際教過。",
+      "in_ja_word_bank": false
+    },
+    {
+      "kana": "りょこう",
+      "meaning_zh": "旅行",
+      "status": "deferred",
+      "recommendation_dates": [
+        "2026-11-20"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "先前提議日文「旅行」，朋友覺得難；不宜再次當初學者單字推薦。",
+      "in_ja_word_bank": false
+    },
+    {
+      "kana": "はな",
+      "meaning_zh": "花",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-22"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "11/22 推薦，使用者曾詢問是否學過；目前未見實際教過確認。與韓文 하나 不是同一條詞。",
+      "in_ja_word_bank": false
+    }
+  ]
+}
