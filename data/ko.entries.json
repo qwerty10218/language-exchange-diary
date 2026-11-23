@@ -1342,5 +1342,19 @@
     "notes": "韓語固有數詞「一」；與日文 はな（花）讀音相似但詞義不同。未提供原始記音，故記音欄留空。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-hwajangsil",
+    "language": "ko",
+    "kind": "word",
+    "text": "화장실",
+    "meaning_zh": "洗手間、廁所",
+    "reading": null,
+    "romaji": "hwajangsil",
+    "personal_mnemonic": "hwa jang sher",
+    "examples": [],
+    "notes": "記憶法：可按「化妝室」來記（漢字詞：化粧室）。保留朋友原始記音 hwa jang sher；與標準羅馬拼音 hwajangsil 分開。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
