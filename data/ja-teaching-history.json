@@ -165,6 +165,18 @@
       "actually_taught_on": null,
       "evidence": "2026-11-24 每日推薦：複習 か，新增候選假名 め；已查詞庫及歷史紀錄無重複，尚未確認實際教過。",
       "in_ja_word_bank": false
+    },
+    {
+      "kana": "くつ",
+      "meaning_zh": "鞋子",
+      "status": "taught_confirmed",
+      "recommendation_dates": [
+        "2026-11-24"
+      ],
+      "confirmed_on": "2026-11-24",
+      "actually_taught_on": "2026-11-24",
+      "evidence": "2026-11-24 曾推薦くつ；同日使用者明確表示已教朋友 kutsu。",
+      "in_ja_word_bank": true
     }
   ]
 }
