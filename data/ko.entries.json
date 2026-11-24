@@ -1356,5 +1356,19 @@
     "notes": "記憶法：可按「化妝室」來記（漢字詞：化粧室）。保留朋友原始記音 hwa jang sher；與標準羅馬拼音 hwajangsil 分開。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-jip",
+    "language": "ko",
+    "kind": "word",
+    "text": "집",
+    "meaning_zh": "家、房子",
+    "reading": null,
+    "romaji": "jip",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "2026-11-24 朋友教的單字；與已收錄的 집밥（家常飯）相關。未提供個人記音，暫留空。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
