@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_updated_on": "2026-11-23",
+  "last_updated_on": "2026-11-24",
   "scope": "使用者每日教朋友的日文單字；不是朋友所有已知日文的完整清單。",
   "status_definitions": {
     "friend_knows": "朋友已經學過，使用者明確轉述；不能因此推定是使用者教的。",
@@ -152,6 +152,18 @@
       "confirmed_on": null,
       "actually_taught_on": null,
       "evidence": "2026-11-23 使用者詢問今天教什麼，依兩假名及最多一個新假名原則推薦「いえ」；尚未確認朋友實際學過。",
+      "in_ja_word_bank": false
+    },
+    {
+      "kana": "かめ",
+      "meaning_zh": "烏龜",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-24"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "2026-11-24 每日推薦：複習 か，新增候選假名 め；已查詞庫及歷史紀錄無重複，尚未確認實際教過。",
       "in_ja_word_bank": false
     }
   ]
