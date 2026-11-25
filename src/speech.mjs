@@ -16,10 +16,11 @@ export function entrySpeechText(entry) {
 /** @type {{supported:boolean,voices:SpeechSynthesisVoice[],owner:string|null,status:string,message:string}} */
 export const EMPTY_SPEECH = Object.freeze({supported:false,voices:[],owner:null,status:'idle',message:''});
 export function createSpeechPlayer(getEnvironment=()=>typeof window==='undefined'?null:window) {
-  let snapshot=EMPTY_SPEECH, environment=null, engine=null, utterance=null, generation=0, timer;
+  let snapshot=EMPTY_SPEECH, environment=null, engine=null, utterance=null, generation=0, timer, voiceTimer;
   const listeners=new Set();
   const publish=next=>{snapshot={...snapshot,...next};listeners.forEach(fn=>fn());};
   const clearTimer=()=>{if(timer!==undefined){clearTimeout(timer);timer=undefined;}};
+  const clearVoiceTimer=()=>{if(voiceTimer!==undefined){clearTimeout(voiceTimer);voiceTimer=undefined;}};
   const refresh=()=>{try{publish({voices:engine?.getVoices()??[]});}catch{publish({voices:[]});}};
   const stop=(owner)=>{
     if(owner!==undefined&&snapshot.owner!==owner)return;
@@ -36,12 +37,13 @@ export function createSpeechPlayer(getEnvironment=()=>typeof window==='undefined
         environment=getEnvironment();engine=environment?.speechSynthesis;
         publish({supported:!!(engine&&environment?.SpeechSynthesisUtterance)});
         refresh();engine?.addEventListener('voiceschanged',refresh);
+        if(engine&&!(snapshot.voices.length)){clearVoiceTimer();voiceTimer=setTimeout(refresh,300);}
         environment?.addEventListener?.('hashchange',stopOnNavigation);
         environment?.document?.addEventListener?.('visibilitychange',hide);
       }
       return ()=>{
         listeners.delete(listener);
-        if(!listeners.size){stop();engine?.removeEventListener('voiceschanged',refresh);environment?.removeEventListener?.('hashchange',stopOnNavigation);environment?.document?.removeEventListener?.('visibilitychange',hide);}
+        if(!listeners.size){clearVoiceTimer();stop();engine?.removeEventListener('voiceschanged',refresh);environment?.removeEventListener?.('hashchange',stopOnNavigation);environment?.document?.removeEventListener?.('visibilitychange',hide);}
       };
     },
     stop,

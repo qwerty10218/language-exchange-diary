@@ -65,7 +65,8 @@
 - `mvp-handoff/` 保留開發包原始規格、提示詞與詞庫供對照；網站只讀正式 `data/*.entries.json`。
 
 ## 文件導覽
-- `AGENTS.md`：Codex 每次執行都應遵守的簡短規則
+- `AGENTS.md`：Codex 與 Antigravity 每次執行都應遵守的簡短規則
+- `docs/AI_HANDOFF_LOG.md`：雙 AI（Codex ↔ Antigravity）協作更新紀錄與交接日誌
 - `docs/PRD_v1.0.md`：範圍與功能驗收
 - `docs/UI_SPEC.md`：奶茶手帳介面、手機優先版型
 - `docs/DATA_AND_IMPORT.md`：資料欄位、筆記分離、更新流程

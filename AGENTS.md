@@ -12,3 +12,4 @@
 10. 回報格式 ≤12 行：變更／測試／已知限制／待使用者決定。未經使用者允許，不主動 Commit、Push、部署，也不建立多餘大文件。
 11. 官方 Repository：https://github.com/qwerty10218/language-exchange-diary.git 。設定 Git remote 前，必須核對完整網址；舊網址 `language-exchange-diary-.git` 已停用，不得再使用。Commit、Push、部署都必須取得使用者明確指示；不得自行修改其他 Git remote 或執行發布操作。
 12. JSON 匯入須區分本機預覽與正式專案資料更新；預覽不修改公開資料，正式更新必須寫入專案資料檔，經部署後才會同步給朋友。既有 Phase 0 三字資料與判定器保留；依使用者核准補充需求建立 132 字索引與共用書寫。缺中心線或技術失敗字元不得標可用，技術通過不得當作人工驗證，未全數完成不得宣稱 132 字已完成。
+13. **雙 AI 協作交接（Codex ↔ Antigravity）**：任何 AI 開工前須先讀取 `docs/AI_HANDOFF_LOG.md` 與 `git status` 確認既有未提交變更與受保護契約；每次階段完成後須於 `docs/AI_HANDOFF_LOG.md` 追加精簡更新紀錄與 Next Handoff 說明。

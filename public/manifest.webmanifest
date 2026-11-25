@@ -1,0 +1,40 @@
+{
+  "id": "/language-exchange-diary/",
+  "name": "言語交換日記 · 日韓語言交換手帳",
+  "short_name": "言語交換日記",
+  "description": "無需登入的日韓語言交換手帳：查單字、聽發音、手機描寫筆順、每日 3 分鐘互動闖關。",
+  "lang": "zh-Hant",
+  "start_url": "/language-exchange-diary/",
+  "scope": "/language-exchange-diary/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4ece0",
+  "theme_color": "#79543e",
+  "categories": ["education", "books"],
+  "icons": [
+    {
+      "src": "/language-exchange-diary/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/language-exchange-diary/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/language-exchange-diary/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/language-exchange-diary/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

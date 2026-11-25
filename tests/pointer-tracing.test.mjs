@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createTracingStroke} from '../src/tracing-engine.mjs';
+import {createGuidedStroke} from '../src/stroke-engine.mjs';
+import {insideDrawingArea} from '../src/pointer-tracing.mjs';
+const line=Array.from({length:161},(_,i)=>({x:100+i*5,y:700}));
+const run=(factory,input,space)=>{const t=factory===createTracingStroke?factory([line],0,{},space):factory(line,{},space);t.start(input[0]);input.slice(1).forEach(p=>t.add(p));return t;};
+test('verified Korean endpoint allows bounded forward overshoot, including a small canvas gutter',()=>{
+  const input=[...line,...Array.from({length:14},(_,i)=>({x:910+i*10,y:700}))];
+  const t=run(createTracingStroke,input,{contains:p=>insideDrawingArea(p,40)});
+  assert.equal(t.finish().ok,true,t.result.reason);
+  const crossing=[100,260,420,580,740,930,1010].map((x,i)=>({x,y:712,time:100+i*16}));
+  const crossed=run(createTracingStroke,crossing,{});assert.equal(crossed.finish().ok,true,crossed.result.reason);
+  assert.equal(run(createTracingStroke,[...input,{x:1100,y:700}],{contains:p=>insideDrawingArea(p,40)}).finish().ok,false);
+  assert.equal(run(createTracingStroke,[...line,{x:900,y:850}],{}).finish().ok,false);
+});
+for(const factory of [createTracingStroke,createGuidedStroke])test(`${factory.name}: fresh sparse straight samples pass without accepting taps or corner jumps`,()=>{
+  const fast=[100,260,420,580,740,900].map((x,i)=>({x,y:700,time:100+i*16}));
+  const t=run(factory,fast,{});assert.equal(t.finish().ok,true,t.result.reason);
+  assert.equal(run(factory,[fast[0],fast.at(-1)],{}).finish().ok,false);
+  const small=Array.from({length:61},(_,i)=>({x:100+i*5,y:700}));
+  const tap=factory===createTracingStroke?factory([small],0):factory(small);
+  tap.start({x:100,y:700,time:100});for(const time of [105,110,115])tap.add({x:100,y:700,time});
+  tap.add({x:400,y:700,time:131});assert.equal(tap.finish().ok,false);
+  assert.equal(run(factory,fast.map((p,i)=>({...p,time:100+i*500})),{}).finish().ok,false);
+  assert.equal(run(factory,[...fast].reverse(),{}).finish().ok,false);
+  const corner=[...Array.from({length:81},(_,i)=>({x:100+i*5,y:400})),...Array.from({length:80},(_,i)=>({x:500,y:405+i*5}))];
+  const trace=factory===createTracingStroke?factory([corner],0):factory(corner);
+  trace.start({x:100,y:400,time:100});trace.add({x:500,y:800,time:116});assert.equal(trace.finish().ok,false);
+});
