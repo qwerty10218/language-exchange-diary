@@ -33,6 +33,7 @@ export default function SpeechButton({text,language,label=text,compact=false}:{t
         onClick={()=>busy?speechPlayer.stop(id):speechPlayer.play(id,text,language,voice,rate)}>
         <span aria-hidden="true">{busy?'■':'▶'}</span> {busy?t('停止'):t('聽發音')}
       </button>
+      {state.supported&&!selected&&<span className="word-speech-unavailable">{t`裝置未安裝${language==='ja'?'日文':'韓文'}語音`}</span>}
       {own&&state.message&&<span role="status" className="word-speech-unavailable">{t(state.message)}</span>}
     </div>;
   }

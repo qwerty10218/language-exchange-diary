@@ -16,4 +16,14 @@ export function saveTheme(getStorage,mode) {
   try { getStorage().setItem(THEME_KEY,JSON.stringify({version:1,mode}));return null; }
   catch { return '外觀已套用，但瀏覽器無法保存；下次開啟可能跟隨系統。'; }
 }
-export function applyTheme(root,mode) { root.dataset.theme=THEME_MODES.includes(mode)?mode:'auto'; }
+export function applyTheme(root,mode) {
+  const safeMode=THEME_MODES.includes(mode)?mode:'auto';
+  root.dataset.theme=safeMode;
+  try {
+    const meta=root.ownerDocument?.querySelector?.('meta[name="theme-color"]');
+    if(meta){
+      const dark=typeof window!=='undefined'&&!!window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+      meta.setAttribute('content',resolveTheme(safeMode,dark)==='dark'?'#25211e':'#f4ece0');
+    }
+  } catch { /* ignore in non-DOM test environments */ }
+}

@@ -6,10 +6,11 @@ import { questionPool, quizSession, kanaKeys, hangulKeys, learningState, summari
 import { graphemes, kanaGrid } from './word-letters.mjs';
 import type { LearningRecords } from './study-types';
 import SpeechButton from './SpeechButton';
+import { playCorrect, playWrong, playCelebration } from './sound-fx.mjs';
 
 const stateLabels={new:'新詞',practicing:'練習中',mastered:'已掌握',due:'待複習'};
-type Props={entries:Entry[];language:Language;records:LearningRecords;preferredId:string|null;onGrade:(id:string,correct:boolean)=>void;onLookup:()=>void;storageError:string|null};
-export default function Quiz({entries,language,records,preferredId,onGrade,onLookup,storageError}:Props) {
+type Props={entries:Entry[];language:Language;records:LearningRecords;preferredId:string|null;onGrade:(id:string,correct:boolean)=>void;onLookup:()=>void;storageError:string|null;onActivity?:(delta:{xp?:number;rounds?:number;correct?:number})=>void};
+export default function Quiz({entries,language,records,preferredId,onGrade,onLookup,storageError,onActivity}:Props) {
   const {t}=useChinese();
   const {questions,excluded}=useMemo(()=>buildQuestions(entries,language),[entries,language]);
   const [session,dispatch]=useReducer(quizSession,undefined,emptyQuiz);
@@ -27,11 +28,29 @@ export default function Quiz({entries,language,records,preferredId,onGrade,onLoo
   };
   const submit=()=>{
     const next=quizSession(session,{type:'submit'});
-    if(next!==session && next.result?.counted && q) onGrade(q.id,next.result.correct);
+    if(next!==session && next.result) {
+      if (next.result.correct) {
+        playCorrect();
+        if (next.result.counted) onActivity?.({ xp: 6, correct: 1 });
+      } else {
+        playWrong();
+      }
+      if (next.result.counted && q) onGrade(q.id,next.result.correct);
+    }
     dispatch({type:'submit'});
+  };
+  const hint=()=>{
+    if (!q || session.result) return;
+    const current = graphemes(session.answer);
+    if (current.length >= q.tokens.length) return;
+    dispatch({ type: 'add', character: q.tokens[current.length] });
   };
   const next=()=>{
     const question=chooseQuestion(questions,records,{lastId:q?.id??null,mode});
+    if(session.index>=session.total || !question) {
+      onActivity?.({ xp: 10, rounds: 1 });
+      playCelebration();
+    }
     if(question) setScript(question.script==='katakana'?'katakana':'hiragana');
     dispatch({type:'next',question});
   };
@@ -54,7 +73,7 @@ export default function Quiz({entries,language,records,preferredId,onGrade,onLoo
         <div className="answer-slots" aria-live="polite" aria-label={t`目前答案：${session.answer||t('尚未輸入')}`} lang={language}>{q.tokens.map((_,i)=><span key={i} className={graphemes(session.answer)[i]?'filled':''}>{graphemes(session.answer)[i]===' '?'␣':graphemes(session.answer)[i]||'＿'}</span>)}</div>
         <p className="device-note">{t("共 ")}{q.tokens.length}{t(" 格，一格一個字元")}{language==='ja'?t('；小假名與「ー」各占一格'):t('，空白也占一格')}。</p>
         {language==='ko'&&<label className="hangul-input">{t("也可使用韓文鍵盤")}<input aria-label={t("輸入韓文答案")} lang="ko" value={session.answer} disabled={!!session.result} onChange={e=>dispatch({type:'input',answer:e.target.value})} autoComplete="off" autoCapitalize="off" spellCheck={false}/></label>}
-        {!session.result?<div className="quiz-actions"><button disabled={!session.answer} onClick={()=>dispatch({type:'delete'})}>{t("⌫ 刪除上一字")}</button><button className="primary-button" disabled={graphemes(session.answer).length!==q.tokens.length} onClick={submit}>{t("確認答案")}</button></div>:<div className="quiz-feedback" role="status"><h3>{session.result.correct?t('✓ 答對了！'):t('✕ 還沒拼對，再試一次。')}</h3><p>{t("正確答案：")}<strong lang={language}>{q.answer}</strong></p>{q.entry.personal_mnemonic&&<p>{t("朋友的原始記音：")}<span data-preserve-script="true">{q.entry.personal_mnemonic}</span></p>}<p>{session.result.counted?t('已記錄本次答題結果。'):t('本題已記錄一次；訂正不重複計入統計。')}</p><div className="quiz-actions">{!session.result.correct&&<button onClick={()=>dispatch({type:'edit'})}>{t("修改再試")}</button>}<button className="primary-button" onClick={next}>{session.index>=session.total?t('查看本輪結果'):t('下一題 →')}</button></div></div>}
+        {!session.result?<div className="quiz-actions"><button disabled={!session.answer} onClick={()=>dispatch({type:'delete'})}>{t("⌫ 刪除上一字")}</button><button type="button" disabled={graphemes(session.answer).length>=q.tokens.length} onClick={hint}>{t("💡 提示 1 字")}</button><button className="primary-button" disabled={graphemes(session.answer).length!==q.tokens.length} onClick={submit}>{t("確認答案")}</button></div>:<div className="quiz-feedback" role="status"><h3>{session.result.correct?t('✓ 答對了！'):t('✕ 還沒拼對，再試一次。')}</h3><p>{t("正確答案：")}<strong lang={language}>{q.answer}</strong></p>{q.entry.personal_mnemonic&&<p>{t("朋友的原始記音：")}<span data-preserve-script="true">{q.entry.personal_mnemonic}</span></p>}<p>{session.result.counted?t('已記錄本次答題結果。'):t('本題已記錄一次；訂正不重複計入統計。')}</p><div className="quiz-actions">{!session.result.correct&&<button onClick={()=>dispatch({type:'edit'})}>{t("修改再試")}</button>}<button className="primary-button" onClick={next}>{session.index>=session.total?t('查看本輪結果'):t('下一題 →')}</button></div></div>}
         {session.result&&<SpeechButton text={q.answer} language={language} label={t("本題正確答案")}/>}
       </section>
       <section className="quiz-keyboard" aria-label={language==='ja'?t('假名選擇區'):t('韓文音節選擇區')}>

@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 // Run in a regular desktop context too; viewport width alone does not change
 // Playwright's isMobile flag or the browser's input configuration.
 export async function guidedWritingLayoutQA(page,base,name,output){
-  await page.goto(base+'#library');await page.locator('#word-search').fill('なに');await page.locator('.entry-word-link').click();await page.getByRole('button',{name:'練習這個詞',exact:true}).click();await page.waitForSelector('.writing:visible');
+  // A second navigation to the same loaded document races input delivery in WebKit.
+  if(page.url()!==base+'#library')await page.goto(base+'#library');
+  await page.waitForSelector('.entry-card');await page.locator('#word-search').fill('なに');await page.waitForFunction(()=>document.querySelectorAll('.entry-word-link').length===1,null,{timeout:5000});await page.locator('.entry-word-link').click();await page.getByRole('button',{name:'練習這個詞',exact:true}).click();await page.waitForSelector('.writing:visible');
   for(const width of [320,375,390,430,768,1440])for(const [mode,colorScheme] of [['hant','light'],['hans','dark']]){
     await page.setViewportSize({width,height:900});await page.emulateMedia({colorScheme,reducedMotion:'reduce'});await page.locator('.script-switch button').nth(mode==='hans'?1:0).click();
     assert.equal(await page.locator('.guided-session:visible > h1').innerText(),'なに');

@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(new URL(p,import.meta.url),'utf8').replace(/\r\n/g
 const characters=JSON.parse(read('../data/writing-index.json')).characters;
 const entries=JSON.parse(read('../data/ko.entries.json'));
 const displays=[...new Set([...entries.flatMap(e=>[...e.text.normalize('NFC')]),...'다라면우동권꽉값괜의'].filter(syllableParts))].sort();
-const signature=createHash('sha256').update(['../data/writing-index.json','../data/hangul-settings.json','../src/hangul-blocks.mjs','../src/block-tracing.mjs','../src/tracing-engine.mjs','../src/stroke-engine.mjs'].map(read).join('\n')).digest('hex');
+const signature=createHash('sha256').update(['../data/writing-index.json','../data/hangul-settings.json','../src/hangul-blocks.mjs','../src/block-tracing.mjs','../src/tracing-engine.mjs','../src/stroke-engine.mjs','../src/pointer-tracing.mjs','../src/screen-tracing.mjs'].map(read).join('\n')).digest('hex');
 export function checkBlock(character){
   const strokes=character.paths.map(path=>{const p=new svgPathProperties(path),length=p.getTotalLength(),count=Math.max(101,Math.ceil(length/2));return Array.from({length:count},(_,i)=>p.getPointAtLength(length*i/(count-1)));});
   const checks={forward:true,reverse:true,short:true,cancel:true,bounds:true,order:true};

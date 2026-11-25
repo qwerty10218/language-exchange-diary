@@ -1,3 +1,5 @@
+import {createScreenStroke} from './screen-tracing.mjs';
+import {bridgePointerGap} from './pointer-tracing.mjs';
 // Pure geometry: independent of browser pixels and device pixel ratio.
 export const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
 export function resample(points, count = 48) {
@@ -74,23 +76,25 @@ export function project(point, samples, lengths, min, max) {
   }
   return best;
 }
-export function createGuidedStroke(expected, overrides = {}) {
+export function createGuidedStroke(expected, overrides = {},space={}) {
   const config = { ...GUIDE_DEFAULTS, ...overrides };
+  if(space.toScreen)return createScreenStroke(space.strokes??[expected],space.index??0,space);
+  const contains=space.contains??(p=>insideSquare(p,config.side));
   const total = expected.slice(1).reduce((n, p, i) => n + distance(expected[i], p), 0);
   const samples = resample(expected, Math.max(2, Math.ceil(total / config.sampleSpacing) + 1));
   const lengths = [0];
   for (let i = 1; i < samples.length; i++) lengths.push(lengths[i - 1] + distance(samples[i - 1], samples[i]));
   const length = lengths.at(-1);
   const trace = {
-    phase: 'waiting', rawPoints: [], snappedPoints: [], progress: 0,
+    phase: 'waiting', observedPoints:0, bridgedSamples:0, observedMiddle:false, rawPoints: [], snappedPoints: [], progress: 0,
     invalid: '', closeTravel: 0, rawTravel: 0, reverseTravel: 0, arc: 0, pendingTravel: 0, recovering: false,
     directionArc: 0, directionPeak: 0, startOffset: { x: 0, y: 0 },
     result: { ok: false, reason: '尚未書寫。' },
     start(point) {
       if (this.phase !== 'waiting') return;
-      this.phase = 'drawing'; this.rawPoints.push({ ...point });
+      this.phase = 'drawing'; this.observedPoints=1; this.rawPoints.push({ ...point });
       if (samples.length) this.startOffset = { x: point.x - samples[0].x, y: point.y - samples[0].y };
-      if (!insideSquare(point, config.side) || !samples.length) this.invalid = '請在字框內開始。';
+      if (!contains(point) || !samples.length) this.invalid = '請在字框內開始。';
       else if (distance(point, samples[0]) > config.side * config.startRadius)
         this.invalid = distance(point, samples.at(-1)) < config.side * config.startRadius ? '方向相反，請從數字起點開始。' : '筆順不符，請從目前標示的起點開始。';
       // No ink appears at another stroke or at an arbitrary location.
@@ -98,9 +102,14 @@ export function createGuidedStroke(expected, overrides = {}) {
     },
     add(point) {
       if (this.phase !== 'drawing') return;
+      if(!point.interpolated){this.observedPoints++;if(this.progress>=.2&&this.progress<=.8)this.observedMiddle=true;}
       const previous = this.rawPoints.at(-1);
+      if(previous&&!this.invalid){
+        const bridge=bridgePointerGap(previous,point,Math.min(config.side*config.maxInputGap,length*config.maxSearchFraction),samples,lengths,this.arc,config.side,project,this.startOffset);
+        if(bridge){this.bridgedSamples+=bridge.length;bridge.forEach(p=>this.add(p));return;}
+      }
       this.rawPoints.push({ ...point });
-      if (!insideSquare(point, config.side)) { this.invalid ||= '超出字框，請重畫這一筆。'; return; }
+      if (!contains(point)) { this.invalid ||= '超出字框，請重畫這一筆。'; return; }
       if (this.invalid) return;
       const travel = distance(previous, point);
       if (!travel) return;
@@ -151,7 +160,7 @@ export function createGuidedStroke(expected, overrides = {}) {
     finish() {
       if (this.phase !== 'drawing') return this.result;
       this.phase = 'validating';
-      const reason = this.invalid || (this.recovering ? '請回到目前筆畫末端再繼續描寫。' : '') || (this.rawPoints.length < 4 || this.rawTravel < length * config.completion ? '軌跡太短，請完整描寫。' : '') ||
+      const reason = this.invalid || (this.bridgedSamples&&!this.observedMiddle?'取樣太少，請完整描寫，避免只點兩端。':'') || (this.recovering ? '請回到目前筆畫末端再繼續描寫。' : '') || (this.observedPoints < 4 || this.rawTravel < length * config.completion ? '軌跡太短，請完整描寫。' : '') ||
         (this.progress < config.completion || this.directionPeak / length < config.completion ? '尚未完成這一筆，請沿引導線寫到底。' : '') ||
         (this.closeTravel / this.rawTravel < config.closeRatio ? '請讓手指多沿著目前筆畫描寫。' : '');
       this.result = { ok: !reason, reason: reason || '這一筆完成，看看正確筆畫。' };

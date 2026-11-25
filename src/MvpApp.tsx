@@ -6,7 +6,9 @@ import koEntries from '../data/ko.entries.json';
 import Review from './Review';
 import Alphabet from './Alphabet';
 import Quiz from './Quiz';
+import DailyChallenge from './DailyChallenge';
 import ThemeControl from './ThemeControl';
+import PwaBanner from './PwaBanner';
 import SpeechButton,{SpeechAvailability} from './SpeechButton';
 import {entrySpeechText,speechPlayer} from './speech.mjs';
 import {loadScript,saveScript} from './zh-script.mjs';
@@ -14,16 +16,19 @@ import {sortAndFilterWords} from './word-sort.mjs';
 import {filterByLetter} from './word-letter-filter.mjs';
 import LetterFilter from './LetterFilter';
 
-import { gradeWord, loadLearning, saveLearning } from './quiz-model.mjs';
+import { gradeWord, learningState, loadLearning, saveLearning } from './quiz-model.mjs';
 import { wordLetters } from './word-letters.mjs';
 import { loadProgress, recordReview, saveProgress, searchEntries } from './learning.mjs';
+import { awardActivity, dailyQuestList, loadGameState, saveGameState, setGamePrefs, weekStamps } from './game-state.mjs';
+import { setFeedbackPrefs } from './sound-fx.mjs';
 import type { Entry, Language } from './types';
 import './mvp.css';
 
 const GuidedWriting = lazy(() => import('./GuidedWriting'));
+const WritingHub = lazy(() => import('./WritingHub'));
 const WritingLab = import.meta.env.DEV ? lazy(() => import('./WritingLab')) : null;
 const entries: Record<Language, Entry[]> = { ja: jaEntries as Entry[], ko: koEntries as Entry[] };
-type Page = 'home' | 'library' | 'word' | 'alphabet' | 'review' | 'flashcards' | 'writing' | 'lab';
+type Page = 'home' | 'library' | 'word' | 'alphabet' | 'review' | 'challenge' | 'flashcards' | 'writing' | 'lab';
 const pages: {id: Page; label: string; icon: 'home' | 'book' | 'grid' | 'cards' | 'pen'}[] = [
   {id:'home',label:'首頁',icon:'home'}, {id:'library',label:'單字',icon:'book'},
   {id:'alphabet',label:'字母',icon:'grid'}, {id:'review',label:'測驗',icon:'cards'},
@@ -32,7 +37,7 @@ const pages: {id: Page; label: string; icon: 'home' | 'book' | 'grid' | 'cards' 
 const labels = { ko: '朋友教我的韓文', ja: '我教朋友的日文' };
 function currentPage(): Page {
   const hash = window.location.hash.slice(1);
-  return pages.some(p => p.id === hash) || hash === 'flashcards' || hash === 'word' || (import.meta.env.DEV && hash === 'lab') ? hash as Page : 'home';
+  return pages.some(p => p.id === hash) || hash === 'flashcards' || hash === 'word' || hash === 'challenge' || (import.meta.env.DEV && hash === 'lab') ? hash as Page : 'home';
 }
 function Icon({name}: {name: 'home' | 'book' | 'grid' | 'cards' | 'pen' | 'search'}) {
   const paths = {
@@ -45,11 +50,19 @@ function Icon({name}: {name: 'home' | 'book' | 'grid' | 'cards' | 'pen' | 'searc
   };
   return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]}/></svg>;
 }
-function EntryCard({entry,onOpen}:{entry:Entry;onOpen:(entry:Entry)=>void}) {
+function EntryCard({entry,state,onOpen}:{entry:Entry;state:'new'|'practicing'|'mastered'|'due';onOpen:(entry:Entry)=>void}) {
   const {t}=useChinese();
+  const badge = state === 'mastered' ? '★' : state === 'due' ? '●' : '';
+  const badgeLabel = state === 'mastered' ? t('已掌握') : state === 'due' ? t('待複習') : '';
   return <article className="entry-card compact-word">
     <button className="entry-word-link" data-word-id={entry.id} onClick={()=>onOpen(entry)}>
-      <span className="entry-summary-text"><span className="entry-original" lang={entry.language}>{entry.text}</span><span className="entry-meaning">{t(entry.meaning_zh||'詞義待確認')}</span></span>
+      <span className="entry-summary-text">
+        <span className="entry-original" lang={entry.language}>
+          {entry.text}
+          {badge && <span className={`mastery-dot is-${state}`} title={badgeLabel} aria-label={badgeLabel}> {badge}</span>}
+        </span>
+        <span className="entry-meaning">{t(entry.meaning_zh||'詞義待確認')}</span>
+      </span>
       <span className="word-table-hint" aria-hidden="true">›</span>
     </button>
     <SpeechButton text={entrySpeechText(entry)} language={entry.language} label={entry.text} compact/>
@@ -68,8 +81,10 @@ function WordDetail({entry,onBack,onLetters,onPractice}:{entry:Entry;onBack:()=>
       {entry.notes&&<><dt>{t("學習筆記")}</dt><dd>{note(entry.notes)}</dd></>}
     </dl>
     {entry.examples.length>0&&<section className="word-examples"><h3>{t("例句")}</h3>{entry.examples.map((example,i)=><div key={i}><p lang={entry.language}>{example.text}</p>{example.reading&&<p lang={entry.language}>{example.reading}</p>}<p>{t(example.meaning_zh)}</p></div>)}</section>}
-    <button className="secondary-button" onClick={onPractice}>{t("練習這個詞")}</button>
-    <button className="secondary-button" onClick={onLetters}>{t("查看這個詞的字母 ›")}</button>
+    <div className="word-detail-actions">
+      <button className="primary-button" onClick={onPractice}>{t("練習這個詞")}</button>
+      <button className="secondary-button" onClick={onLetters}>{t("查看這個詞的字母 ›")}</button>
+    </div>
     <p className="device-note">{t("合成語音並非真人錄音；原文、讀音與個人記音不會因中文顯示模式改變。")}</p>
   </section>;
 }
@@ -90,6 +105,7 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
   const [writingKeys,setWritingKeys]=useState<string[]>([]);
   const writingKey=writingWord?`word:${writingWord.id}`:`letter:${writingId}`;
   const openWriting = (id: string) => { setWritingStarted(true);setWritingWord(undefined);setWritingId(id);setWritingKeys(keys=>keys.includes(`letter:${id}`)?keys:[...keys,`letter:${id}`]); window.location.hash='writing'; setPage('writing'); };
+  const openWordWriting = (word: Entry) => { setWritingStarted(true);setWritingWord(word);setWritingKeys(keys=>keys.includes(`word:${word.id}`)?keys:[...keys,`word:${word.id}`]); window.location.hash='writing'; setPage('writing'); };
   const [language, setLanguage] = useState<Language>('ja');
   const switchLanguage=(lang:Language)=>{if(lang!==language){setLanguage(lang);setSelectedLetter(null);}};
   useEffect(()=>{speechPlayer.stop();},[page,language]);
@@ -104,6 +120,10 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
   const [initialProgress] = useState(() => loadProgress(() => window.localStorage));
   const [progress, setProgress] = useState(initialProgress.progress);
   const [storageError, setStorageError] = useState(initialProgress.error);
+  const [initialGame] = useState(() => loadGameState(() => window.localStorage));
+  const [gameState, setGameState] = useState(initialGame.state);
+  const gameRef = useRef(gameState);
+  useEffect(() => { setFeedbackPrefs(gameState.prefs); }, [gameState.prefs]);
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     const update = () => {if(currentPage()==='library'&&page==='word')restoreScroll.current=wordOrigins.current[language].scroll;setPage(currentPage());};
@@ -116,7 +136,7 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
     if(page==='library'&&selectedWord){document.querySelector<HTMLElement>('[data-word-id="'+selectedWord.id+'"]')?.focus({preventScroll:true});}
   }, [page]);
   useEffect(()=>{
-    document.title=t(pages.find(item=>item.id===page)?.label??(page==='word'?'單字詳情':'翻卡複習'))+' · '+t('言語交換日記');
+    document.title=t(pages.find(item=>item.id===page)?.label??(page==='word'?'單字詳情':page==='challenge'?'每日闖關':'翻卡複習'))+' · '+t('言語交換日記');
   },[page,chineseScript]);
   useEffect(()=>{
     const position=restoreScroll.current??0;restoreScroll.current=null;
@@ -134,56 +154,109 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
     const next=gradeWord(recordsRef.current,id,correct);recordsRef.current=next;setRecords(next);
     if(!initialLearning.readOnly) setLearningError(saveLearning(()=>window.localStorage,next)??initialLearning.error);
   };
+  const onActivity=(delta:{xp?:number;rounds?:number;correct?:number;strokes?:number;writingId?:string|null})=>{
+    const next=awardActivity(gameRef.current,delta);
+    gameRef.current=next;
+    setGameState(next);
+    if(!initialGame.readOnly) saveGameState(()=>window.localStorage,next);
+  };
+  const togglePref=(key:'sound'|'haptics')=>{
+    const next=setGamePrefs(gameRef.current,{[key]:!gameRef.current.prefs[key]});
+    gameRef.current=next;
+    setGameState(next);
+    if(!initialGame.readOnly) saveGameState(()=>window.localStorage,next);
+  };
   const filtered = useMemo(()=>filterByLetter(sortAndFilterWords(searchEntries(entries[language],query) as Entry[],language,sortOrder),selectedLetter),[language,query,sortOrder,selectedLetter]);
   const resetFilters=()=>{setQueries({...queries,[language]:''});setSelectedLetter(null);setSortOrder('original');};
   const onAnswer = (id: string, status: 'remembered' | 'forgotten') => {
     const next = recordReview(progress, id, status);
     setProgress(next);
     if (!initialProgress.error) setStorageError(saveProgress(() => window.localStorage, next));
+    onActivity({ xp: status === 'remembered' ? 3 : 1, correct: status === 'remembered' ? 1 : 0 });
   };
+  const quests = dailyQuestList(gameState);
+  const stamps = weekStamps(gameState);
+  const xpPercent = Math.min(100, Math.round((gameState.todayXp / Math.max(1, gameState.dailyGoalXp)) * 100));
   const languageTabs = <div className="language-tabs" role="group" aria-label={t("筆記語言")}>{(['ko','ja'] as const).map(lang => <button key={lang} aria-pressed={language === lang} onClick={() => switchLanguage(lang)}><span className="language-stamp" aria-hidden="true">{lang === 'ko' ? '한' : 'あ'}</span><span>{lang === 'ko' ? t('韓文筆記') : t('日文筆記')}<small>{t(labels[lang])}</small></span><span className="tab-count">{entries[lang].length}</span></button>)}</div>;
   const search = <div className="search-block"><label htmlFor="word-search">{t("搜尋")}{language === 'ko' ? t('韓文') : t('日文')}{t("筆記")}</label><div className="search-field"><Icon name="search"/><input id="word-search" type="search" value={query} onChange={e => setQueries({...queries,[language]:e.target.value})} placeholder={t("搜尋原文、中文、讀音或個人記音")} autoComplete="off"/>{query && <button className="clear-search" aria-label={t("清除搜尋")} onClick={() => setQueries({...queries,[language]:''})}>×</button>}</div></div>;
   const filterControls=<LetterFilter key={language} language={language} selected={selectedLetter} onSelect={setSelectedLetter} sort={sortOrder} onSort={setSortOrder} onReset={resetFilters}/>;
   const resultList = <><div className="list-heading"><h2>{query.trim()?t('搜尋結果'):t('全部詞句')}</h2>{(query||selectedLetter||sortOrder!=='original')&&<button className="text-button" onClick={resetFilters}>{t('重設')}</button>}<p role="status">{filtered.length}{t(" 筆")}</p></div>
-    <div className="entry-list">{filtered.map((entry:Entry) => <EntryCard key={entry.id} entry={entry} onOpen={openWord}/>)}</div>
+    <div className="entry-list">{filtered.map((entry:Entry) => <EntryCard key={entry.id} entry={entry} state={learningState(records[entry.id]) as 'new'|'practicing'|'mastered'|'due'} onOpen={openWord}/>)}</div>
     {!filtered.length && <section className="empty-state"><h3>{t("沒有找到這個詞")}</h3><p>{t("可以試著輸入原文、中文或朋友的記音。")}</p><button onClick={resetFilters}>{t('重設搜尋與篩選')}</button></section>}
   </>;
+  const activeWritingLang: Language = writingWord ? writingWord.language : (writingId.startsWith('ko-') ? 'ko' : 'ja');
   return <div className="mvp-shell">
     <a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();(page==='writing'?document.querySelector<HTMLElement>('[data-active-writing] h1'):heading.current)?.focus();}}>{t("跳至主要內容")}</a>
     <header className="mvp-topbar"><a className="brand" href="#home" onClick={()=>navigate('home')}><span className="brand-mark" aria-hidden="true">{t("言")}</span><span>{t("言語交換日記")}<small>LANGUAGE EXCHANGE DIARY</small></span></a>
       <div className="script-switch" role="group" aria-label={t("中文顯示")}><button aria-pressed={chineseScript==='hant'} onClick={()=>changeScript('hant')}>{t("繁")}</button><button aria-pressed={chineseScript==='hans'} onClick={()=>changeScript('hans')}>{t("简")}</button></div>
-      <nav aria-label={t("主導覽")}>{pages.map(item => <a key={item.id} href={`#${item.id}`} aria-current={page===item.id||page==='flashcards'&&item.id==='review'||page==='word'&&item.id==='library'?'page':undefined} onClick={()=>navigate(item.id)}><Icon name={item.icon}/><span>{t(item.label)}</span></a>)}</nav>
+      <nav aria-label={t("主導覽")}>{pages.map(item => <a key={item.id} href={`#${item.id}`} aria-current={page===item.id||(page==='flashcards'||page==='challenge')&&item.id==='review'||page==='word'&&item.id==='library'?'page':undefined} onClick={()=>navigate(item.id)}><Icon name={item.icon}/><span>{t(item.label)}</span></a>)}</nav>
     </header>
-    {(writingStarted||page==='writing') && <div className="phase0-host" id="writing-content" hidden={page!=='writing'}><Suspense fallback={<p role="status">{t("載入書寫練習…")}</p>}>{[...new Set([...writingKeys,writingKey])].map(key=>{const word=key.startsWith('word:')?Object.values(entries).flat().find(e=>e.id===key.slice(5)):undefined;return <div key={key} data-active-writing={key===writingKey?true:undefined} hidden={key!==writingKey}><GuidedWriting entry={word} characterId={key.startsWith('letter:')?key.slice(7):'ko-a'} visible={page==='writing'&&key===writingKey} onBack={()=>{if(word){switchLanguage(word.language);setSelectedWords(current=>({...current,[word.language]:word.id}));navigate('word');}else{switchLanguage(key.slice(7).startsWith('ko-')?'ko':'ja');navigate('alphabet');}}}/></div>;})}</Suspense></div>}
+    <PwaBanner/>
+    {(writingStarted||page==='writing') && <div className="phase0-host" id="writing-content" hidden={page!=='writing'}><Suspense fallback={<p role="status">{t("載入書寫練習…")}</p>}>{[...new Set([...writingKeys,writingKey])].map(key=>{const word=key.startsWith('word:')?Object.values(entries).flat().find(e=>e.id===key.slice(5)):undefined;const isActive=key===writingKey;return <div key={key} data-active-writing={isActive?true:undefined} hidden={!isActive}><GuidedWriting entry={word} characterId={key.startsWith('letter:')?key.slice(7):'ko-a'} visible={page==='writing'&&isActive} onUnitCompleted={(unitId,isLast)=>onActivity({xp:isLast?8:4,strokes:1,writingId:unitId})} hub={isActive?<WritingHub language={activeWritingLang} entries={entries[activeWritingLang]} activeId={writingId} activeWordId={writingWord?.id} writingCounts={gameState.writingCounts} onSwitchLanguage={lang=>openWriting(lang==='ko'?'ko-a':'ja-a-hiragana')} onSelectCharacter={openWriting} onSelectWord={openWordWriting} onOpenAlphabet={()=>{switchLanguage(activeWritingLang);navigate('alphabet');}}/>:undefined} onBack={()=>{if(word){switchLanguage(word.language);setSelectedWords(current=>({...current,[word.language]:word.id}));navigate('word');}else{switchLanguage(key.slice(7).startsWith('ko-')?'ko':'ja');navigate('alphabet');}}}/></div>;})}</Suspense></div>}
     {page==='lab'&&WritingLab&&<Suspense fallback={<p>{t("載入調校室…")}</p>}><WritingLab/></Suspense>}
     <main id="main-content" tabIndex={-1} className="mvp-body" hidden={page==='writing'||page==='lab'}>
       {page==='home'
         ? <section className="simple-home">
             <p className="section-kicker">OUR LITTLE LANGUAGE NOTEBOOK</p>
             <h1 ref={page==='home'?heading:undefined} tabIndex={-1}>{t("今天想學什麼？")}</h1>
-            <p>{t("日文與韓文的共同筆記，查一個詞、聽發音，或練習一下。")}</p>
+            <p>{t("日文與韓文的共同筆記，每天花 3 分鐘闖關、聽發音、描筆順，蓋下今日印章。")}</p>
+
+            <section className="daily-hub notebook-panel" aria-label={t("今日手帳進度")}>
+              <div className="daily-hub-header">
+                <div>
+                  <span className="daily-streak-pill">{gameState.streak > 0 ? t`🔥 連續 ${gameState.streak} 天` : t('🌱 開始今天第一顆印章')}</span>
+                  <p className="daily-xp-caption">{t`今日進度 ${gameState.todayXp}／${gameState.dailyGoalXp} XP`}{gameState.todayXp >= gameState.dailyGoalXp ? t(' · 今日目標達成！') : ''}</p>
+                </div>
+                <div className="daily-lang-quick" role="group" aria-label={t("今日闖關語言")}>
+                  <button type="button" aria-pressed={language==='ko'} onClick={()=>switchLanguage('ko')}>{t('韓文')}</button>
+                  <button type="button" aria-pressed={language==='ja'} onClick={()=>switchLanguage('ja')}>{t('日文')}</button>
+                </div>
+              </div>
+              <div className="daily-xp-bar" role="progressbar" aria-valuenow={gameState.todayXp} aria-valuemin={0} aria-valuemax={gameState.dailyGoalXp} aria-label={t("今日經驗值進度")}>
+                <span style={{width:`${xpPercent}%`}}/>
+              </div>
+              <div className="week-stamps" aria-label={t("近七天練習印章")}>
+                {stamps.map(day=><span key={day.dateKey} className={`stamp-cell${day.stamped?' is-stamped':''}${day.isToday?' is-today':''}`}><span>{day.stamped?'✓':day.weekday}</span><small>{day.isToday?t('今'):day.weekday}</small></span>)}
+              </div>
+              <button type="button" className="primary-button daily-cta" onClick={()=>navigate('challenge')}>
+                <span>▶ {t`開始今日 3 分鐘${language==='ko'?t('韓文'):t('日文')}闖關`}</span>
+                <small>{t('快答 · 消消樂 · 手寫')}</small>
+              </button>
+              <ul className="daily-quests" aria-label={t("今日微任務")}>
+                {quests.map(q=><li key={q.id} className={q.done?'is-done':undefined}><span className="quest-check" aria-hidden="true">{q.done?'✓':'○'}</span><span>{t(q.title)}</span><small>{q.current}/{q.target}</small></li>)}
+              </ul>
+            </section>
+
             <div className="home-links">
-              <button onClick={()=>navigate('library')}><Icon name="book"/><span><strong>{t("查單字")}</strong><small>{t("看意思、聽整詞發音")}</small></span><span aria-hidden="true">→</span></button>
-              <button onClick={()=>navigate('alphabet')}><Icon name="grid"/><span><strong>{t("查字母")}</strong><small>{t("五十音／韓文 40 音")}</small></span><span aria-hidden="true">→</span></button>
-              <button onClick={()=>navigate('review')}><Icon name="cards"/><span><strong>{t("開始測驗")}</strong><small>{t("拼字與錯題複習")}</small></span><span aria-hidden="true">→</span></button>
+              <button onClick={()=>navigate('library')}><Icon name="book"/><span><strong>{t("查單字")}</strong><small>{t("看意思、朋友記音與整詞發音")}</small></span><span aria-hidden="true">→</span></button>
+              <button onClick={()=>navigate('alphabet')}><Icon name="grid"/><span><strong>{t("查字母")}</strong><small>{t("五十音／韓文 40 音與筆順")}</small></span><span aria-hidden="true">→</span></button>
+              <button onClick={()=>navigate('writing')}><Icon name="pen"/><span><strong>{t("手寫練習站")}</strong><small>{t("每日推薦字元與韓文音節字塊")}</small></span><span aria-hidden="true">→</span></button>
+              <button onClick={()=>navigate('review')}><Icon name="cards"/><span><strong>{t("拼字測驗與翻卡")}</strong><small>{t("錯題加權與間隔複習")}</small></span><span aria-hidden="true">→</span></button>
             </div>
-            <details className="home-settings"><summary>{t("顯示設定（淺色／深色）")}</summary><ThemeControl/></details>
-            <p className="device-note">{t("無需登入。每人的測驗進度只保存在自己的裝置。")}</p>
+            <details className="home-settings"><summary>{t("顯示與互動設定（深淺色／音效／震動）")}</summary>
+              <ThemeControl/>
+              <div className="feedback-prefs" role="group" aria-label={t("互動回饋開關")}>
+                <button type="button" aria-pressed={gameState.prefs.sound} onClick={()=>togglePref('sound')}>{gameState.prefs.sound?t('🔊 互動音效：開'):t('🔇 互動音效：關')}</button>
+                <button type="button" aria-pressed={gameState.prefs.haptics} onClick={()=>togglePref('haptics')}>{gameState.prefs.haptics?t('📳 手機震動：開'):t('📴 手機震動：關')}</button>
+              </div>
+            </details>
+            <p className="device-note">{t("無需登入。每人的測驗、印章與手寫進度只保存在自己的裝置。")}</p>
           </section>
         : null}
         <div hidden={page==='home'}>
           <section className="page-intro">
-            <h1 ref={page!=='home'?heading:undefined} tabIndex={-1}>{page==='library'?t('單字表'):page==='word'?t('單字詳情'):page==='alphabet'?(language==='ja'?t('五十音表'):t('韓文 40 音表')):page==='review'?t('拼字測驗'):page==='flashcards'?t('翻卡練習'):t('學習')}</h1>
-            <p>{page==='library'?t('搜尋、排序、篩選，點單字看詳細資料。'):page==='word'?t('查看讀音、例句與學習記音。'):page==='alphabet'?t('點字母查看讀音或進入書寫。'):page==='review'?t('看中文，自己拼出日文或韓文。'):t('看原文，想一想它的意思。')}</p>
+            <h1 ref={page!=='home'?heading:undefined} tabIndex={-1}>{page==='library'?t('單字表'):page==='word'?t('單字詳情'):page==='alphabet'?(language==='ja'?t('五十音表'):t('韓文 40 音表')):page==='challenge'?t('每日混合闖關'):page==='review'?t('拼字測驗'):page==='flashcards'?t('翻卡練習'):t('學習')}</h1>
+            <p>{page==='library'?t('搜尋、排序、篩選，點單字看詳細資料。'):page==='word'?t('查看讀音、例句與學習記音。'):page==='alphabet'?t('點字母查看讀音或進入書寫。'):page==='challenge'?t('四選一、消消樂、聽音與手寫輪番上陣，輕鬆拿印章！'):page==='review'?t('看中文，自己拼出日文或韓文。'):t('看原文，想一想它的意思。')}</p>
           </section>
           <section className="focused-workspace">
             {languageTabs}
             {page==='library'&&<>{search}{filterControls}<SpeechAvailability language={language}/>{resultList}</>}
-            {page==='word'&&(selectedWord?<WordDetail entry={selectedWord} onBack={returnToWord} onPractice={()=>{setWritingWord(selectedWord);setWritingKeys(keys=>keys.includes(`word:${selectedWord.id}`)?keys:[...keys,`word:${selectedWord.id}`]);navigate('writing');}} onLetters={()=>selectWord(selectedWord)}/>:<section className="empty-state"><h3>{t("請先選擇單字")}</h3><button onClick={()=>navigate('library')}>{t("回到單字表")}</button></section>)}
+            {page==='word'&&(selectedWord?<WordDetail entry={selectedWord} onBack={returnToWord} onPractice={()=>openWordWriting(selectedWord)} onLetters={()=>selectWord(selectedWord)}/>:<section className="empty-state"><h3>{t("請先選擇單字")}</h3><button onClick={()=>navigate('library')}>{t("回到單字表")}</button></section>)}
             <div hidden={page!=='alphabet'}><Alphabet visible={page==='alphabet'} language={language} onWrite={openWriting} linkedWord={selectedWord} linkedLetters={letterLink} onReturn={selectedWord?()=>navigate('word'):undefined} onQuiz={()=>navigate('review')}/></div>
+            {page==='challenge'&&<DailyChallenge entries={entries[language]} language={language} records={records} streak={gameState.streak} onGrade={onGrade} onActivity={onActivity} onExit={()=>navigate('home')}/>}
             <div hidden={page!=='review'}>
-              <div className="mode-switch"><button className="text-button" onClick={()=>navigate('flashcards')}>{t("改用翻卡練習 →")}</button></div>
-              {(['ko','ja'] as const).map(lang=><div key={lang} hidden={lang!==language}><Quiz entries={entries[lang]} language={lang} records={records} preferredId={selectedWords[lang]} onGrade={onGrade} onLookup={()=>navigate('alphabet')} storageError={learningError}/></div>)}
+              <div className="mode-switch"><button className="text-button" onClick={()=>navigate('challenge')}>{t("🎮 每日混合闖關")}</button><button className="text-button" onClick={()=>navigate('flashcards')}>{t("改用翻卡練習 →")}</button></div>
+              {(['ko','ja'] as const).map(lang=><div key={lang} hidden={lang!==language}><Quiz entries={entries[lang]} language={lang} records={records} preferredId={selectedWords[lang]} onGrade={onGrade} onLookup={()=>navigate('alphabet')} storageError={learningError} onActivity={onActivity}/></div>)}
             </div>
             <div hidden={page!=='flashcards'}>
               <div className="mode-switch"><button className="text-button" onClick={()=>navigate('review')}>{t("← 回到拼字測驗")}</button></div>

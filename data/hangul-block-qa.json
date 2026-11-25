@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "signature": "156f031f33d1c562e5b56d2edf1f0f4589c869fb5db14cd2d2ea525e5d705b0c",
+  "signature": "af132063c70c9e6920a36db2e89034e01a0e9220833bbd7231812ebc1f940622",
   "humanStatus": "pending",
   "characters": [
     {
@@ -125,6 +125,18 @@
     },
     {
       "display": "꽉",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "나",
       "technicalStatus": "passed",
       "checks": {
         "forward": true,
@@ -1061,6 +1073,18 @@
     },
     {
       "display": "자",
+      "technicalStatus": "passed",
+      "checks": {
+        "forward": true,
+        "reverse": true,
+        "short": true,
+        "cancel": true,
+        "bounds": true,
+        "order": true
+      }
+    },
+    {
+      "display": "장",
       "technicalStatus": "passed",
       "checks": {
         "forward": true,

@@ -1,4 +1,34 @@
 :root{font-family:system-ui,"Noto Sans CJK TC",sans-serif;color:var(--ink);background:var(--page);font-synthesis:none;line-height:1.7}*{box-sizing:border-box}body{margin:0}main{max-width:780px;margin:auto;padding:32px 20px 60px}h1{font-size:clamp(1.8rem,5vw,2.7rem);margin:.2em 0}h2{font-size:1.2rem}.eyebrow{letter-spacing:.12em;font-size:.8rem;color:var(--muted)}.notice{border-left:3px solid var(--accent);padding:12px 16px;margin:24px 0}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;margin:20px 0}.buttons{display:flex;gap:10px;flex-wrap:wrap}button{font:inherit;min-width:44px;min-height:44px;padding:9px 16px;border:1px solid var(--control-border);border-radius:12px;background:var(--paper);color:var(--ink);cursor:pointer}button[aria-pressed=true]{background:var(--selected);color:var(--ink)}button:disabled{opacity:.5;cursor:default}button:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}small{display:block;font-size:.72rem}.modes{margin-top:20px}.writing{display:block;width:100%;max-width:510px;aspect-ratio:1;margin:auto;border:1px solid var(--control-border);background:var(--canvas);touch-action:none;-webkit-user-select:none;user-select:none}.grid{stroke:var(--line);stroke-width:2;stroke-dasharray:14 10}.guide,.ink,.demo,.direction{fill:none;stroke-linecap:round;stroke-linejoin:round}.guide{stroke:var(--guide);stroke-width:30}.ink{stroke:var(--ink);stroke-width:18;pointer-events:none}.demo{stroke:var(--accent);stroke-width:22;pointer-events:none}.direction{stroke:var(--focus);stroke-width:7;pointer-events:none}.animated{stroke-dasharray:1;stroke-dashoffset:1;animation:write 1.3s linear forwards}@keyframes write{to{stroke-dashoffset:0}}.feedback{min-height:4em}.feedback span{display:block;font-size:.85rem;color:var(--muted)}.controls button{flex:1 1 auto}footer{font-size:.85rem;color:var(--muted);overflow-wrap:anywhere}a{color:var(--link)}@media(max-width:450px){main{padding:20px 12px}.card{padding:16px}.buttons{gap:6px}button{padding:8px 12px}}@media(prefers-reduced-motion:reduce){.animated{animation:none;stroke-dashoffset:0}}
 
-.writing{overflow:hidden}.accepted-animation{stroke-dasharray:1;stroke-dashoffset:1;animation:write .4s linear forwards}@media(prefers-reduced-motion:reduce){.accepted-animation{animation:none;stroke-dashoffset:0}}
+.writing{overflow:hidden;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}.writing-start{pointer-events:none}.accepted-animation{stroke-dasharray:1;stroke-dashoffset:1;animation:write .4s linear forwards}@media(prefers-reduced-motion:reduce){.accepted-animation{animation:none;stroke-dashoffset:0}}
+.writing-live-bar{height:6px;width:100%;max-width:510px;margin:0 auto 8px;border-radius:99px;background:var(--line);overflow:hidden}
+.writing-live-bar>span{display:block;height:100%;width:100%;transform-origin:left center;background:var(--focus);transition:transform 60ms linear}
+.writing-live-bar[data-state="recovering"]>span{background:var(--error)}
+.writing-live-bar[data-state="ready"]>span{background:var(--success)}
+.writing[data-recovering="true"] .writing-track{stroke:var(--error);opacity:.26}
+.writing[data-ready="true"] .writing-track{stroke:var(--success);opacity:.24}
+.writing-endpoint-ready{pointer-events:none}
+.writing-endpoint-ready circle{fill:var(--success-bg);stroke:var(--success);stroke-width:12;animation:endpoint-pulse .9s ease-in-out infinite}
+@keyframes endpoint-pulse{50%{r:38;opacity:.7}}
+@media(prefers-reduced-motion:reduce){.writing-live-bar>span{transition:none}.writing-endpoint-ready circle{animation:none}}
 .tuning{margin-top:16px;border:1px solid var(--line);border-radius:12px;padding:12px}.tuning summary{cursor:pointer;min-height:44px}.tuning label{display:block;margin:12px 0}.tuning input{display:block;width:100%;min-height:44px;accent-color:var(--accent)}.tuning p{font-size:.85rem}
+
+/* Visible corridor matches the screen-space recognizer, including composed blocks. */
+.writing-track{fill:none;stroke:var(--focus);stroke-width:70px;stroke-linecap:round;stroke-linejoin:round;opacity:.12;pointer-events:none}
+.writing[data-phase="drawing"] .writing-track{opacity:.18}
+.writing[data-phase="drawing"] .writing-start circle{animation:writing-touch .35s ease-out}
+@keyframes writing-touch{50%{r:32;opacity:.7}}
+@media(prefers-reduced-motion:reduce){.writing[data-phase="drawing"] .writing-start circle{animation:none}}
+
+/* Replay stays above prior ink; active motion must remain distinct from its template. */
+.writing[data-demo="true"] .completed-ink{opacity:.22}
+.writing[data-demo="true"] .demo{stroke:var(--ink);opacity:1}
+.writing[data-demo="true"] .demo.animated{stroke:var(--focus)}
+@media(forced-colors:active){.writing[data-demo="true"] .demo{stroke:CanvasText}.writing[data-demo="true"] .demo.animated{stroke:Highlight}}
+
+/* Practice uses the same visual hierarchy and CSS-pixel stroke widths as replay. */
+.active-route{fill:none;stroke:var(--ink);stroke-width:3px;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.writing[data-demo="false"] .live-ink{stroke:var(--focus)}
+.writing[data-demo="false"] .completed-ink{stroke-width:6px;vector-effect:non-scaling-stroke}
+.writing-head{pointer-events:none}.writing-head circle{fill:var(--canvas);stroke:var(--focus);stroke-width:2}.writing-head path{fill:none;stroke:var(--focus);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(forced-colors:active){.active-route{stroke:CanvasText}.writing[data-demo="false"] .live-ink{stroke:Highlight}.writing-head circle{fill:Canvas;stroke:Highlight}.writing-head path{stroke:Highlight}}
