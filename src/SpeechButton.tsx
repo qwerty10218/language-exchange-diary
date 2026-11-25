@@ -9,7 +9,7 @@ export function SpeechAvailability({language}:{language:Language}) {
   const available=preferredVoice(state.voices,language);
   return <p id="word-speech-help" className="speech-availability" role="status">{
     !state.supported?t('此瀏覽器不支援朗讀；可使用支援裝置語音的瀏覽器。'):
-    !available?t`裝置尚無${language==='ja'?t('日文'):t('韓文')}聲音，請在系統下載對應語音後重開頁面。`:
+    !available?t`裝置尚無${language==='ja'?t('日文'):t('韓文')}聲音，請在系統下載對應語音後重開頁面（或改用 Microsoft Edge／手機瀏覽器開啟）。`:
     t('聽發音使用裝置合成語音，非真人錄音。點播放中的按鈕可停止。')
   }</p>;
 }
@@ -39,7 +39,7 @@ export default function SpeechButton({text,language,label=text,compact=false}:{t
   }
   return <div className="speech-control">
     <button type="button" aria-label={t`${busy?t('停止朗讀'):t('朗讀（合成語音）')}：${label}`} aria-describedby={hintId} disabled={!state.supported||!selected} onClick={()=>busy?speechPlayer.stop(id):speechPlayer.play(id,text,language,voice,rate)}>{busy?t('停止朗讀'):t('朗讀（合成語音）')}</button>
-    <p id={hintId} className="device-note">{!state.supported?t('此瀏覽器尚未提供語音朗讀。'):!selected?t`尚無${language==='ja'?t('日文'):t('韓文')}聲音，請在裝置系統下載對應語音後重開頁面。`:t('裝置合成語音，非真人錄音；自然程度依所選聲音而異，部分聲音需要連網。')}</p>
+    <p id={hintId} className="device-note">{!state.supported?t('此瀏覽器尚未提供語音朗讀。'):!selected?t`尚無${language==='ja'?t('日文'):t('韓文')}聲音，請在裝置系統下載對應語音，或複製網址改用 Microsoft Edge／手機瀏覽器開啟。`:t('裝置合成語音，非真人錄音；自然程度依所選聲音而異，部分聲音需要連網。')}</p>
     <p className="device-note">{t("朗讀文字：")}<span lang={language}>{text}</span></p>
     {selected&&<details><summary>{t("聲音與語速")}</summary><label htmlFor={`${id}-voice`}>{t("朗讀聲音")}</label><select id={`${id}-voice`} value={selected.voiceURI} onChange={e=>{speechPlayer.stop(id);setVoice(e.target.value);}}>{voices.map(v=><option key={v.voiceURI} value={v.voiceURI}>{v.name}（{v.lang}）</option>)}</select><label htmlFor={`${id}-rate`}>{t("語速")}</label><select id={`${id}-rate`} value={rate} onChange={e=>{speechPlayer.stop(id);setRate(Number(e.target.value));}}><option value="1">{t("自然速度")}</option><option value="0.8">{t("慢速練習")}</option></select></details>}
     <p role="status" className="device-note">{own?t(state.message):''}</p>

@@ -1,6 +1,6 @@
 // Zero-dependency Service Worker for Language Exchange Diary PWA.
 // Scope: /language-exchange-diary/
-const CACHE_NAME = 'led-pwa-v1';
+const CACHE_NAME = 'led-pwa-v2';
 const SCOPE_BASE = self.registration.scope.endsWith('/')
   ? self.registration.scope
   : `${self.registration.scope}/`;

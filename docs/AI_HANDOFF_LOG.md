@@ -67,4 +67,4 @@
   - 合併 Draft PR #5 全數最新單字與教學記憶庫（韓文新增至含 `친구`、`몰라`、`여행`、`배달`、`자유`、`하나`、`화장실`、`집`；日文新增至含 `かに`、`しらない`、`くつ` 及 `data/ja-teaching-history.json`）。
   - 整合 `AGENTS.md` 第 13 條（日文每日推薦排重記憶庫）與第 14 條（雙 AI 協作交接）。
   - 執行 `npm run writing:blocks -- --write` 更新 `data/hangul-block-qa.json`（韓文字塊擴充至 **117／117 全數通過**）。
-- **驗證結果**：依使用者授權執行全套 `npm run check` 通過後推送至官方 `origin/main` 觸發 GitHub Pages 自動部署。
+- **驗證結果**：依使用者授權執行全套 `npm run check` 通過後推送至官方 `origin/main` 觸發 GitHub Pages 自動部署；隨後修補 `speech.mjs` 於 Windows Chromium 閒置時呼叫 `cancel()` 砍掉語音的競態與無 `onstart` 自動備援語音／視窗限制提示，並升級 `sw.js` 快取版本至 `led-pwa-v2`。

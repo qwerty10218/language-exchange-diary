@@ -19,7 +19,7 @@ test('PWA manifest, icons, service worker and index.html tags align with GitHub 
   assert.ok(fs.existsSync(new URL('../public/icons/apple-touch-icon.png', import.meta.url)));
   const sw = read('../public/sw.js');
   assert.match(sw, /SKIP_WAITING/);
-  assert.match(sw, /led-pwa-v1/);
+  assert.match(sw, /led-pwa-v\d+/);
   const html = read('../index.html');
   assert.match(html, /rel="manifest" href="\.\/manifest\.webmanifest"/);
   assert.match(html, /name="apple-mobile-web-app-capable" content="yes"/);

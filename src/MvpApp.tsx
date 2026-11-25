@@ -255,7 +255,8 @@ function MvpContent({chineseScript,changeScript}:{chineseScript:ChineseScript;ch
             <div hidden={page!=='alphabet'}><Alphabet visible={page==='alphabet'} language={language} onWrite={openWriting} linkedWord={selectedWord} linkedLetters={letterLink} onReturn={selectedWord?()=>navigate('word'):undefined} onQuiz={()=>navigate('review')}/></div>
             {page==='challenge'&&<DailyChallenge entries={entries[language]} language={language} records={records} streak={gameState.streak} onGrade={onGrade} onActivity={onActivity} onExit={()=>navigate('home')}/>}
             <div hidden={page!=='review'}>
-              <div className="mode-switch"><button className="text-button" onClick={()=>navigate('challenge')}>{t("🎮 每日混合闖關")}</button><button className="text-button" onClick={()=>navigate('flashcards')}>{t("改用翻卡練習 →")}</button></div>
+              <div className="challenge-shortcut"><button className="text-button" onClick={()=>navigate('challenge')}>{t("🎮 改玩每日混合闖關 →")}</button></div>
+              <div className="mode-switch"><button className="text-button" onClick={()=>navigate('flashcards')}>{t("改用翻卡練習 →")}</button></div>
               {(['ko','ja'] as const).map(lang=><div key={lang} hidden={lang!==language}><Quiz entries={entries[lang]} language={lang} records={records} preferredId={selectedWords[lang]} onGrade={onGrade} onLookup={()=>navigate('alphabet')} storageError={learningError} onActivity={onActivity}/></div>)}
             </div>
             <div hidden={page!=='flashcards'}>

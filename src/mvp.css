@@ -318,6 +318,7 @@ main.mvp-body { max-width:1200px; padding:0 36px 40px; margin:auto; }
 .mastery-dot.is-mastered { color:var(--success); }
 .mastery-dot.is-due { color:var(--error); }
 .mvp-body .mode-switch { gap:14px; flex-wrap:wrap; }
+.challenge-shortcut { display:flex; justify-content:flex-end; margin-bottom:4px; }
 
 .daily-hub { margin:20px 0 22px; padding:22px; }
 .daily-hub-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:12px; }

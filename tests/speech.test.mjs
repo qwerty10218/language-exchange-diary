@@ -49,3 +49,24 @@ test('不支援 Speech API 的環境可安全載入',()=>{
   const player=createSpeechPlayer(()=>null),unsubscribe=player.subscribe(()=>{});
   assert.equal(player.getSnapshot().supported,false);player.play('a','あ','ja');assert.equal(player.getSnapshot().status,'error');unsubscribe();
 });
+
+test('閒置時不無故呼叫 cancel()，且當首選語音無 onstart 即結束時自動切換備援語音或提示視窗限制',()=>{
+  let cancelCount=0;
+  const s=setup([voice('ja-JP','Microsoft Ayumi'),voice('ja-JP','Microsoft Haruka',{default:true})]);
+  s.engine.cancel=()=>{cancelCount++;};
+  try {
+    s.player.play('a','かさ','ja');
+    assert.equal(cancelCount,0,'Idle play must not call cancel() right before speak()');
+    assert.equal(s.engine.calls[0].voice.name,'Microsoft Haruka');
+    // Simulate silent 0ms end without onstart on first candidate -> automatically retries second voice
+    s.engine.calls[0].onend();
+    assert.equal(s.engine.calls.length,2);
+    assert.equal(s.engine.calls[1].voice.name,'Microsoft Ayumi');
+    // Simulate embedded webview dropping all voices without onstart -> surfaces clear error message
+    s.engine.calls[1].onend();
+    assert.equal(s.player.getSnapshot().status,'error');
+    assert.match(s.player.getSnapshot().message,/預覽視窗|瀏覽器/);
+  } finally {
+    s.unsubscribe();
+  }
+});
