@@ -1370,5 +1370,19 @@
     "notes": "2026-11-24 朋友教的單字；與已收錄的 집밥（家常飯）相關。未提供個人記音，暫留空。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-eoryeopda",
+    "language": "ko",
+    "kind": "word",
+    "text": "어렵다",
+    "meaning_zh": "困難、難",
+    "reading": null,
+    "romaji": "eoryeopda",
+    "personal_mnemonic": "eo ryeop da",
+    "examples": [],
+    "notes": "保留朋友原始記音 eo ryeop da。形容詞原形，實際發音 [어렵따]。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
