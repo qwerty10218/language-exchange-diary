@@ -530,5 +530,19 @@
     "notes": "漢字：知らない。普通體、口語用法；和韓文 몰라 都可表達「不知道」。複習 し、な、い，認識 ら。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ja-kutsu",
+    "language": "ja",
+    "kind": "word",
+    "text": "くつ",
+    "meaning_zh": "鞋子",
+    "reading": "くつ",
+    "romaji": "kutsu",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "漢字：靴。2026-11-24 使用者確認已教朋友；複習 く、練習 つ。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
