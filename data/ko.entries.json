@@ -1370,5 +1370,33 @@
     "notes": "2026-11-24 朋友教的單字；與已收錄的 집밥（家常飯）相關。未提供個人記音，暫留空。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ko-eoryeopda",
+    "language": "ko",
+    "kind": "word",
+    "text": "어렵다",
+    "meaning_zh": "困難、難",
+    "reading": null,
+    "romaji": "eoryeopda",
+    "personal_mnemonic": "eo ryeop da",
+    "examples": [],
+    "notes": "保留朋友原始記音 eo ryeop da。形容詞原形，實際發音 [어렵따]。",
+    "review_status": "needs_review",
+    "audio": null
+  },
+  {
+    "id": "ko-himdeulda",
+    "language": "ko",
+    "kind": "word",
+    "text": "힘들다",
+    "meaning_zh": "累、疲憊；辛苦、吃力",
+    "reading": null,
+    "romaji": "himdeulda",
+    "personal_mnemonic": "Him dier da",
+    "examples": [],
+    "notes": "2026-11-27 朋友教的單字；原始記音 Him dier da 完整保留。原始中文釋義：累、疲憊。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]

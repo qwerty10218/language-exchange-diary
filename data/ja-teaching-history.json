@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_updated_on": "2026-11-24",
+  "last_updated_on": "2026-11-27",
   "scope": "使用者每日教朋友的日文單字；不是朋友所有已知日文的完整清單。",
   "status_definitions": {
     "friend_knows": "朋友已經學過，使用者明確轉述；不能因此推定是使用者教的。",
@@ -177,6 +177,30 @@
       "actually_taught_on": "2026-11-24",
       "evidence": "2026-11-24 曾推薦くつ；同日使用者明確表示已教朋友 kutsu。",
       "in_ja_word_bank": true
+    },
+    {
+      "kana": "はし",
+      "meaning_zh": "筷子",
+      "status": "likely_taught",
+      "recommendation_dates": [
+        "2026-11-25"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "2026-11-25 推薦「はし（箸）」後，使用者要求與當日韓文 어렵다 一起補入詞庫；視為可能已教，尚未逐詞明確確認實際教學日期。",
+      "in_ja_word_bank": true
+    },
+    {
+      "kana": "つき",
+      "meaning_zh": "月亮",
+      "status": "recommended_only",
+      "recommendation_dates": [
+        "2026-11-27"
+      ],
+      "confirmed_on": null,
+      "actually_taught_on": null,
+      "evidence": "2026-11-27 每日推薦「つき（月）」；複習已確認教過的 くつ 中的 つ，新增候選假名 き。詞庫與歷史查無重複；尚未確認實際教授。",
+      "in_ja_word_bank": false
     }
   ]
 }

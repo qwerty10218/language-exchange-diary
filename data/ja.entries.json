@@ -544,5 +544,19 @@
     "notes": "漢字：靴。2026-11-24 使用者確認已教朋友；複習 く、練習 つ。",
     "review_status": "needs_review",
     "audio": null
+  },
+  {
+    "id": "ja-hashi",
+    "language": "ja",
+    "kind": "word",
+    "text": "はし",
+    "meaning_zh": "筷子",
+    "reading": "はし",
+    "romaji": "hashi",
+    "personal_mnemonic": null,
+    "examples": [],
+    "notes": "漢字：箸。2026-11-25 每日推薦，使用者要求收錄；複習 は、し。與同音詞 橋（はし，橋）區分。",
+    "review_status": "needs_review",
+    "audio": null
   }
 ]
